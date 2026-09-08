@@ -20,6 +20,10 @@
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
@@ -33,26 +37,30 @@
     <div class="stack">
       <div class="card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
         <div class="f" style="flex:2;min-width:220px"><input placeholder="🔍  Mã HĐ / tên KH / CCCD…"></div>
-        <div class="f" style="width:180px"><select><option>Trạng thái HĐ</option><option>Nháp</option><option>Chờ duyệt hồ sơ</option><option>Chờ duyệt giải ngân</option><option>Đang hiệu lực</option><option>Quá hạn</option><option>Đã tất toán</option><option>Bị trả về</option></select></div>
+        <div class="f" style="width:180px"><select><option>Trạng thái HĐ</option><option>Nháp</option><option>Chờ duyệt hồ sơ</option><option>Đã phê duyệt</option><option>Chờ duyệt giải ngân</option><option>Chờ chi tiền</option><option>Đang hiệu lực</option><option>Quá hạn</option><option>Đã tất toán</option><option>Bị trả về</option><option>Từ chối</option></select></div>
+        <div class="f" style="width:160px"><select><option>Loại giao dịch</option><option>Cầm mới</option><option>Gia hạn TT</option><option>Vay thêm</option><option>Trả bớt</option></select></div>
         <div class="f" style="width:190px"><select><option>Đề nghị thanh toán</option><option>Chờ duyệt GN</option><option>Đã duyệt GN</option><option>Đã chi tiền</option></select></div>
-        <div class="f" style="width:150px"><select><option>Chi nhánh</option></select></div>
+        <div class="f" style="width:150px"><select><option>Chi nhánh</option><option>CN Quận 1</option><option>CN Thủ Đức</option><option>CN Bình Thạnh</option></select></div>
         <div class="f" style="width:170px"><input type="date"></div>
       </div>
       <div class="tbl-wrap">
         <table class="tbl">
-          <thead><tr><th>Mã HĐCC</th><th>Khách hàng</th><th>Số tiền cầm</th><th>Giải ngân</th><th>Đến hạn</th><th>Trạng thái HĐ</th><th>Đề nghị thanh toán</th><th>Bước tiếp theo</th><th></th></tr></thead>
+          <thead><tr><th>Mã HĐCC</th><th>Khách hàng</th><th>Loại GD</th><th>Số tiền cầm</th><th>Kỳ hạn</th><th>Giải ngân</th><th>Đến hạn</th><th>Chi nhánh</th><th>Trạng thái HĐ</th><th>Đề nghị thanh toán</th><th>Bước tiếp theo</th><th></th></tr></thead>
           <tbody>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002211</a></td><td>Nguyễn Thị Hồng</td><td>28.000.000</td><td>—</td><td>—</td><td><span class="bg bg-warn">Chờ duyệt hồ sơ</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">BP.TĐVPD duyệt (bước 1)</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002208</a></td><td>Trần Văn Bảo</td><td>12.000.000</td><td>—</td><td>—</td><td><span class="bg bg-blue">Chờ duyệt giải ngân</span></td><td><span class="bg bg-warn">Chờ duyệt GN</span></td><td><a class="link" href="06-duyet-giai-ngan.html">Duyệt giải ngân (bước 2)</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002205</a></td><td>Lê Minh Châu</td><td>45.000.000</td><td>22/08</td><td>21/09</td><td><span class="bg bg-blue">Đã duyệt giải ngân</span></td><td><span class="bg bg-blue">Đã duyệt GN</span></td><td><a class="link" href="06-duyet-giai-ngan.html">KT export Vietinbank + chi tiền</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002199</a></td><td>Võ Thúy An</td><td>8.000.000</td><td>20/08</td><td>19/09</td><td><span class="bg bg-green">Đang hiệu lực</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="07-luong-xuat-hoa-don.html">Theo dõi thu lãi/phí</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002150</a></td><td>Phạm Quốc Duy</td><td>15.000.000</td><td>10/07</td><td>09/08</td><td><span class="bg bg-red">Quá hạn</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="#">Nhắc nợ lần 2/3</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002101</a></td><td>Đỗ Thu Trang</td><td>20.000.000</td><td>05/07</td><td>04/08</td><td><span class="bg bg-gray">Đã tất toán</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="07-luong-xuat-hoa-don.html">Đã đẩy SAP · HĐĐT đã xuất</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002210</a></td><td>Ngô Văn Hùng</td><td>6.000.000</td><td>—</td><td>—</td><td><span class="bg bg-red">Bị trả về</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="03-tao-hop-dong.html">TVV sửa theo lý do trả về</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002211</a></td><td>Nguyễn Thị Hồng</td><td>Cầm mới</td><td>28.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Quận 1</td><td><span class="bg bg-warn">Chờ duyệt hồ sơ</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">BP.TĐVPD duyệt (bước 1)</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002209</a></td><td>Hoàng Minh Tuấn</td><td>Cầm mới</td><td>35.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Thủ Đức</td><td><span class="bg bg-teal">Đã phê duyệt</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">In HĐCC + KH ký → upload scan → chuyển B2</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002207</a></td><td>Lý Thanh Mai</td><td>Gia hạn TT</td><td>18.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Bình Thạnh</td><td><span class="bg bg-teal">Đã phê duyệt</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">In HĐCC + KH ký → upload scan → chuyển B2</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002208</a></td><td>Trần Văn Bảo</td><td>Cầm mới</td><td>12.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Quận 1</td><td><span class="bg bg-blue">Chờ duyệt giải ngân</span></td><td><span class="bg bg-warn">Chờ duyệt GN</span></td><td><a class="link" href="06-duyet-giai-ngan.html">Duyệt giải ngân (bước 2)</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002205</a></td><td>Lê Minh Châu</td><td>Cầm mới</td><td>45.000.000</td><td>30 ngày</td><td>22/08</td><td>21/09</td><td>CN Thủ Đức</td><td><span class="bg bg-blue">Chờ chi tiền</span></td><td><span class="bg bg-blue">Đã duyệt GN</span></td><td><a class="link" href="06-duyet-giai-ngan.html">KT export Vietinbank + chi tiền</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002199</a></td><td>Võ Thúy An</td><td>Cầm mới</td><td>8.000.000</td><td>30 ngày</td><td>20/08</td><td>19/09</td><td>CN Quận 1</td><td><span class="bg bg-green">Đang hiệu lực</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="07-luong-xuat-hoa-don.html">Theo dõi thu lãi/phí</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002150</a></td><td>Phạm Quốc Duy</td><td>Gia hạn TT</td><td>15.000.000</td><td>30 ngày</td><td>10/07</td><td>09/08</td><td>CN Bình Thạnh</td><td><span class="bg bg-red">Quá hạn</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="#">Nhắc nợ lần 2/3</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002101</a></td><td>Đỗ Thu Trang</td><td>Cầm mới</td><td>20.000.000</td><td>30 ngày</td><td>05/07</td><td>04/08</td><td>CN Quận 1</td><td><span class="bg bg-gray">Đã tất toán</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="07-luong-xuat-hoa-don.html">Đã đẩy SAP · HĐĐT đã xuất</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002210</a></td><td>Ngô Văn Hùng</td><td>Cầm mới</td><td>6.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Thủ Đức</td><td><span class="bg bg-red">Bị trả về</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="03-tao-hop-dong.html">TVV sửa theo lý do trả về</a></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="#">HD002195</a></td><td>Bùi Thị Lan</td><td>Cầm mới</td><td>10.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Quận 1</td><td><span class="bg bg-red">Từ chối</span></td><td><span class="bg bg-gray">—</span></td><td>Hồ sơ đã đóng</td><td><a class="act-link" onclick="toast('Đã duplicate → HD mới (nháp)')">Duplicate</a></td></tr>
           </tbody>
         </table>
       </div>
-      <div class="hint">Vòng đời: Nháp → Chờ duyệt hồ sơ → Chờ duyệt giải ngân → Đã duyệt GN → Đang hiệu lực → Quá hạn / Đã tất toán · "Bị trả về" quay lại TVV sửa theo lý do</div>
+      <div class="hint">Vòng đời: Nháp → Chờ duyệt hồ sơ → <strong>Đã phê duyệt</strong> (in HĐCC + KH ký) → Chờ duyệt giải ngân → Chờ chi tiền → Đang hiệu lực → Quá hạn / Đã tất toán · "Bị trả về" quay lại TVV sửa theo lý do · "Từ chối" đóng vĩnh viễn (có thể Duplicate)</div>
     </div>
 
   </main>

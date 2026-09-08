@@ -20,6 +20,10 @@
       <a href="05-duyet-ho-so.html" class="on">· Duyệt hồ sơ (B1)</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
@@ -29,6 +33,9 @@
     <div class="page-head"><h1>Duyệt hồ sơ HD002211 (bước 1)</h1><span class="bg bg-warn" id="hsStatus">Chờ duyệt hồ sơ</span></div>
     <div class="split">
       <div class="stack">
+        <div class="note note-info" style="font-size:.82rem">
+          ℹ <strong>Hồ sơ gửi lại sau chỉnh sửa:</strong> ưu tiên hiển thị cho người duyệt cũ · có bộ lọc dự phòng khi người duyệt nghỉ
+        </div>
         <div class="note note-info">
           <strong>ℹ Hồ sơ được gửi lại sau khi trả về — 3 thông tin đã thay đổi:</strong><br>
           • Số tiền cầm: 30.000.000 → <strong>28.000.000</strong> &nbsp; • Tỷ lệ thu lại TSCC #1: 85% → <strong>80%</strong> &nbsp; • Bổ sung hình tài sản (2 ảnh)<br>
@@ -63,7 +70,8 @@
           <div class="steps">
             <div class="st done"><span class="ic">✓</span><span class="t">Tạo hồ sơ (TVV)<small>23/08 · 14:32</small></span></div>
             <div class="st now" id="st2"><span class="ic">●</span><span class="t">Duyệt hồ sơ — BP.TĐVPD<small>Đang chờ</small></span></div>
-            <div class="st todo" id="st3"><span class="ic">○</span><span class="t">In HĐCC + bảng lãi phí<small>Sau duyệt bước 1</small></span></div>
+            <div class="st todo" id="st3"><span class="ic">○</span><span class="t">In HĐCC + bảng lãi phí + biên nhận<small>Sau duyệt bước 1</small></span></div>
+            <div class="st todo" id="st3b"><span class="ic">○</span><span class="t">KH ký HĐCC → upload bản scan<small>TVV upload scan HĐCC đã ký</small></span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Duyệt giải ngân (bước 2)</span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Kế toán duyệt đề nghị TT</span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Chi tiền (Vietinbank)</span></div>
@@ -72,35 +80,95 @@
         <div class="card"><h2>Xử lý hồ sơ</h2>
           <div class="stack" style="gap:9px">
             <button class="btn btn-ok" style="justify-content:center" onclick="approve()">✓ Duyệt hồ sơ</button>
-            <button class="btn btn-warn" style="justify-content:center" onclick="reject('Đã trả về — TVV được sửa mọi field, khi gửi lại sẽ hiện diff')">↩ Đề nghị chỉnh sửa (trả về)</button>
-            <button class="btn btn-danger" style="justify-content:center" onclick="reject('Đã từ chối hồ sơ')">✕ Từ chối</button>
+            <button class="btn btn-warn" style="justify-content:center" onclick="returnHS()">↩ Đề nghị chỉnh sửa (trả về)</button>
+            <button class="btn btn-danger" style="justify-content:center" onclick="showRejectConfirm()">✕ Từ chối</button>
           </div>
           <div class="f" style="margin-top:12px"><label>Lý do trả về / từ chối <span class="req">*</span> (ghi rõ thông tin cần sửa)</label>
             <textarea id="reason" rows="3" placeholder="VD: sai số tài khoản thụ hưởng, bổ sung hình mặt sau tài sản…"></textarea>
             <div class="hint">Trả về: không giới hạn field TVV được sửa · sau sửa hiện diff cho người duyệt</div>
           </div>
         </div>
-        <div class="note note-warn" id="printNote" hidden>🖨 Đã duyệt bước 1 — nút <a href="06-duyet-giai-ngan.html" style="text-decoration:underline"><strong>In HĐCC + bảng lãi phí</strong></a> đã mở. KH ký xong, TVV upload bản scan rồi chuyển duyệt giải ngân →</div>
+        <div class="note note-warn" id="printNote" hidden>
+          🖨 Đã duyệt bước 1 — nút <a href="#" style="text-decoration:underline" onclick="toast('Đã mở trang in HĐCC + bảng lãi phí + biên nhận')"><strong>In HĐCC + bảng lãi phí + biên nhận</strong></a> đã mở. KH ký xong, TVV upload bản scan rồi chuyển duyệt giải ngân.
+        </div>
+        <div class="card" id="uploadScanCard" hidden>
+          <h2>Upload bản scan HĐCC đã ký</h2>
+          <div class="upload-compact" onclick="document.getElementById('scanFile').click()">
+            📎 Kéo thả hoặc bấm chọn file scan HĐCC đã ký<br>
+            <small>PDF, JPG, PNG — tối đa 10 MB</small>
+          </div>
+          <input type="file" id="scanFile" hidden accept=".pdf,.jpg,.jpeg,.png" onchange="onScanUpload()">
+          <div id="scanFileName" style="font-size:.82rem;color:var(--sub);margin-top:6px" hidden></div>
+          <button class="btn btn-pri" style="width:100%;justify-content:center;margin-top:10px" id="btnChuyenB2" disabled onclick="chuyenB2()">Chuyển duyệt giải ngân (B2)</button>
+        </div>
+        <div class="note note-ok" id="rejectedBanner" hidden>
+          Hồ sơ đã bị từ chối. <a href="#" class="act-link" style="font-size:.84rem;color:var(--green);font-weight:600" onclick="toast('Đã duplicate → HD mới (nháp)');return false;">Duplicate thành hồ sơ mới</a>
+        </div>
       </div>
     </div>
 
   </main>
+
+  <!-- Modal xác nhận từ chối -->
+  <div class="overlay" id="rejectModal">
+    <div class="modal" style="max-width:460px">
+      <div class="m-head"><h3>Xác nhận từ chối hồ sơ</h3></div>
+      <p style="font-size:.88rem;line-height:1.5;margin-bottom:16px;color:var(--sub)">
+        Hồ sơ sẽ bị <strong style="color:var(--red)">đóng vĩnh viễn</strong>. Khách hàng hoặc TVV có thể tạo hồ sơ mới bằng chức năng Duplicate.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-line" data-modal-close>Hủy</button>
+        <button class="btn btn-danger" style="background:var(--red);color:#fff;border-color:var(--red)" onclick="confirmReject()">Xác nhận từ chối</button>
+      </div>
+    </div>
+  </div>
+
 <script src="assets/app.js"></script>
 <script>
 function approve(){
   const s=document.getElementById('hsStatus');
-  s.textContent='Đã duyệt hồ sơ';s.className='bg bg-green';
+  s.textContent='Đã phê duyệt';s.className='bg bg-teal';
   const st2=document.getElementById('st2');st2.className='st done';st2.querySelector('.ic').textContent='✓';st2.querySelector('small').textContent='Vừa xong';
   const st3=document.getElementById('st3');st3.className='st now';st3.querySelector('.ic').textContent='●';
   document.getElementById('printNote').hidden=false;
-  toast('Đã duyệt hồ sơ — mở bước in chứng từ');
+  document.getElementById('uploadScanCard').hidden=false;
+  toast('Đã duyệt hồ sơ — mở bước in chứng từ + upload scan');
 }
-function reject(msg){
+function returnHS(){
   const r=document.getElementById('reason');
-  if(!r.value.trim()){toast('Bắt buộc nhập lý do trước khi trả về / từ chối');r.focus();return;}
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do trước khi trả về');r.focus();return;}
   const s=document.getElementById('hsStatus');
   s.textContent='Bị trả về';s.className='bg bg-red';
-  toast(msg);
+  toast('Đã trả về — TVV được sửa mọi field, khi gửi lại sẽ hiện diff');
+}
+function showRejectConfirm(){
+  const r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do trước khi từ chối');r.focus();return;}
+  document.getElementById('rejectModal').classList.add('open');
+}
+function confirmReject(){
+  document.getElementById('rejectModal').classList.remove('open');
+  const s=document.getElementById('hsStatus');
+  s.textContent='Từ chối';s.className='bg bg-red';
+  document.getElementById('rejectedBanner').hidden=false;
+  toast('Đã từ chối hồ sơ — hồ sơ đóng vĩnh viễn');
+}
+function onScanUpload(){
+  const f=document.getElementById('scanFile');
+  if(f.files.length){
+    const name=f.files[0].name;
+    const el=document.getElementById('scanFileName');
+    el.textContent='📄 '+name;el.hidden=false;
+    document.getElementById('btnChuyenB2').disabled=false;
+  }
+}
+function chuyenB2(){
+  const st3=document.getElementById('st3');st3.className='st done';st3.querySelector('.ic').textContent='✓';st3.querySelector('small').textContent='Đã in';
+  const st3b=document.getElementById('st3b');st3b.className='st done';st3b.querySelector('.ic').textContent='✓';st3b.querySelector('small').textContent='Đã upload';
+  const s=document.getElementById('hsStatus');
+  s.textContent='Chờ duyệt giải ngân';s.className='bg bg-blue';
+  document.getElementById('uploadScanCard').hidden=true;
+  toast('Đã chuyển duyệt giải ngân (bước 2)');
 }
 </script>
 </body>

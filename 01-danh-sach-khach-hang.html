@@ -20,6 +20,10 @@
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
@@ -42,18 +46,19 @@
       </div>
       <div class="tbl-wrap">
         <table class="tbl">
-          <thead><tr><th>Mã KH</th><th>Họ tên</th><th>CCCD / Passport</th><th>SĐT</th><th>Hạng</th><th>Nguồn KH</th><th>Mã SAP (BP)</th><th>Số HĐCC</th><th>Trạng thái</th><th></th></tr></thead>
+          <thead><tr><th>Mã KH</th><th>Họ tên</th><th>CCCD / Passport</th><th>SĐT</th><th>Hạng</th><th>Nguồn KH</th><th>Mã KH PNJ</th><th>Mã SAP (BP)</th><th>Dư nợ</th><th>Số HĐCC</th><th>Trạng thái</th><th>Quyền sửa</th><th></th></tr></thead>
           <tbody>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000123</a></td><td>Nguyễn Thị Hồng</td><td>0790xxxxxxxx</td><td>0903 xxx 111</td><td><span class="bg bg-gold">Gold</span></td><td>PNJ / CAF</td><td>BP1000021</td><td>2</td><td><span class="bg bg-green">Đang giao dịch</span></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000124</a></td><td>Trần Văn Bảo</td><td>0480xxxxxxxx</td><td>0912 xxx 222</td><td><span class="bg bg-gray">Chuẩn</span></td><td>Vãng lai</td><td>BP1000022</td><td>1</td><td><span class="bg bg-green">Đang giao dịch</span></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000125</a></td><td>Lê Minh Châu</td><td>P1234xxxx (Passport)</td><td>0938 xxx 333</td><td><span class="bg bg-blue">Diamond</span></td><td>Ngân hàng</td><td>BP1000023</td><td>3</td><td><span class="bg bg-green">Đang giao dịch</span></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000126</a></td><td>Phạm Quốc Duy</td><td>0250xxxxxxxx</td><td>0905 xxx 444</td><td><span class="bg bg-gray">Chuẩn</span></td><td>Tiệm vàng</td><td>—</td><td>0</td><td><span class="bg bg-blue">Mới</span></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000127</a></td><td>Võ Thúy An</td><td>0790xxxxxxxx</td><td>0907 xxx 555</td><td><span class="bg bg-gold">Gold</span></td><td>NV nội bộ PNJG</td><td>BP1000025</td><td>1</td><td><span class="bg bg-green">Đang giao dịch</span></td><td>⋯</td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000123</a></td><td>Nguyễn Thị Hồng</td><td>0790xxxxxxxx</td><td>0903 xxx 111</td><td><span class="bg bg-gold">Gold</span></td><td>PNJ / CAF</td><td>PNJ-100234</td><td>BP1000021</td><td style="text-align:right;white-space:nowrap">45.000.000 đ</td><td>2</td><td><span class="bg bg-green">Đang giao dịch</span></td><td><span class="perm-lock" title="Chỉ Admin sửa (đã có HĐCC)">🔒 <small>(Admin)</small></span></td><td><a class="tbl-action" href="#" onclick="toast('Mở lịch sử điều chỉnh KH000123 (mô phỏng)')">Lịch sử</a></td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000124</a></td><td>Trần Văn Bảo</td><td>0480xxxxxxxx</td><td>0912 xxx 222</td><td><span class="bg bg-gray">Chuẩn</span></td><td>Vãng lai</td><td>—</td><td>BP1000022</td><td style="text-align:right;white-space:nowrap">12.500.000 đ</td><td>1</td><td><span class="bg bg-green">Đang giao dịch</span></td><td><span class="perm-lock" title="Chỉ Admin sửa (đã có HĐCC)">🔒 <small>(Admin)</small></span></td><td><a class="tbl-action" href="#" onclick="toast('Mở lịch sử điều chỉnh KH000124 (mô phỏng)')">Lịch sử</a></td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000125</a></td><td>Lê Minh Châu</td><td>P1234xxxx (Passport)</td><td>0938 xxx 333</td><td><span class="bg bg-blue">Diamond</span></td><td>Ngân hàng</td><td>PNJ-100567</td><td>BP1000023</td><td style="text-align:right;white-space:nowrap">78.200.000 đ</td><td>3</td><td><span class="bg bg-green">Đang giao dịch</span></td><td><span class="perm-lock" title="Chỉ Admin sửa (đã có HĐCC)">🔒 <small>(Admin)</small></span></td><td><a class="tbl-action" href="#" onclick="toast('Mở lịch sử điều chỉnh KH000125 (mô phỏng)')">Lịch sử</a></td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000126</a></td><td>Phạm Quốc Duy</td><td>0250xxxxxxxx</td><td>0905 xxx 444</td><td><span class="bg bg-gray">Chuẩn</span></td><td>Tiệm vàng</td><td>PNJ-100891</td><td>—</td><td style="text-align:right;white-space:nowrap">0 đ</td><td>0</td><td><span class="bg bg-blue">Mới</span></td><td><span class="perm-edit" title="TVV được sửa (chưa có HĐCC)">✏️ <small>(TVV)</small></span></td><td><a class="tbl-action" href="#" onclick="toast('Mở lịch sử điều chỉnh KH000126 (mô phỏng)')">Lịch sử</a></td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000127</a></td><td>Võ Thúy An</td><td>0790xxxxxxxx</td><td>0907 xxx 555</td><td><span class="bg bg-gold">Gold</span></td><td>NV nội bộ PNJG</td><td>—</td><td>BP1000025</td><td style="text-align:right;white-space:nowrap">8.000.000 đ</td><td>1</td><td><span class="bg bg-green">Đang giao dịch</span></td><td><span class="perm-lock" title="Chỉ Admin sửa (đã có HĐCC)">🔒 <small>(Admin)</small></span></td><td><a class="tbl-action" href="#" onclick="toast('Mở lịch sử điều chỉnh KH000127 (mô phỏng)')">Lịch sử</a></td></tr>
           </tbody>
         </table>
         <div class="tbl-foot"><span>Hiển thị 1–5 / 1.248 khách hàng</span><span class="grow"></span>
           <button class="pg">‹</button><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button><span>…</span><button class="pg">250</button><button class="pg">›</button></div>
       </div>
+      <div class="legend-note">✏️ KH chưa có HĐCC: TVV được sửa &nbsp;·&nbsp; 🔒 KH đã có HĐCC: chỉ Admin sửa</div>
     </div>
 
   </main>

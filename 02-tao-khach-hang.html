@@ -20,14 +20,25 @@
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
   <main class="main">
 
-    <div class="crumb"><a href="01-danh-sach-khach-hang.html">Khách hàng</a> › Tạo mới</div>
-    <div class="page-head"><h1>Tạo tài khoản khách hàng</h1></div>
+    <div class="crumb"><a href="01-danh-sach-khach-hang.html">Khách hàng</a> › <span id="crumbSuffix">Tạo mới</span></div>
+    <div class="page-head"><h1 id="pageTitle">Tạo tài khoản khách hàng</h1></div>
     <div class="stack">
+      <!-- Mode toggle tabs (demo 3 states) -->
+      <div class="card" style="display:flex;gap:0;align-items:stretch;padding:0;overflow:hidden">
+        <button class="mode-tab mode-tab-on" data-mode="create" onclick="switchKhMode('create')">Tạo mới</button>
+        <button class="mode-tab" data-mode="edit-tvv" onclick="switchKhMode('edit-tvv')">Sửa · KH chưa có HĐCC</button>
+        <button class="mode-tab" data-mode="edit-admin" onclick="switchKhMode('edit-admin')">Sửa · KH đã có HĐCC</button>
+      </div>
+      <div class="note note-info" id="modeBanner">Chế độ: <strong>Tạo mới khách hàng</strong></div>
       <div class="note note-warn" id="ageWarn" hidden>⚠ Khách hàng ngoài độ tuổi 18–70 — vui lòng kiểm tra kỹ trước khi tiếp tục (cảnh báo, không chặn giao dịch)</div>
       <div class="card"><h2>Thông tin cá nhân</h2>
         <div class="grid2">
@@ -69,9 +80,29 @@
           <div class="f"><label>Ghi chú</label><input placeholder="Ghi chú thêm về khách hàng"></div>
         </div>
       </div>
+      <!-- Lịch sử điều chỉnh — chỉ hiện ở chế độ edit -->
+      <div class="card" id="auditSection" hidden>
+        <h2 style="cursor:pointer" onclick="document.getElementById('auditBody').hidden=!document.getElementById('auditBody').hidden">
+          Lịch sử điều chỉnh <small style="font-weight:400;color:var(--sub);font-size:.78rem">▼ bấm để đóng/mở</small>
+        </h2>
+        <div id="auditBody">
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead><tr><th>Thời điểm</th><th>User thực hiện</th><th>Trường thay đổi</th><th>Giá trị cũ</th><th>Giá trị mới</th><th>User duyệt</th></tr></thead>
+              <tbody>
+                <tr><td style="white-space:nowrap">15/08/2026 09:30</td><td>Nguyễn Thị Mai (TVV)</td><td>SĐT</td><td>0901 xxx 888</td><td>0912 xxx 222</td><td>—</td></tr>
+                <tr><td style="white-space:nowrap">10/08/2026 14:15</td><td>Trần Văn Hùng (Admin)</td><td>Địa chỉ liên hệ</td><td>123 Nguyễn Huệ, Q1</td><td>456 Lê Lợi, Q3</td><td>Lê Quốc Bảo (Admin)</td></tr>
+                <tr><td style="white-space:nowrap">02/08/2026 11:00</td><td>Nguyễn Thị Mai (TVV)</td><td>Email</td><td>—</td><td>hong.nt@email.com</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="hint" style="margin-top:8px">Mỗi thay đổi trường dữ liệu KH đều được ghi nhận · Admin có thể xem toàn bộ lịch sử</div>
+        </div>
+      </div>
+
       <div style="display:flex;gap:10px;justify-content:flex-end">
         <a class="btn btn-line" href="01-danh-sach-khach-hang.html">Hủy</a>
-        <button class="btn btn-pri" onclick="toast('Đã lưu khách hàng (mô phỏng) — mã KH000128')">Lưu khách hàng</button>
+        <button class="btn btn-pri" id="btnSubmit" onclick="toast('Đã lưu khách hàng (mô phỏng) — mã KH000128')">Lưu khách hàng</button>
       </div>
     </div>
 
@@ -82,6 +113,60 @@ document.getElementById('dob').addEventListener('change',e=>{
   const y=new Date(e.target.value).getFullYear(),age=new Date().getFullYear()-y;
   document.getElementById('ageWarn').hidden=!(age<18||age>70);
 });
+
+/* Mode switching for KH form (create / edit-tvv / edit-admin) */
+function switchKhMode(mode){
+  // Update tabs
+  document.querySelectorAll('.mode-tab').forEach(t=>{
+    t.classList.toggle('mode-tab-on',t.dataset.mode===mode);
+  });
+  // Update banner
+  const banner=document.getElementById('modeBanner');
+  const title=document.getElementById('pageTitle');
+  const crumb=document.getElementById('crumbSuffix');
+  const audit=document.getElementById('auditSection');
+  const btn=document.getElementById('btnSubmit');
+  // All form inputs/selects
+  const fields=document.querySelectorAll('.stack .card:not(#auditSection) input:not([type=date]):not([readonly]), .stack .card:not(#auditSection) select');
+  const dateFields=document.querySelectorAll('.stack .card:not(#auditSection) input[type=date]');
+  if(mode==='create'){
+    banner.className='note note-info';
+    banner.innerHTML='Chế độ: <strong>Tạo mới khách hàng</strong>';
+    title.textContent='Tạo tài khoản khách hàng';
+    crumb.textContent='Tạo mới';
+    audit.hidden=true;
+    btn.textContent='Lưu khách hàng';
+    btn.disabled=false;
+    fields.forEach(f=>{f.disabled=false;});
+    dateFields.forEach(f=>{f.disabled=false;});
+    document.querySelectorAll('.stack .card').forEach(c=>c.classList.remove('card-disabled'));
+  } else if(mode==='edit-tvv'){
+    banner.className='note note-ok';
+    banner.innerHTML='Chế độ: <strong>Chỉnh sửa</strong> · TVV được phép sửa (KH chưa có HĐCC)';
+    title.textContent='Chỉnh sửa khách hàng · KH000126';
+    crumb.textContent='Chỉnh sửa KH000126';
+    audit.hidden=false;
+    btn.textContent='Lưu thay đổi';
+    btn.disabled=false;
+    fields.forEach(f=>{f.disabled=false;});
+    dateFields.forEach(f=>{f.disabled=false;});
+    document.querySelectorAll('.stack .card').forEach(c=>c.classList.remove('card-disabled'));
+  } else if(mode==='edit-admin'){
+    banner.className='note note-warn';
+    banner.innerHTML='Chế độ: <strong>Chỉnh sửa</strong> · Chỉ Admin được sửa (KH đã có HĐCC) — các trường đã khóa';
+    title.textContent='Chỉnh sửa khách hàng · KH000123';
+    crumb.textContent='Chỉnh sửa KH000123';
+    audit.hidden=false;
+    btn.textContent='Lưu thay đổi (Admin)';
+    btn.disabled=false;
+    /* Disable all editable fields to show locked state */
+    fields.forEach(f=>{f.disabled=true;});
+    dateFields.forEach(f=>{f.disabled=true;});
+    document.querySelectorAll('.stack .card:not(#auditSection)').forEach(c=>{
+      if(!c.querySelector('.mode-tab'))c.classList.add('card-disabled');
+    });
+  }
+}
 </script>
 </body>
 </html>

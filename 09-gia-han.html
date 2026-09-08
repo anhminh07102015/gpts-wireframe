@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gia hạn · Vay thêm · Trả bớt · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html" class="on">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Gia hạn</div>
+    <div class="page-head"><div><h1>Gia hạn · Vay thêm · Trả bớt</h1>
+      <div class="desc">MVP-5 — 3 loại chung 1 màn hình, mọi gia hạn đều phải qua duyệt</div></div></div>
+    <div class="stack">
+
+      <!-- Section 1: Chọn HĐ -->
+      <div class="card"><h2><span class="step-n">1</span> Chọn HĐ cần gia hạn</h2>
+        <div class="f" style="max-width:520px">
+          <input id="searchHD" placeholder="Tìm theo mã HĐ / CCCD / tên KH…" oninput="filterHD(this.value)">
+        </div>
+        <div id="hdCard" class="note note-info" style="margin-top:14px">
+          <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:1;min-width:220px">
+              <strong>HD002201</strong> · Nguyễn Văn An <span class="bg bg-green">Đang hiệu lực</span><br>
+              <span style="font-size:.82rem">Dư nợ hiện tại: <strong>10.000.000 đ</strong></span><br>
+              <span style="font-size:.82rem">Hạn mức đã thẩm định: <strong>15.000.000 đ</strong> · Hạn mức còn lại: <strong>5.000.000 đ</strong></span><br>
+              <span style="font-size:.82rem">Kỳ hiện tại: 01/08 – 31/08/2026 · Số lần gia hạn: <strong>0</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Loại gia hạn -->
+      <div class="card"><h2><span class="step-n">2</span> Loại gia hạn</h2>
+        <div class="f" style="max-width:360px;margin-bottom:16px">
+          <label>Chọn loại gia hạn <span class="req">*</span></label>
+          <select id="loaiGH" onchange="toggleLoaiGH(this.value)">
+            <option value="thuong">Gia hạn thông thường</option>
+            <option value="vaythem">Gia hạn vay thêm</option>
+            <option value="trabot">Gia hạn trả bớt</option>
+          </select>
+        </div>
+
+        <!-- === Gia hạn thông thường === -->
+        <div id="gh-thuong" class="branch branch-on">
+          <div class="note note-info" style="margin-bottom:14px">Cho tùy biến lãi suất + số ngày kỳ mới; không đổi gốc</div>
+          <div class="grid2">
+            <div class="f"><label>Lãi suất kỳ mới <span class="req">*</span></label><input id="lsThuong" value="1.5"><div class="hint">Đơn vị: %/tháng (chưa gồm VAT)</div></div>
+            <div class="f"><label>Số ngày kỳ mới <span class="req">*</span></label><input id="ngayThuong" value="30"><div class="hint">Mặc định 30 ngày</div></div>
+          </div>
+          <div style="margin-top:14px">
+            <strong style="font-size:.84rem">Điều kiện duyệt:</strong>
+            <ul style="font-size:.84rem;margin:6px 0 0 18px;line-height:1.8;list-style:none">
+              <li><label><input type="checkbox" disabled> Thu hết lãi + phí phát sinh</label></li>
+              <li><label><input type="checkbox" disabled> KT xác nhận tiền đã vào TKTG</label></li>
+              <li><label><input type="checkbox" disabled> Có điều khoản mặc nhiên gia hạn trong HĐCC hoặc tin nhắn xác nhận (SMS/Zalo)</label></li>
+            </ul>
+          </div>
+          <div class="note note-warn" style="margin-top:12px">Xuất HĐĐT lãi/phí kỳ cũ (TH2)</div>
+        </div>
+
+        <!-- === Gia hạn vay thêm === -->
+        <div id="gh-vaythem" class="branch branch-off" style="margin-top:8px">
+          <div class="note note-info" style="margin-bottom:14px">Chỉ trong hạn mức đã thẩm định, KHÔNG định giá lại, KH phải tới quầy ký phụ lục</div>
+          <div class="grid2">
+            <div class="f"><label>Số tiền vay thêm <span class="req">*</span></label><input id="soTienVayThem" value="" placeholder="Nhập số tiền vay thêm" oninput="checkVayThem()"><div class="hint">Tối đa = hạn mức còn lại: 5.000.000 đ</div>
+              <div class="hint" id="vayThemWarn" style="color:var(--red);display:none">Vượt hạn mức còn lại! Tối đa: 5.000.000 đ</div>
+            </div>
+            <div></div>
+            <div class="f"><label>Lãi suất kỳ mới <span class="req">*</span></label><input value="1.5"><div class="hint">Đơn vị: %/tháng (chưa gồm VAT)</div></div>
+            <div class="f"><label>Số ngày kỳ mới <span class="req">*</span></label><input value="30"><div class="hint">Mặc định 30 ngày</div></div>
+          </div>
+          <div class="note note-warn" style="margin-top:12px">Phần giải ngân thêm chạy lại đủ luồng duyệt + ĐNTT + chi tiền (TH3)</div>
+        </div>
+
+        <!-- === Gia hạn trả bớt === -->
+        <div id="gh-trabot" class="branch branch-off" style="margin-top:8px">
+          <div class="note note-info" style="margin-bottom:14px">Dư nợ còn lại &ge; 20% HĐ ban đầu VÀ &ge; mức sàn — vi phạm thì CHẶN</div>
+          <div class="grid2">
+            <div class="f"><label>Số tiền trả bớt <span class="req">*</span></label><input id="soTienTraBot" value="" placeholder="Nhập số tiền trả bớt" oninput="checkTraBot()"></div>
+            <div class="f"><label>Dư nợ sau trả bớt</label><input id="duNoSau" readonly value="10.000.000 đ"><div class="hint">Tự tính = Dư nợ hiện tại − Số tiền trả bớt</div></div>
+            <div class="f"><label>Lãi suất kỳ mới <span class="req">*</span></label><input value="1.5"><div class="hint">Đơn vị: %/tháng (chưa gồm VAT)</div></div>
+            <div class="f"><label>Số ngày kỳ mới <span class="req">*</span></label><input value="30"><div class="hint">Mặc định 30 ngày</div></div>
+          </div>
+          <div class="note note-warn" id="traBotWarn" style="margin-top:12px;display:none">⚠ Dư nợ sau trả bớt vi phạm ngưỡng tối thiểu (20% HĐ ban đầu hoặc mức sàn) — không cho phép</div>
+        </div>
+      </div>
+
+      <!-- Section 3: Tái định giá TSCC -->
+      <div class="card">
+        <h2 style="cursor:pointer" onclick="toggleCollapse('tdg-body',this)">
+          <span class="step-n">3</span> Tái định giá TSCC (tùy chọn) <span id="tdg-arrow" style="margin-left:auto;font-size:.8rem;color:var(--sub)">&#9660;</span>
+        </h2>
+        <div id="tdg-body" style="display:none">
+          <div class="grid3">
+            <div class="f"><label>Trị giá định giá lại</label><input placeholder="Nhập trị giá mới"></div>
+            <div class="f"><label>Hạn mức sau tái định giá</label><input readonly value="" placeholder="Tự tính"><div class="hint">= Trị giá mới × tỷ lệ cầm</div></div>
+            <div class="f"><label>Ngày tái định giá</label><input type="date"></div>
+          </div>
+          <div style="margin-top:16px">
+            <strong style="font-size:.86rem">Lịch sử tái định giá</strong>
+            <div class="tbl-wrap" style="margin-top:8px;border-radius:8px">
+              <table class="tbl">
+                <thead><tr><th>Lần</th><th>Ngày</th><th>Trị giá cũ</th><th>Trị giá mới</th><th>Hạn mức mới</th><th>User</th></tr></thead>
+                <tbody>
+                  <tr><td colspan="6" style="text-align:center;color:var(--sub);padding:20px;font-size:.84rem">Chưa có lịch sử tái định giá</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Thông tin bổ sung -->
+      <div class="card"><h2><span class="step-n">4</span> Thông tin bổ sung</h2>
+        <div class="grid2">
+          <div class="f"><label>Số lần gia hạn</label><input readonly value="1"><div class="hint">Tự tăng từ giá trị hiện tại (0 → 1)</div></div>
+        </div>
+        <div class="note note-warn" style="margin-top:14px">[CHỜ CHỐT] Hạn thông báo từ chối gia hạn: 5 ngày (họp) vs 3 ngày (quy trình An Tín) → cấu hình</div>
+        <div class="note note-warn" style="margin-top:8px">⚠ [VÊNH §13.1] Cú pháp chuyển khoản nhận diện loại gia hạn: kick-off nói DÙNG ↔ template v2 nói BỎ</div>
+      </div>
+
+      <!-- Section 5: Actions -->
+      <div style="display:flex;gap:10px;align-items:center">
+        <span class="hint">In phụ lục HĐ + bảng lãi/phí kỳ mới (sau duyệt)</span>
+        <span style="flex:1"></span>
+        <button class="btn btn-line" onclick="toast('Đã lưu nháp gia hạn')">Lưu nháp</button>
+        <button class="btn btn-pri" onclick="toast('Đã gửi duyệt gia hạn — chờ phê duyệt')">Gửi duyệt gia hạn</button>
+      </div>
+
+    </div>
+  </main>
+<script src="assets/app.js"></script>
+<script>
+// === Loại gia hạn toggle ===
+function toggleLoaiGH(val){
+  var thuong=document.getElementById('gh-thuong');
+  var vaythem=document.getElementById('gh-vaythem');
+  var trabot=document.getElementById('gh-trabot');
+  // reset all
+  [thuong,vaythem,trabot].forEach(function(el){
+    el.classList.remove('branch-on');
+    el.classList.add('branch-off');
+  });
+  // activate selected
+  if(val==='thuong') thuong.classList.replace('branch-off','branch-on');
+  if(val==='vaythem') vaythem.classList.replace('branch-off','branch-on');
+  if(val==='trabot') trabot.classList.replace('branch-off','branch-on');
+}
+
+// === Vay thêm validation ===
+var HAN_MUC_CON_LAI=5000000;
+function checkVayThem(){
+  var v=parseInt(document.getElementById('soTienVayThem').value.replace(/\D/g,''))||0;
+  var warn=document.getElementById('vayThemWarn');
+  warn.style.display=v>HAN_MUC_CON_LAI?'block':'none';
+}
+
+// === Trả bớt validation ===
+var DU_NO_HIEN_TAI=10000000;
+var HD_BAN_DAU=10000000; // giá trị HĐ ban đầu (dùng tính 20%)
+var MUC_SAN=2000000; // mức sàn cấu hình
+function checkTraBot(){
+  var raw=document.getElementById('soTienTraBot').value.replace(/\D/g,'');
+  var v=parseInt(raw)||0;
+  var duNoSau=DU_NO_HIEN_TAI-v;
+  if(duNoSau<0) duNoSau=0;
+  document.getElementById('duNoSau').value=duNoSau.toLocaleString('vi-VN')+' đ';
+  var nguong20=HD_BAN_DAU*0.2;
+  var warn=document.getElementById('traBotWarn');
+  if(v>0 && (duNoSau<nguong20 || duNoSau<MUC_SAN)){
+    warn.style.display='block';
+  }else{
+    warn.style.display='none';
+  }
+}
+
+// === Collapsible section ===
+function toggleCollapse(id,header){
+  var body=document.getElementById(id);
+  var arrow=document.getElementById('tdg-arrow');
+  if(body.style.display==='none'){
+    body.style.display='block';
+    arrow.innerHTML='&#9650;';
+  }else{
+    body.style.display='none';
+    arrow.innerHTML='&#9660;';
+  }
+}
+
+// === Search filter (mock) ===
+function filterHD(val){
+  var card=document.getElementById('hdCard');
+  if(val.length>0){
+    card.style.display='block';
+    toast('Tim thay hop dong HD002201');
+  }else{
+    card.style.display='block';
+  }
+}
+</script>
+</body>
+</html>

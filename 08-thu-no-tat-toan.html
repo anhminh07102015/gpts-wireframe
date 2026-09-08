@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thu nợ · Tất toán · Chuộc đồ · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html" class="on">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Thu nợ · Tất toán · Chuộc đồ</div>
+    <div class="page-head"><div><h1>Thu nợ · Tất toán · Chuộc đồ</h1>
+      <div class="desc">MVP-4 — Thu nợ/lãi/phí + chuộc đồ + cutoff 17h + tự động tất toán</div></div></div>
+
+    <!-- ========== Section 1: Tìm hợp đồng ========== -->
+    <div class="stack" style="gap:20px">
+
+      <div class="card">
+        <h2><span class="step-n">1</span> Tìm hợp đồng</h2>
+        <div class="f" style="max-width:560px;display:flex;gap:10px;align-items:flex-end">
+          <div style="flex:1">
+            <label>Mã HĐ / CCCD / Tên KH / Mã KH</label>
+            <input type="text" id="searchHD" placeholder="VD: HD002201, 079086001234, Nguyễn Văn An…">
+          </div>
+          <button class="btn btn-pri" onclick="findContract()" style="height:38px">Tìm</button>
+        </div>
+      </div>
+
+      <!-- Contract card (sample result) -->
+      <div class="card" id="contractCard" hidden>
+        <h2>Hợp đồng HD002201</h2>
+        <table class="tbl"><tbody>
+          <tr><td style="color:var(--sub);width:200px">Mã HĐ · KH</td><td><strong>HD002201</strong> · Nguyễn Văn An</td></tr>
+          <tr><td style="color:var(--sub)">CCCD</td><td>079086001234</td></tr>
+          <tr><td style="color:var(--sub)">Trạng thái</td><td><span class="bg bg-green" id="hdStatus">Đang hiệu lực</span></td></tr>
+          <tr><td style="color:var(--sub)">Ngày giải ngân · Kỳ hạn</td><td>01/08/2026 · 30 ngày · Hạn tất toán: 31/08/2026</td></tr>
+          <tr><td style="color:var(--sub)">Dư nợ gốc</td><td><strong>10.000.000 đ</strong></td></tr>
+          <tr><td style="color:var(--sub)">Lãi phát sinh</td><td>450.000 đ</td></tr>
+          <tr><td style="color:var(--sub)">Phí bảo quản</td><td>180.000 đ</td></tr>
+          <tr><td style="color:var(--sub)">VAT 10% (lãi + phí)</td><td>63.000 đ</td></tr>
+          <tr><td style="color:var(--sub);font-weight:600">Tổng phải thu</td><td><strong style="font-size:1.05rem;color:var(--navy)">10.693.000 đ</strong></td></tr>
+        </tbody></table>
+      </div>
+
+      <!-- ========== Section 2: Báo có thủ công ========== -->
+      <div class="card" id="secBaoCo" hidden>
+        <h2><span class="step-n">2</span> Báo có thủ công</h2>
+        <div class="note note-warn" style="margin-bottom:14px">
+          <strong>[CHỐT]</strong> GĐ1: TVV in sổ phụ TKTG, đối chiếu và xác nhận tiền vào trên hệ thống (không tự động đối soát — GĐ2/C5)
+        </div>
+        <div class="grid3" style="max-width:720px">
+          <div class="f">
+            <label>Số tiền KH chuyển <span class="req">*</span></label>
+            <input type="text" id="soTienChuyen" placeholder="10.693.000" oninput="calcNgayGhiNhan()">
+          </div>
+          <div class="f">
+            <label>Ngày tiền vào TKTG <span class="req">*</span></label>
+            <input type="date" id="ngayTienVao" onchange="calcNgayGhiNhan()">
+          </div>
+          <div class="f">
+            <label>Ngày ghi nhận</label>
+            <input type="text" id="ngayGhiNhan" readonly placeholder="(tự tính theo cutoff 17h)">
+          </div>
+        </div>
+        <div class="note note-info" style="margin-top:12px">
+          ⏰ <strong>Cutoff 17h:</strong> tiền vào sau 17h → ghi nhận ngày hôm sau
+        </div>
+      </div>
+
+      <!-- ========== Section 3: Phân bổ thu ========== -->
+      <div class="card" id="secPhanBo" hidden>
+        <h2><span class="step-n">3</span> Phân bổ thu</h2>
+        <div class="tbl-wrap" style="margin-bottom:14px">
+          <table class="tbl" id="tblPhanBo">
+            <thead>
+              <tr>
+                <th>Khoản</th>
+                <th style="text-align:right">Phải thu</th>
+                <th style="text-align:right">Thực thu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Phí bảo quản</td>
+                <td style="text-align:right">180.000</td>
+                <td style="text-align:right"><input type="text" value="180.000" style="width:110px;text-align:right;padding:5px 8px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.86rem"></td>
+              </tr>
+              <tr>
+                <td>Lãi</td>
+                <td style="text-align:right">450.000</td>
+                <td style="text-align:right"><input type="text" value="450.000" style="width:110px;text-align:right;padding:5px 8px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.86rem"></td>
+              </tr>
+              <tr>
+                <td>Nợ gốc</td>
+                <td style="text-align:right">10.000.000</td>
+                <td style="text-align:right"><input type="text" value="10.000.000" style="width:110px;text-align:right;padding:5px 8px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.86rem"></td>
+              </tr>
+              <tr>
+                <td>VAT 10% (lãi + phí)</td>
+                <td style="text-align:right">63.000</td>
+                <td style="text-align:right"><input type="text" value="63.000" style="width:110px;text-align:right;padding:5px 8px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.86rem"></td>
+              </tr>
+              <tr style="font-weight:700;background:#f5f8fb">
+                <td><strong>Tổng</strong></td>
+                <td style="text-align:right"><strong>10.693.000</strong></td>
+                <td style="text-align:right"><strong>10.693.000</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note note-info" style="margin-bottom:8px">
+          <strong>[CHỐT]</strong> Tự phân bổ theo thứ tự ưu tiên: Phí &rarr; Lãi &rarr; Nợ gốc &middot; cho chỉnh tay
+        </div>
+        <div class="note note-warn">
+          <strong>[CHỐT]</strong> Số ngày tính lãi tối thiểu: 15 ngày (tất toán sớm hơn vẫn tính đủ 15 ngày)
+        </div>
+      </div>
+
+      <!-- ========== Section 4: Giảm lãi / Giảm phí ========== -->
+      <div class="card" id="secGiamLai" hidden>
+        <h2 style="cursor:pointer" onclick="toggleCollapse('collapseGiam',this)">
+          <span class="step-n">4</span> Giảm lãi / Giảm phí (nếu có) <span style="margin-left:auto;font-size:.78rem;color:var(--sub)" id="collapseGiamIcon">&#9660;</span>
+        </h2>
+        <div id="collapseGiam" style="display:none">
+          <div class="grid3" style="max-width:720px;margin-bottom:12px">
+            <div class="f">
+              <label>Giảm lãi</label>
+              <input type="text" placeholder="0">
+            </div>
+            <div class="f">
+              <label>Giảm phí</label>
+              <input type="text" placeholder="0">
+            </div>
+          </div>
+          <div class="f" style="max-width:720px;margin-bottom:14px">
+            <label>Lý do giảm <span class="req">*</span></label>
+            <textarea rows="2" placeholder="Nhập lý do giảm lãi/phí…"></textarea>
+          </div>
+          <div class="note note-warn" style="margin-bottom:14px">
+            ⚠ <strong>Lưu ý:</strong> Giảm lãi/phí phải có phê duyệt đúng thẩm quyền (P.VHKD) — FI chỉ ghi nhận theo dữ liệu đã duyệt trên GPTS
+          </div>
+          <button class="btn btn-line" onclick="toast('Đã gửi yêu cầu giảm lãi/phí → P.VHKD duyệt')">Gửi yêu cầu giảm lãi/phí &rarr; P.VHKD duyệt</button>
+        </div>
+      </div>
+
+      <!-- ========== Section 5: Tất toán & Chuộc đồ ========== -->
+      <div class="card" id="secTatToan" hidden>
+        <h2><span class="step-n">5</span> Tất toán &amp; Chuộc đồ</h2>
+
+        <div class="stack" style="gap:10px;margin-bottom:18px">
+          <div class="note note-info">
+            <strong>[CHỐT]</strong> GĐ1 chỉ có: trả đúng hạn hoặc tất toán trước hạn TOÀN BỘ. Thu tùy biến (trả một phần) = GĐ2 (C2)
+          </div>
+          <div class="note note-info">
+            <strong>[CHỐT]</strong> Thu đủ &rarr; hệ thống tự động tất toán HĐ
+          </div>
+          <div class="note note-warn">
+            <strong>[CHỐT]</strong> Tất toán TÁCH RIÊNG chuộc hàng: KH chuyển khoản tất toán từ xa để DỪNG lãi/phí ngay; chuộc (nhận hàng) làm sau
+          </div>
+          <div class="note note-warn">
+            <strong>Phí bảo quản sau tất toán:</strong> miễn 3 ngày; từ ngày thứ 4 tính lại TỪ NGÀY TẤT TOÁN (tính trọn cả 4 ngày), chỉ tính PHÍ không tính lãi
+          </div>
+        </div>
+
+        <!-- Sub-section: Chuộc đồ -->
+        <div style="border-top:1px solid var(--line);padding-top:16px;margin-top:8px">
+          <h2 style="font-size:.95rem">Chuộc đồ</h2>
+
+          <div class="grid2" style="max-width:560px;margin-bottom:14px">
+            <div class="f">
+              <label>Hình KH + CCCD (đối chiếu chữ ký)</label>
+              <div class="upload-compact" onclick="toast('Chọn file hình KH + CCCD')">
+                📎 Chọn hình KH + CCCD<br><small>JPG, PNG — tối đa 10 MB</small>
+              </div>
+            </div>
+            <div class="f">
+              <label>Biên bản ký</label>
+              <div class="upload-compact" onclick="toast('Chọn file biên bản ký')">
+                📎 Chọn biên bản ký<br><small>PDF, JPG, PNG — tối đa 10 MB</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="f" style="margin-bottom:14px">
+            <label>Người chuộc</label>
+            <div class="radio-row">
+              <label><input type="radio" name="nguoiChuoc" value="chinhChu" checked onchange="toggleUyQuyen()"> Chính chủ chuộc</label>
+              <label><input type="radio" name="nguoiChuoc" value="nhanThay" onchange="toggleUyQuyen()"> Nhận thay (có ủy quyền)</label>
+            </div>
+          </div>
+
+          <div id="uyQuyenBlock" class="branch branch-off" style="margin-bottom:14px">
+            <div class="grid2" style="max-width:560px;margin-bottom:12px">
+              <div class="f">
+                <label>Tên người nhận thay <span class="req">*</span></label>
+                <input type="text" placeholder="Họ tên người nhận thay">
+              </div>
+              <div class="f">
+                <label>CCCD người nhận thay <span class="req">*</span></label>
+                <input type="text" placeholder="Số CCCD">
+              </div>
+            </div>
+            <div class="f" style="max-width:280px">
+              <label>Giấy ủy quyền <span class="req">*</span></label>
+              <div class="upload-compact" onclick="toast('Chọn file giấy ủy quyền')">
+                📎 Upload giấy ủy quyền<br><small>PDF, JPG, PNG — tối đa 10 MB</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack" style="gap:8px;margin-bottom:18px">
+            <div class="note note-info" style="font-size:.8rem">
+              Video ủy quyền chỉ dùng khi bất khả kháng &middot; <strong>[CHỜ CHỐT]</strong> giới hạn dung lượng video
+            </div>
+            <div class="note note-info" style="font-size:.8rem">
+              Chuộc nâng cao (cảnh báo quá hạn nhận, đối chiếu ảnh/chữ ký) = GĐ2 (C3)
+            </div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line)">
+          <button class="btn btn-pri" onclick="xacNhanThuNo()">Xác nhận thu nợ</button>
+          <button class="btn btn-ok" onclick="xacNhanTatToan()">Xác nhận tất toán</button>
+          <button class="btn btn-line" style="background:var(--blue-bg);color:#155c8f;border-color:#b5d0e8;font-weight:600" onclick="xacNhanChuocDo()">Xác nhận chuộc đồ</button>
+        </div>
+      </div>
+
+    </div><!-- /.stack -->
+
+  </main>
+
+<script src="assets/app.js"></script>
+<script>
+/* --- Tìm hợp đồng --- */
+function findContract(){
+  document.getElementById('contractCard').hidden=false;
+  document.getElementById('secBaoCo').hidden=false;
+  document.getElementById('secPhanBo').hidden=false;
+  document.getElementById('secGiamLai').hidden=false;
+  document.getElementById('secTatToan').hidden=false;
+  toast('Đã tìm thấy hợp đồng HD002201');
+}
+
+/* --- Cutoff 17h --- */
+function calcNgayGhiNhan(){
+  const d=document.getElementById('ngayTienVao').value;
+  if(!d){document.getElementById('ngayGhiNhan').value='';return;}
+  // Simulate: assume current time is after 17h → next day
+  const dt=new Date(d);
+  const now=new Date();
+  if(now.getHours()>=17){
+    dt.setDate(dt.getDate()+1);
+    document.getElementById('ngayGhiNhan').value=fmt(dt)+' (sau 17h → +1 ngày)';
+  }else{
+    document.getElementById('ngayGhiNhan').value=fmt(dt);
+  }
+}
+function fmt(d){return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear();}
+
+/* --- Collapse --- */
+function toggleCollapse(id,h2){
+  const el=document.getElementById(id);
+  const icon=document.getElementById(id+'Icon');
+  if(el.style.display==='none'){el.style.display='block';icon.innerHTML='&#9650;';}
+  else{el.style.display='none';icon.innerHTML='&#9660;';}
+}
+
+/* --- Ủy quyền toggle --- */
+function toggleUyQuyen(){
+  const v=document.querySelector('input[name=nguoiChuoc]:checked').value;
+  const block=document.getElementById('uyQuyenBlock');
+  if(v==='nhanThay'){block.classList.remove('branch-off');block.classList.add('branch-on');}
+  else{block.classList.add('branch-off');block.classList.remove('branch-on');}
+}
+
+/* --- Actions --- */
+function xacNhanThuNo(){
+  toast('Đã xác nhận thu nợ — ghi nhận phân bổ vào hệ thống');
+}
+function xacNhanTatToan(){
+  const s=document.getElementById('hdStatus');
+  s.textContent='Đã tất toán';s.className='bg bg-teal';
+  toast('Đã tất toán HĐ HD002201 — dừng tính lãi/phí ngay');
+}
+function xacNhanChuocDo(){
+  toast('Đã xác nhận chuộc đồ — KH nhận lại tài sản');
+}
+</script>
+</body>
+</html>

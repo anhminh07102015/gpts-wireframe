@@ -7,6 +7,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  .template-tbl{width:100%;border-collapse:collapse;font-size:.84rem}
+  .template-tbl th{background:var(--navy);color:#fff;padding:9px 12px;text-align:left;font-size:.76rem;font-weight:600}
+  .template-tbl td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .template-tbl tbody tr:hover{background:#f7fafc}
+  .param-list{list-style:none;padding:0;margin:0;font-size:.84rem;line-height:1.7}
+  .param-list li{padding:3px 0;border-bottom:1px solid #f0f3f6}
+  .param-list li:last-child{border-bottom:none}
+  .param-list code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:.8rem;font-family:"Be Vietnam Pro",monospace}
+  .venh-box{background:var(--warn-bg);border:2px solid #d9a715;border-radius:var(--r-card);padding:14px 18px;font-size:.86rem;color:var(--warn);line-height:1.5}
+  .venh-box strong{color:#6b4e00}
+  .fee-tbl{width:100%;border-collapse:collapse;font-size:.84rem;max-width:420px}
+  .fee-tbl th{background:var(--navy-2);color:#fff;padding:8px 12px;text-align:left;font-size:.76rem;font-weight:600}
+  .fee-tbl td{padding:8px 12px;border-bottom:1px solid var(--line)}
+  .cho-chot{display:inline-block;background:var(--red-bg);color:var(--red);font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:999px}
+</style>
 </head>
 <body>
   <aside class="side">
@@ -20,6 +36,10 @@
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html" class="on">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
@@ -28,6 +48,8 @@
     <div class="page-head"><div><h1>Luồng thu tiền → xuất hóa đơn điện tử</h1>
       <div class="desc">Hóa đơn lãi/phí xuất từ phía SAP — GPTS chỉ đẩy dữ liệu giao dịch đúng ngày (chốt họp 13/08)</div></div></div>
     <div class="stack">
+
+      <!-- ===== Pipeline ===== -->
       <div class="pipe">
         <div class="node gpts"><h3>1 · Thu lãi + phí</h3><p>Tất toán / gia hạn / thu định kỳ (GĐ2). Tiền vào TKTG trước 17h tính ngày hôm đó, sau 17h tính ngày hôm sau. TVV đối chiếu sổ phụ, xác nhận thủ công.</p></div>
         <div class="arr">→</div>
@@ -42,6 +64,8 @@
         <div class="node"><h3>6 · Đối soát hàng ngày</h3><p>Đối chiếu GPTS ↔ FI: tổng thu nợ / lãi / phí / giảm trừ theo ngày. Lệch số → điều chỉnh trước khi chốt sổ.</p></div>
       </div>
       <div class="legend"><span><i style="background:var(--navy-2)"></i>Bên GPTS (Mona)</span><span><i style="background:var(--gold)"></i>Bên SAP (An Tín)</span><span><i style="background:#c8d2dc"></i>Hai bên phối hợp</span></div>
+
+      <!-- ===== Dữ liệu đẩy FI ===== -->
       <div class="card"><h2>Dữ liệu GPTS đẩy sang FI mỗi giao dịch thu</h2>
         <div class="tbl-wrap" style="border:none">
         <table class="tbl">
@@ -58,6 +82,72 @@
         </table>
         </div>
       </div>
+
+      <!-- ===== Phí bảo quản 3 bậc ===== -->
+      <div class="card"><h2>Phí bảo quản — 3 bậc dư nợ</h2>
+        <table class="fee-tbl">
+          <thead><tr><th>Bậc dư nợ</th><th>Phí bảo quản</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 50 triệu</td><td><strong>0.0205</strong></td></tr>
+            <tr><td>50 – 300 triệu</td><td><strong>0.0177</strong></td></tr>
+            <tr><td>≥ 300 triệu</td><td><strong>0.0123</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="note note-warn" style="margin-top:10px"><span class="cho-chot">CHỜ CHỐT</span> <strong>Đơn vị</strong> — template ghi "VNĐ/ngày" mâu thuẫn với giá trị dạng % (0.0205 / 0.0177 / 0.0123). Chờ khách phân xử.</div>
+      </div>
+
+      <!-- ===== Biên độ thu thiếu ===== -->
+      <div class="note note-info"><strong>Biên độ thu thiếu:</strong> Thiếu ≤ ngưỡng (1 ngày lãi) → cảnh báo cho người duyệt, không chặn giao dịch. <span class="cho-chot">CHỜ CHỐT</span> Giá trị ngưỡng chính xác chưa được chốt.</div>
+
+      <!-- ===== Template bút toán SAP ===== -->
+      <div class="card"><h2>Cấu trúc bút toán SAP — TEMPLATE HĐ SAP (KT)</h2>
+        <p style="font-size:.82rem;color:var(--sub);margin-bottom:12px">Mỗi hóa đơn SAP gồm 4 dòng bút toán. Ví dụ minh họa cho 1 giao dịch thu lãi + phí:</p>
+        <table class="template-tbl">
+          <thead><tr><th>Dòng</th><th>Account</th><th>Nội dung</th><th>Ví dụ số tiền</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>(KUNNR — mã BP SAP)</td><td>Dòng khách hàng</td><td style="white-space:nowrap"><strong>−11.550.000</strong> <span style="color:var(--sub);font-size:.78rem">(âm, đã gồm VAT)</span></td></tr>
+            <tr><td><strong>2</strong></td><td>51131010</td><td>Doanh thu lãi</td><td style="white-space:nowrap"><strong>5.400.000</strong> <span style="color:var(--sub);font-size:.78rem">(chưa thuế)</span></td></tr>
+            <tr><td><strong>3</strong></td><td>51511000</td><td>Doanh thu phí</td><td style="white-space:nowrap"><strong>5.100.000</strong> <span style="color:var(--sub);font-size:.78rem">(chưa thuế)</span></td></tr>
+            <tr><td><strong>4</strong></td><td>33311000</td><td>Thuế GTGT đầu ra</td><td style="white-space:nowrap"><strong>FWBAS = 10.500.000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== Cảnh báo VÊNH ===== -->
+      <div class="venh-box">⚠ <strong>[VÊNH &sect;13.1]</strong> Cột Customer (KUNNR): template SAP ghi "Mã KH PNJ" — mâu thuẫn với chốt dùng <strong>mã BP SAP</strong>. Chờ khách phân xử.</div>
+
+      <!-- ===== Tham số cố định ===== -->
+      <div class="card"><h2>Tham số cố định — template SAP</h2>
+        <ul class="param-list">
+          <li><code>Company</code> 6000 &nbsp;·&nbsp; <code>Currency</code> VND &nbsp;·&nbsp; <code>Doc type</code> DR &nbsp;·&nbsp; <code>Tax code</code> O3</li>
+          <li><code>Auto tax</code> X &nbsp;·&nbsp; <code>Contract type</code> X &nbsp;·&nbsp; <code>Flow type</code> AT03</li>
+          <li><code>Quantity</code> số ngày lãi/phí &nbsp;·&nbsp; đơn vị: <code>Day</code></li>
+          <li><code>Ngày</code> dd.mm.yyyy &nbsp;·&nbsp; <code>Baseline date</code> = ngày chứng từ</li>
+          <li><code>Header text</code> ≤ 25 ký tự: <strong>"DT lãi, phí HĐCC:" + Contract</strong></li>
+          <li><code>Profit Center</code> theo Plant</li>
+        </ul>
+      </div>
+
+      <!-- ===== TEMPLATE cuối tháng ===== -->
+      <div class="card" style="border-left:4px solid var(--gold)"><h2>TEMPLATE cuối tháng — bút toán dự thu</h2>
+        <table class="tbl">
+          <tbody>
+            <tr><td style="color:var(--sub);width:200px">Ngày chứng từ / ghi sổ</td><td>= ngày cuối tháng</td></tr>
+            <tr><td style="color:var(--sub)">Customer</td><td><strong>"Mã SAP chung"</strong> (mã đại diện — không theo từng KH)</td></tr>
+            <tr><td style="color:var(--sub)">Lãi / phí</td><td>CHƯA thuế — dự thu <strong>không có VAT</strong></td></tr>
+            <tr><td style="color:var(--sub)">Dòng thuế</td><td>KHÔNG có dòng thuế (dự thu không xuất HĐ)</td></tr>
+          </tbody>
+        </table>
+        <div class="note note-warn" style="margin-top:10px">Đầu tháng sau: kế toán bút toán đảo (nghiệp vụ bên SAP, không cần GPTS xử lý).</div>
+      </div>
+
+      <!-- ===== Vietinbank section ===== -->
+      <div class="card" style="border-left:4px solid var(--navy-2)"><h2>File Excel import Vietinbank (UNC)</h2>
+        <p style="font-size:.84rem;color:var(--sub);line-height:1.5">File Excel dùng để import vào hệ thống Vietinbank (UNC) — <strong>xuất từ ĐNTT đã duyệt</strong> tại màn <a href="06-duyet-giai-ngan.html" style="color:var(--blue);text-decoration:underline">Duyệt giải ngân (06)</a>.</p>
+        <p style="font-size:.84rem;color:var(--sub);line-height:1.5;margin-top:6px">Sau khi tiền đi, KT xác nhận <strong>"đã chi tiền"</strong> + nhập <strong>SBT (số bút toán)</strong> tại màn 06.</p>
+      </div>
+
+      <!-- ===== Dự thu cuối tháng note ===== -->
       <div class="note note-info">Báo cáo dự thu cuối tháng: lãi + phí phải thu nhưng chưa thu của mọi HĐ còn dư nợ tính đến ngày cuối tháng — kế toán hạch toán bút toán tổng theo mã đại diện, đầu tháng sau bút toán đảo. GĐ2 chạy được ngày bất kỳ.</div>
     </div>
 

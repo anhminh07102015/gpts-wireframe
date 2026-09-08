@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report · Truy xuất dữ liệu · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .rpt-tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin-bottom:0}
+  .rpt-tab{flex:1;padding:12px 14px;font-size:.84rem;font-weight:500;background:#f5f8fb;color:var(--sub);
+    border:none;border-bottom:2px solid transparent;cursor:pointer;transition:background .12s,color .12s;margin-bottom:-2px;text-align:center}
+  .rpt-tab:hover{background:var(--blue-bg);color:var(--ink)}
+  .rpt-tab.rpt-tab-on{background:#fff;color:var(--navy-2);font-weight:600;border-bottom:2px solid var(--navy-2)}
+  .rpt-panel{display:none}
+  .rpt-panel.rpt-panel-on{display:block}
+  .rpt-desc{font-size:.84rem;color:var(--sub);line-height:1.5;margin-bottom:14px}
+  .rpt-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:16px}
+  .rpt-controls .f{min-width:140px}
+  .rpt-controls .f label{font-size:.78rem}
+  .rpt-controls .f input,.rpt-controls .f select{padding:7px 10px;font-size:.84rem}
+  .toggle-row{display:flex;gap:0;border:1px solid var(--line);border-radius:var(--r-ctl);overflow:hidden;height:36px}
+  .toggle-btn{padding:6px 14px;font-size:.8rem;font-weight:500;background:#f5f8fb;color:var(--sub);border:none;cursor:pointer;white-space:nowrap}
+  .toggle-btn:not(:last-child){border-right:1px solid var(--line)}
+  .toggle-btn.toggle-on{background:var(--navy-2);color:#fff;font-weight:600}
+  .cho-chot{display:inline-block;background:var(--red-bg);color:var(--red);font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:999px}
+  .col-note{font-size:.78rem;color:var(--sub);font-style:italic;margin-top:8px;line-height:1.45}
+  .expand-hdr{cursor:pointer;user-select:none}
+  .expand-hdr small{font-weight:400;color:var(--sub);font-size:.78rem}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html" class="on">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="page-head"><div><h1>Report · Truy xuất dữ liệu</h1>
+      <div class="desc">4 report export theo template · <span class="cho-chot">CHO CHOT</span> thuộc GD1 hay GD2</div></div></div>
+    <div class="stack">
+
+      <!-- ===== Tabs ===== -->
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="rpt-tabs">
+          <button class="rpt-tab rpt-tab-on" data-rpt="kh" onclick="switchReport('kh')">TEMPLATE KH</button>
+          <button class="rpt-tab" data-rpt="hdcc" onclick="switchReport('hdcc')">TEMPLATE HDCC</button>
+          <button class="rpt-tab" data-rpt="tscc" onclick="switchReport('tscc')">TEMPLATE TSCC</button>
+          <button class="rpt-tab" data-rpt="gh" onclick="switchReport('gh')">TEMPLATE GIA HAN</button>
+        </div>
+      </div>
+
+      <!-- ===== Common controls ===== -->
+      <div class="card">
+        <div class="rpt-controls">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-size:.78rem;font-weight:500">Chi tiet / Tong hop</label>
+            <div class="toggle-row">
+              <button class="toggle-btn toggle-on" onclick="toggleDetail(this,'ct')">Chi tiet</button>
+              <button class="toggle-btn" onclick="toggleDetail(this,'th')">Tong hop</button>
+            </div>
+          </div>
+          <div class="f"><label>Tu ngay</label><input type="date" value="2026-08-01"></div>
+          <div class="f"><label>Den ngay</label><input type="date" value="2026-08-31"></div>
+          <div style="display:flex;gap:8px;align-self:flex-end">
+            <button class="btn btn-pri" onclick="toast('Xuat file Excel (mo phong)')">Xuat Excel</button>
+            <button class="btn btn-line" onclick="toast('Xem truoc report (mo phong)')">Xem truoc</button>
+          </div>
+        </div>
+        <div class="note note-info" style="font-size:.8rem"><strong>Chi tiet:</strong> moi TSCC / moi lan giao dich = 1 dong &nbsp;·&nbsp; <strong>Tong hop:</strong> moi HDCC / lan gan nhat = 1 dong</div>
+      </div>
+
+      <!-- ===== TAB 1: TEMPLATE KH ===== -->
+      <div class="rpt-panel rpt-panel-on" id="panel-kh">
+        <div class="card">
+          <h2>Report Khach hang (TEMPLATE KH)</h2>
+          <p class="rpt-desc">Ho so KH + SL HDCC, du no den ngay truy xuat, tong lai+phi phai thu/da thu/chua thu</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Ma KH</th>
+                  <th>Ten KH</th>
+                  <th>CCCD</th>
+                  <th>Hang</th>
+                  <th>SL HDCC</th>
+                  <th style="text-align:right">Du no</th>
+                  <th style="text-align:right">Lai+Phi phai thu</th>
+                  <th style="text-align:right">Da thu</th>
+                  <th style="text-align:right">Chua thu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="link">KH-0001</td>
+                  <td>Nguyen Van An</td>
+                  <td>079086001234</td>
+                  <td><span class="bg bg-gold">Gold</span></td>
+                  <td>2</td>
+                  <td style="text-align:right">10.000.000</td>
+                  <td style="text-align:right">693.000</td>
+                  <td style="text-align:right">450.000</td>
+                  <td style="text-align:right">243.000</td>
+                </tr>
+                <tr>
+                  <td class="link">KH-0002</td>
+                  <td>Tran Thi Binh</td>
+                  <td>079086005678</td>
+                  <td><span class="bg bg-gray">Chuan</span></td>
+                  <td>1</td>
+                  <td style="text-align:right">25.000.000</td>
+                  <td style="text-align:right">1.125.000</td>
+                  <td style="text-align:right">0</td>
+                  <td style="text-align:right">1.125.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Lich su dieu chinh KH -->
+        <div class="card" style="margin-top:16px">
+          <h2 class="expand-hdr" onclick="document.getElementById('audit-kh-body').hidden=!document.getElementById('audit-kh-body').hidden">
+            Lich su dieu chinh KH <small>&#9660; bam de dong/mo</small>
+          </h2>
+          <div id="audit-kh-body">
+            <div class="tbl-wrap" style="border-radius:8px">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>Ma KH</th>
+                    <th>Thoi diem</th>
+                    <th>User thuc hien</th>
+                    <th>Truong</th>
+                    <th>Gia tri cu</th>
+                    <th>Gia tri moi</th>
+                    <th>User duyet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="link">KH-0001</td>
+                    <td style="white-space:nowrap">15/08/2026 09:30</td>
+                    <td>Nguyen Thi Mai (TVV)</td>
+                    <td>SDT</td>
+                    <td>0901 xxx 888</td>
+                    <td>0912 xxx 222</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="link">KH-0002</td>
+                    <td style="white-space:nowrap">10/08/2026 14:15</td>
+                    <td>Tran Van Hung (Admin)</td>
+                    <td>Dia chi lien he</td>
+                    <td>123 Nguyen Hue, Q1</td>
+                    <td>456 Le Loi, Q3</td>
+                    <td>Le Quoc Bao (Admin)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note note-warn" style="margin-top:10px">
+              <strong>De xuat Mona:</strong> log tach moi lan 1 dong, report gom khi xuat · <span class="cho-chot">CHO CHOT</span> gom 1 dong hay tach
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TAB 2: TEMPLATE HDCC ===== -->
+      <div class="rpt-panel" id="panel-hdcc">
+        <div class="card">
+          <h2>Report Hop dong cam co (TEMPLATE HDCC)</h2>
+          <p class="rpt-desc">Toan bo vong doi HD — lai/phi phai thu/da thu/con phai thu, tang-giam lai phi, han muc giai ngan con lai, chuoc hang, tem niem phong, SBT</p>
+          <div class="note note-info" style="margin-bottom:14px">~84 cot — preview chi hien cot chinh, export day du</div>
+          <div class="tbl-wrap" style="overflow-x:auto">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Ma HD</th>
+                  <th>Ma KH</th>
+                  <th>Trang thai</th>
+                  <th>Loai GD</th>
+                  <th>Ngay tao</th>
+                  <th style="text-align:right">Du no</th>
+                  <th style="text-align:right">Lai phai thu</th>
+                  <th style="text-align:right">Phi phai thu</th>
+                  <th style="text-align:right">Da thu</th>
+                  <th style="text-align:right">Con phai thu</th>
+                  <th style="text-align:right">Han muc GN con lai</th>
+                  <th>SBT</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="link">HD002201</td>
+                  <td class="link">KH-0001</td>
+                  <td><span class="bg bg-green">Dang hieu luc</span></td>
+                  <td>Cam moi</td>
+                  <td style="white-space:nowrap">01/08/2026</td>
+                  <td style="text-align:right">10.000.000</td>
+                  <td style="text-align:right">450.000</td>
+                  <td style="text-align:right">180.000</td>
+                  <td style="text-align:right">0</td>
+                  <td style="text-align:right">630.000</td>
+                  <td style="text-align:right">5.000.000</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="col-note"><strong>Cac cot khong hien thi trong preview:</strong> chuoc hang (user de xuat/duyet, hinh thuc tra, chinh chu/uy quyen, phi BQTS phat sinh them), tem niem phong + ma tem sau doi, hinh thuc thanh toan</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <div class="note note-warn"><span class="cho-chot">CHO CHOT</span> Cot "khung lai &amp; phi ky han gan nhat" — y nghia chua ro</div>
+            <div class="note note-warn"><span class="cho-chot">CHO CHOT</span> Nghiep vu doi tem niem phong ("ma tem sau khi doi")</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TAB 3: TEMPLATE TSCC ===== -->
+      <div class="rpt-panel" id="panel-tscc">
+        <div class="card">
+          <h2>Report Tai san cam co (TEMPLATE TSCC)</h2>
+          <p class="rpt-desc">Chi tiet tai san theo HD</p>
+          <div class="tbl-wrap" style="overflow-x:auto">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Ma HD</th>
+                  <th>Loai TSCC</th>
+                  <th>Tuoi vang</th>
+                  <th>TL vang (chi)</th>
+                  <th>TL tong (chi)</th>
+                  <th>PP dinh gia</th>
+                  <th style="text-align:right">Tri gia TSCC</th>
+                  <th>Ty le cam</th>
+                  <th style="text-align:right">Han muc TS</th>
+                  <th>Tho KT</th>
+                  <th>Hinh thuc KD</th>
+                  <th>Quyen SH</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="link">HD002201</td>
+                  <td>Nu trang TL</td>
+                  <td>99.9</td>
+                  <td>3.750</td>
+                  <td>4.200</td>
+                  <td>Thi truong</td>
+                  <td style="text-align:right">15.000.000</td>
+                  <td>85%</td>
+                  <td style="text-align:right">12.750.000</td>
+                  <td>Le Hoang (NV034)</td>
+                  <td>Tho cua hang</td>
+                  <td>Chinh chu</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TAB 4: TEMPLATE GIA HAN ===== -->
+      <div class="rpt-panel" id="panel-gh">
+        <div class="card">
+          <h2>Report Gia han (TEMPLATE GIA HAN)</h2>
+          <p class="rpt-desc">Du no truoc/sau, vay them, tra bot, tai dinh gia, ky moi, SBT, ly do tu choi</p>
+          <div class="tbl-wrap" style="overflow-x:auto">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Ma HD</th>
+                  <th>Lan GH</th>
+                  <th>Loai GH</th>
+                  <th style="text-align:right">Du no truoc</th>
+                  <th style="text-align:right">Vay them</th>
+                  <th style="text-align:right">Tra bot</th>
+                  <th style="text-align:right">Du no sau</th>
+                  <th style="text-align:right">Tri gia TDG</th>
+                  <th style="text-align:right">Han muc sau TDG</th>
+                  <th>Ky moi (ngay)</th>
+                  <th>Lai suat moi</th>
+                  <th>SBT</th>
+                  <th>Trang thai</th>
+                  <th>Ly do tu choi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="link">HD002201</td>
+                  <td>1</td>
+                  <td>GH thuong</td>
+                  <td style="text-align:right">10.000.000</td>
+                  <td style="text-align:right">—</td>
+                  <td style="text-align:right">—</td>
+                  <td style="text-align:right">10.000.000</td>
+                  <td style="text-align:right">—</td>
+                  <td style="text-align:right">—</td>
+                  <td>30</td>
+                  <td>1.5</td>
+                  <td>UNC-2345</td>
+                  <td><span class="bg bg-green">Da duyet</span></td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Footer notes ===== -->
+      <div class="note note-info">
+        <strong>Luu y:</strong> Cac truong trong report la <strong>NGUON THAM CHIEU</strong> cho data model: moi truong xuat hien o day phai luu duoc trong DB.
+      </div>
+      <div class="note note-warn">
+        <span class="cho-chot">CHO CHOT</span> 4 report template thuoc GD1 hay GD2 (chua co trong timeline)
+      </div>
+      <div class="note note-warn">
+        <span class="cho-chot">CHO CHOT</span> So chung tu thu gop hay tach theo giao dich
+      </div>
+
+    </div>
+  </main>
+<script src="assets/app.js"></script>
+<script>
+/* Report tab switching */
+function switchReport(id){
+  document.querySelectorAll('.rpt-tab').forEach(t=>{
+    t.classList.toggle('rpt-tab-on',t.dataset.rpt===id);
+  });
+  document.querySelectorAll('.rpt-panel').forEach(p=>{
+    p.classList.toggle('rpt-panel-on',p.id==='panel-'+id);
+  });
+}
+
+/* Chi tiet / Tong hop toggle */
+function toggleDetail(btn,mode){
+  btn.parentElement.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('toggle-on'));
+  btn.classList.add('toggle-on');
+  if(mode==='ct'){
+    toast('Che do: Chi tiet — moi TSCC/lan 1 dong');
+  } else {
+    toast('Che do: Tong hop — moi HDCC/lan gan nhat 1 dong');
+  }
+}
+</script>
+</body>
+</html>

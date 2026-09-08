@@ -20,6 +20,10 @@
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
@@ -58,7 +62,7 @@
             <thead><tr><th>#</th><th>Loại TSCC</th><th>TL vàng / tổng (chỉ)</th><th>Tuổi vàng</th><th>PP định giá</th><th>Trị giá (tự tính)</th><th>Tỷ lệ cầm</th><th>Thợ kỹ thuật</th><th></th></tr></thead>
             <tbody>
               <tr><td>1</td><td>Nữ trang trọng lượng (nhẫn)</td><td>2,500 / 2,850</td><td>75%</td><td>Theo thị trường</td><td>18.750.000 đ</td><td>80%</td><td>Trần Văn Thợ</td><td><button onclick="this.closest('tr').remove();toast('Đã xóa tài sản')">🗑</button></td></tr>
-              <tr><td>2</td><td>Kim cương / KCR (bông tai)</td><td>— / 1,200</td><td>—</td><td>Theo hóa đơn</td><td>22.000.000 đ</td><td>75%</td><td>Trần Văn Thợ</td><td><button onclick="this.closest('tr').remove();toast('Đã xóa tài sản')">🗑</button></td></tr>
+              <tr><td>2</td><td>TS kim cương (bông tai)</td><td>— / 1,200</td><td>—</td><td>Theo hóa đơn</td><td>22.000.000 đ</td><td>75%</td><td>Trần Văn Thợ</td><td><button onclick="this.closest('tr').remove();toast('Đã xóa tài sản')">🗑</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -73,15 +77,17 @@
 
       <div class="card"><h2><span class="step-n">3</span> Thông tin vay</h2>
         <div class="grid3">
-          <div class="f"><label>Số tiền cầm <span class="req">*</span></label><input id="soTien" value="28.000.000"><div class="hint">≤ hạn mức 31.900.000 đ · không cho vay vượt hạn mức — thử nhập 35.000.000</div></div>
+          <div class="f"><label>Số tiền cầm <span class="req">*</span></label><input id="soTien" value="28.000.000"><div class="hint">≤ hạn mức 31.900.000 đ · không cho vay vượt hạn mức — thử nhập 35.000.000</div><div class="hint" id="mucSanWarn" style="color:var(--warn);display:none">⚠ Số tiền cầm phải ≥ 20% hạn mức và ≥ mức sàn (cấu hình Admin) · [CHỜ CHỐT] 500k hay 1tr</div></div>
           <div class="f"><label>Kỳ hạn <span class="req">*</span></label><select><option>30 ngày</option></select><div class="hint">GĐ1 chỉ có sản phẩm 30 ngày</div></div>
           <div class="f"><label>Ngày giải ngân <span class="req">*</span></label><input type="date"></div>
-          <div class="f"><label>Lãi suất</label><input readonly value="1.5 (cố định, chưa gồm VAT)"></div>
+          <div class="f"><label>Lãi suất</label><input readonly value="1.5 (cố định, chưa gồm VAT)"><div class="hint" style="color:var(--warn)">[CHỜ CHỐT đơn vị: %/tháng hay ‰/ngày]</div></div>
           <div class="f"><label>Phí bảo quản</label><input readonly value="Tự tính theo bậc dư nợ"></div>
           <div class="f"><label>Số ngày lãi tối thiểu</label><input readonly value="15 ngày"></div>
           <div class="f"><label>Chính sách ưu đãi <span class="req">*</span></label><select id="cs"><option value="chuan">Chuẩn (giảm phí theo hạng KH)</option><option value="ud1">Ưu đãi đặc biệt 1</option><option value="ud2">Ưu đãi đặc biệt 2</option></select></div>
           <div class="f"><label>Hình thức chi vay <span class="req">*</span></label><select><option>Chuyển khoản</option><option disabled>Tiền mặt (tắt tính năng)</option></select></div>
-          <div class="f"><label>Tài khoản thụ hưởng <span class="req">*</span></label><input placeholder="Số TK · Ngân hàng · Chủ TK"></div>
+          <div class="f"><label>Số tài khoản <span class="req">*</span></label><input placeholder="Nhập số tài khoản"></div>
+          <div class="f"><label>Ngân hàng <span class="req">*</span></label><select><option value="">-- Chọn ngân hàng --</option><option>Vietcombank</option><option>BIDV</option><option>Techcombank</option><option>VPBank</option><option>ACB</option><option>TPBank</option><option>Khác</option></select></div>
+          <div class="f"><label>Chủ tài khoản <span class="req">*</span></label><input placeholder="Nhập tên chủ tài khoản"></div>
         </div>
         <div class="note note-warn" id="udWarn" hidden style="margin-top:12px">⚠ Mức phí ưu đãi đang LỚN HƠN mức phí theo chính sách chuẩn của khách hàng này — vui lòng kiểm tra lại</div>
         <div class="note note-warn" id="hmWarn" hidden style="margin-top:12px">⚠ Số tiền cầm vượt hạn mức 31.900.000 đ — không thể gửi duyệt</div>
@@ -114,12 +120,19 @@
       <div class="modal">
         <div class="m-head"><h3>Thêm tài sản cầm cố</h3><button data-modal-close>✕</button></div>
         <div class="grid3">
-          <div class="f"><label>Loại TSCC <span class="req">*</span></label><select><option>Nữ trang trọng lượng</option><option>TSCN Ý</option><option>Đá màu</option><option>Kim cương / KCR</option><option>Ngọc trai</option><option>Style by PNJ</option><option>Nguyên liệu</option><option>ECZ / CZ</option><option>KGĐ - dây</option><option>Vỏ</option></select></div>
+          <div class="f"><label>Loại TSCC <span class="req">*</span></label><select id="loaiTscc"><option value="nutrang">Nữ trang trọng lượng</option><option value="tscny">TSCN Ý có đá chính là KC</option><option value="damau">TS đá màu</option><option value="kimcuong">TS kim cương</option><option value="ngoctrai">TS ngọc trai</option><option value="style">Khác (Style by PNJ)</option><option value="nguyenlieu">Nguyên liệu</option><option value="ecz">TS ECZ/CZ</option><option value="kgd">TS KGĐ-dây-TSCN Ý</option><option value="vo">TS vỏ</option><option value="kcr">Kim cương rời</option></select></div>
           <div class="f"><label>Nguồn gốc / thương hiệu <span class="req">*</span></label><select><option>PNJ</option><option>CAO</option><option>Thương hiệu B</option><option>Khác</option></select></div>
           <div class="f"><label>Quyền sở hữu <span class="req">*</span></label><select><option>Chính chủ</option><option>Không chính chủ</option></select></div>
           <div class="f"><label>Trọng lượng vàng (đá) — chỉ <span class="req">*</span></label><input value="2,500"></div>
           <div class="f"><label>Trọng lượng tổng — chỉ <span class="req">*</span></label><input value="2,850"></div>
           <div class="f"><label>Tuổi vàng (%) <span class="req">*</span></label><select><option>75</option><option>41,6</option><option>58,5</option><option>61</option><option>68</option><option>90</option><option>95</option><option>99</option><option>99,9</option><option>99,99</option><option>Khác (nhập tay)</option></select></div>
+        </div>
+        <!-- Kim cương rời: giá TSCC theo P.TCKT -->
+        <div id="kcrField" class="grid3" style="margin-top:12px;display:none">
+          <div class="f"><label>Giá TSCC theo định giá (P.TCKT)</label><input readonly value="" placeholder="Chờ P.TCKT định giá"><div class="hint" style="color:var(--warn)">[CHỜ CHỐT] Luồng gửi P.TCKT chưa có mô tả</div></div>
+        </div>
+        <div class="grid3" style="margin-top:12px">
+          <div class="f"><label>Hình thức kiểm định <span class="req">*</span></label><select id="htKiemDinh"><option value="tho">Thợ cửa hàng</option><option value="pnjl">PNJL</option><option value="ben3">Bên thứ ba</option><option value="khongtho">Cầm không thợ</option></select></div>
         </div>
         <div class="f" style="margin-top:12px"><label>Phương pháp xác định trị giá cầm <span class="req">*</span></label>
           <div class="radio-row">
@@ -136,22 +149,31 @@
             <div class="f"><label>Tỷ lệ thu lại (đề xuất theo loại)</label><input value="80%"><div class="hint">TVV được điều chỉnh</div></div>
             <div class="f"><label>Tỷ lệ cầm (theo thương hiệu)</label><input readonly value="80% — khóa"></div>
             <div class="f"><label>Hạn mức tài sản (tự tính)</label><input readonly value="15.000.000 đ"></div>
+            <div class="f"><label>SIZE <span class="req">*</span></label><input placeholder="Nhập SIZE"><div class="hint">Bắt buộc khi định giá theo thị trường</div></div>
+            <div class="f"><label>NƯỚC</label><input placeholder="Nhập nước"></div>
+            <div class="f"><label>ĐỘ SẠCH</label><input placeholder="Nhập độ sạch"></div>
           </div>
         </div>
         <div class="branch branch-off" id="br-hd">
           <div class="hint" style="margin-bottom:8px">Định giá theo hóa đơn — chọn radio "Theo hóa đơn" để mở</div>
           <div class="grid3">
+            <div class="f"><label>Mã SP theo hóa đơn <span class="req">*</span></label><input placeholder="Nhập mã SP"><div class="hint">Bắt buộc khi cầm theo hóa đơn</div></div>
             <div class="f"><label>Số hóa đơn (PNJ/CAO/DOJI/SJC…)</label><input placeholder="Bắt buộc nếu cầm theo hóa đơn"></div>
             <div class="f"><label>Trị giá theo hóa đơn</label><input placeholder="Nhập trị giá"></div>
             <div class="f"><label>Giá trị giảm trừ + lý do</label><input placeholder="Nhập nếu có"></div>
           </div>
           <div class="hint" style="margin-top:8px">Trị giá TSCC = (Trị giá hóa đơn − Giảm trừ) × Tỷ lệ thu lại</div>
         </div>
+        <!-- Giấy kiểm định (hiện ở cả 2 phương pháp) -->
+        <div class="grid3" style="margin-top:12px">
+          <div class="f"><label>Giấy kiểm định GIA</label><input placeholder="Nhập số giấy GIA"></div>
+          <div class="f"><label>Giấy kiểm định PNJLAB/khác</label><input placeholder="Nhập số giấy PNJLAB/khác"></div>
+        </div>
         <div class="grid3" style="margin-top:12px">
           <div class="f"><label>Số hộp/túi niêm phong / 1 HĐCC</label><input value="1"></div>
           <div class="f"><label>Trọng lượng hộp/túi niêm phong</label><input placeholder="Nhập trọng lượng"></div>
           <div class="f dd"><label>Tên thợ kỹ thuật <span class="req">*</span></label>
-            <input data-dd-toggle readonly value="Trần Văn Thợ (CN Quận 1)" style="cursor:pointer">
+            <input id="thoInput" data-dd-toggle readonly value="Trần Văn Thợ (CN Quận 1)" style="cursor:pointer">
             <div class="dd-menu" style="min-width:330px">
               <div class="dd-head"><span class="bg bg-blue">CN Quận 1 ✓</span><span style="flex:1"></span>
                 <label style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="allCN"> Hiện thợ tất cả chi nhánh</label></div>
@@ -161,9 +183,15 @@
             </div>
           </div>
         </div>
-        <div class="grid2" style="margin-top:12px">
+        <!-- Tem niêm phong -->
+        <div class="grid3" style="margin-top:12px">
+          <div class="f"><label>Số tem niêm phong</label><input placeholder="Nhập số tem (nhiều tem cách nhau bởi dấu phẩy)"></div>
+          <div class="f"><label>Lý do tem hủy / rớt số</label><input placeholder="Nhập lý do (nếu có)"></div>
+        </div>
+        <div class="grid3" style="margin-top:12px">
           <div class="upload" onclick="toast('Chọn ảnh tài sản (mô phỏng)')">⬆ Hình tài sản (nhiều ảnh)</div>
           <div class="upload" onclick="toast('Chọn ảnh giấy kiểm định (mô phỏng)')">⬆ Giấy kiểm định 2 mặt</div>
+          <div class="upload" onclick="toast('Chọn ảnh hộp/túi niêm phong (mô phỏng)')">⬆ Hình hộp/túi niêm phong<small>Rõ số tem niêm phong</small></div>
         </div>
         <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
           <button class="btn btn-line" data-modal-close>Hủy</button>
@@ -203,6 +231,39 @@ document.getElementById('soTien').addEventListener('input',e=>{
 document.getElementById('cs').addEventListener('change',e=>{
   document.getElementById('udWarn').hidden=e.target.value==='chuan';
 });
+// Kim cương rời: show/hide special P.TCKT field
+document.getElementById('loaiTscc').addEventListener('change',e=>{
+  document.getElementById('kcrField').style.display=e.target.value==='kcr'?'grid':'none';
+});
+// Hình thức kiểm định: "Cầm không thợ" disables thợ kỹ thuật
+document.getElementById('htKiemDinh').addEventListener('change',e=>{
+  const thoInput=document.getElementById('thoInput');
+  const isKhongTho=e.target.value==='khongtho';
+  thoInput.disabled=isKhongTho;
+  thoInput.style.opacity=isKhongTho?'0.45':'1';
+  thoInput.style.cursor=isKhongTho?'not-allowed':'pointer';
+  if(isKhongTho){
+    thoInput.value='— Không yêu cầu thợ —';
+    thoInput.closest('.dd').classList.remove('open');
+    toast('Cầm không thợ — tắt chọn thợ kỹ thuật');
+  }else{
+    thoInput.value='Trần Văn Thợ (CN Quận 1)';
+  }
+});
+// Mức sàn validation on soTien
+(function(){
+  const hanMuc=31900000;
+  const mucSan20=hanMuc*0.2; // 6.380.000
+  const soTienInput=document.getElementById('soTien');
+  function checkMucSan(){
+    const v=parseInt(soTienInput.value.replace(/\D/g,''))||0;
+    const warn=document.getElementById('mucSanWarn');
+    // show if < 20% of han muc (simplified: mucSan config not final)
+    warn.style.display=(v>0 && v<mucSan20)?'block':'none';
+  }
+  soTienInput.addEventListener('input',checkMucSan);
+  checkMucSan();
+})();
 </script>
 </body>
 </html>

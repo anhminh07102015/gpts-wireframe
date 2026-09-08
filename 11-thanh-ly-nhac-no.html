@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thanh lý · Nhắc nợ · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html" class="on">Thanh lý / Nhắc nợ</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Thanh lý · Nhắc nợ</div>
+    <div class="page-head"><div><h1>Thanh lý · Nhắc nợ</h1>
+      <div class="desc">GĐ2 (C4) — Khai báo thông tin thanh lý + nhắc nợ 3 lần</div></div></div>
+
+    <div class="note note-warn" style="margin-bottom:20px">
+      ⚠ Module này thuộc GĐ2 (Custom C4). Wireframe mô tả luồng đã chốt, chưa triển khai GĐ1.
+    </div>
+
+    <div class="stack" style="gap:20px">
+
+      <!-- ========== Section 1: Thanh lý tài sản ========== -->
+      <div class="card">
+        <h2><span class="step-n">1</span> Thanh lý tài sản</h2>
+        <div class="stack" style="gap:8px;margin-bottom:16px">
+          <div class="note note-info" style="font-size:.82rem">
+            <strong>[CHỐT]</strong> 3 trường hợp thanh lý: KH tự chuộc / Ủy quyền An Tín bán thay / Bắt buộc
+          </div>
+          <div class="note note-info" style="font-size:.82rem">
+            Ủy quyền và bắt buộc chung luồng. Đã bỏ luồng "KH bán lại cho An Tín".
+          </div>
+          <div class="note note-warn" style="font-size:.82rem">
+            GPTS chỉ khai báo thông tin thanh lý — kết nối bán hàng/FI phần thanh lý làm bên SAP (NGOÀI phạm vi Mona)
+          </div>
+          <div class="note note-info" style="font-size:.82rem">
+            <strong>[CHỐT]</strong> Tài sản chờ thanh lý VẪN tính lãi + phí như đang cầm
+          </div>
+        </div>
+      </div>
+
+      <!-- Form khai báo thanh lý -->
+      <div class="card">
+        <h2>Khai báo thanh lý</h2>
+        <div class="f" style="max-width:560px;display:flex;gap:10px;align-items:flex-end;margin-bottom:16px">
+          <div style="flex:1">
+            <label>Tìm hợp đồng (mã HĐ / CCCD / tên KH)</label>
+            <input type="text" id="searchHD" placeholder="VD: HD002195, 079…, Bùi Thị Lan">
+          </div>
+          <button class="btn btn-pri" onclick="findContract()" style="height:38px">Tìm</button>
+        </div>
+
+        <!-- Sample contract result -->
+        <div id="contractResult" hidden>
+          <div class="note note-info" style="margin-bottom:14px;font-size:.86rem">
+            <strong>HD002195</strong> · Bùi Thị Lan · <span class="bg bg-red">Quá hạn 45 ngày</span> · Dư nợ: <strong>8.000.000 đ</strong>
+          </div>
+
+          <div class="grid2" style="margin-bottom:14px">
+            <div class="f">
+              <label>Hình thức thanh lý <span class="req">*</span></label>
+              <select id="hinhThucTL" onchange="onHinhThucChange()">
+                <option value="">— Chọn —</option>
+                <option value="tuChuoc">KH tự chuộc</option>
+                <option value="uyQuyen">Ủy quyền bán thay</option>
+                <option value="batBuoc">Thanh lý bắt buộc</option>
+              </select>
+            </div>
+            <div class="f">
+              <label>Kết quả thanh lý</label>
+              <select id="ketQuaTL">
+                <option value="choXuLy">Chờ xử lý</option>
+                <option value="daBan">Đã bán</option>
+                <option value="chuaBan">Chưa bán được</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid3" style="margin-bottom:14px">
+            <div class="f">
+              <label>Giá bán (VND)</label>
+              <input type="text" id="giaBan" placeholder="0" oninput="calcPhiTL()">
+            </div>
+            <div class="f">
+              <label>Phí thanh lý (%)</label>
+              <input type="text" id="phiTLPercent" placeholder="5" value="5" oninput="calcPhiTL()">
+            </div>
+            <div class="f">
+              <label>Phí thanh lý (VND)</label>
+              <input type="text" id="phiTLVND" readonly placeholder="(tự tính)">
+            </div>
+          </div>
+
+          <div class="f" style="margin-bottom:14px">
+            <label>Tờ trình thanh lý</label>
+            <textarea id="toTrinhTL" rows="3" placeholder="Nhập nội dung tờ trình thanh lý tài sản…"></textarea>
+          </div>
+
+          <div class="f" style="margin-bottom:16px">
+            <label>Upload: Tờ trình / Biên bản thanh lý</label>
+            <div class="upload-compact" onclick="toast('Chọn file tờ trình / biên bản thanh lý')">
+              📎 Kéo thả hoặc bấm chọn file<br><small>PDF, JPG, PNG — tối đa 10 MB</small>
+            </div>
+          </div>
+
+          <button class="btn btn-pri" onclick="luuKhaiBao()">Lưu khai báo</button>
+        </div>
+      </div>
+
+      <!-- Table: Danh sách tài sản chờ/đã thanh lý -->
+      <div class="card">
+        <h2>Danh sách tài sản chờ / đã thanh lý</h2>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Mã HĐ</th>
+                <th>KH</th>
+                <th>TSCC</th>
+                <th>Ngày quá hạn</th>
+                <th>Hình thức</th>
+                <th style="text-align:right">Giá bán</th>
+                <th style="text-align:right">Phí TL</th>
+                <th>Kết quả</th>
+                <th>Trạng thái HĐ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="link">HD002195</td>
+                <td>Bùi Thị Lan</td>
+                <td>Nhẫn vàng 99.9</td>
+                <td>45 ngày</td>
+                <td>Bắt buộc</td>
+                <td style="text-align:right">—</td>
+                <td style="text-align:right">—</td>
+                <td><span class="bg bg-warn">Chờ xử lý</span></td>
+                <td><span class="bg bg-red">Quá hạn</span></td>
+              </tr>
+              <tr>
+                <td class="link">HD002188</td>
+                <td>Trần Quốc Bảo</td>
+                <td>Dây chuyền 75</td>
+                <td>62 ngày</td>
+                <td>Ủy quyền</td>
+                <td style="text-align:right">18.500.000</td>
+                <td style="text-align:right">925.000</td>
+                <td><span class="bg bg-green">Đã bán</span></td>
+                <td><span class="bg bg-teal">Đã thanh lý</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tbl-foot">
+          <span>2 bản ghi</span>
+          <span class="grow"></span>
+          <span class="pg on">1</span>
+        </div>
+      </div>
+
+      <!-- ========== Section 2: Nhắc nợ 3 lần ========== -->
+      <div class="card">
+        <h2><span class="step-n">2</span> Nhắc nợ 3 lần</h2>
+        <div class="note note-info" style="margin-bottom:16px;font-size:.82rem">
+          <strong>[CHỐT]</strong> UI trải phẳng, DB log từng lần
+        </div>
+        <div class="note note-info" style="margin-bottom:18px;font-size:.86rem">
+          Hợp đồng: <strong>HD002195</strong> · Bùi Thị Lan · <span class="bg bg-red">Quá hạn 45 ngày</span>
+        </div>
+
+        <!-- Lần 1 -->
+        <div style="border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px;margin-bottom:14px;background:#fafbfd">
+          <h2 style="font-size:.92rem;margin-bottom:10px"><span class="bg bg-blue">Lần 1</span> Nhắc nợ</h2>
+          <div class="grid3" style="margin-bottom:10px">
+            <div class="f">
+              <label>Ngày nhắc</label>
+              <input type="text" value="05/08/2026" readonly>
+            </div>
+            <div class="f">
+              <label>Hình thức</label>
+              <select disabled>
+                <option selected>SMS/Zalo</option>
+              </select>
+            </div>
+            <div class="f">
+              <label>User thực hiện</label>
+              <input type="text" value="Nguyễn Thị Mai (TVV)" readonly>
+            </div>
+          </div>
+          <div class="f" style="margin-bottom:10px">
+            <label>Nội dung</label>
+            <textarea rows="2" readonly>Thông báo lần 1: HĐCC HD002195 đã quá hạn. Vui lòng liên hệ chi nhánh...</textarea>
+          </div>
+          <div class="f">
+            <label>Kết quả</label>
+            <input type="text" value="KH hẹn tuần sau" readonly>
+          </div>
+        </div>
+
+        <!-- Lần 2 -->
+        <div style="border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px;margin-bottom:14px;background:#fafbfd">
+          <h2 style="font-size:.92rem;margin-bottom:10px"><span class="bg bg-blue">Lần 2</span> Nhắc nợ</h2>
+          <div class="grid3" style="margin-bottom:10px">
+            <div class="f">
+              <label>Ngày nhắc</label>
+              <input type="text" value="12/08/2026" readonly>
+            </div>
+            <div class="f">
+              <label>Hình thức</label>
+              <select disabled>
+                <option selected>Điện thoại</option>
+              </select>
+            </div>
+            <div class="f">
+              <label>User thực hiện</label>
+              <input type="text" value="Nguyễn Thị Mai (TVV)" readonly>
+            </div>
+          </div>
+          <div class="f" style="margin-bottom:10px">
+            <label>Nội dung</label>
+            <textarea rows="2" readonly>Thông báo lần 2: HĐCC HD002195 đã quá hạn. Yêu cầu thanh toán trong 7 ngày...</textarea>
+          </div>
+          <div class="f">
+            <label>Kết quả</label>
+            <input type="text" value="Không liên lạc được" readonly>
+          </div>
+        </div>
+
+        <!-- Lần 3 (chưa hoàn thành) -->
+        <div style="border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px;margin-bottom:14px;background:#fff">
+          <h2 style="font-size:.92rem;margin-bottom:10px"><span class="bg bg-warn">Lần 3</span> Nhắc nợ</h2>
+          <div class="grid3" style="margin-bottom:10px">
+            <div class="f">
+              <label>Ngày nhắc <span class="req">*</span></label>
+              <input type="date" id="nhac3Ngay" value="2026-08-20">
+            </div>
+            <div class="f">
+              <label>Hình thức <span class="req">*</span></label>
+              <select id="nhac3HinhThuc">
+                <option value="">— Chọn —</option>
+                <option value="sms">SMS/Zalo</option>
+                <option value="phone">Điện thoại</option>
+                <option value="mail" selected>Thư bảo đảm</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+            <div class="f">
+              <label>User thực hiện</label>
+              <input type="text" id="nhac3User" value="Lê Văn Hùng (Quản lý)" readonly>
+            </div>
+          </div>
+          <div class="f" style="margin-bottom:10px">
+            <label>Nội dung <span class="req">*</span></label>
+            <textarea rows="2" id="nhac3NoiDung" placeholder="Nhập nội dung nhắc nợ lần 3…">Thông báo lần 3 — cảnh báo thanh lý tài sản cầm cố theo quy định...</textarea>
+          </div>
+          <div class="f" style="margin-bottom:14px">
+            <label>Kết quả</label>
+            <input type="text" id="nhac3KetQua" placeholder="(Chưa có phản hồi)">
+          </div>
+          <button class="btn btn-pri" onclick="ghiNhanNhacNo3()">Ghi nhận nhắc nợ</button>
+        </div>
+
+      </div>
+
+    </div><!-- /.stack -->
+
+  </main>
+
+<script src="assets/app.js"></script>
+<script>
+/* --- Tìm hợp đồng --- */
+function findContract(){
+  document.getElementById('contractResult').hidden=false;
+  toast('Đã tìm thấy hợp đồng HD002195');
+}
+
+/* --- Tính phí thanh lý --- */
+function calcPhiTL(){
+  const gia=parseInt((document.getElementById('giaBan').value||'0').replace(/\D/g,''),10);
+  const pct=parseFloat(document.getElementById('phiTLPercent').value||'0');
+  if(gia&&pct){
+    const phi=Math.round(gia*pct/100);
+    document.getElementById('phiTLVND').value=phi.toLocaleString('vi-VN');
+  }else{
+    document.getElementById('phiTLVND').value='';
+  }
+}
+
+/* --- Hình thức thanh lý change --- */
+function onHinhThucChange(){
+  // placeholder for future logic
+}
+
+/* --- Lưu khai báo --- */
+function luuKhaiBao(){
+  const ht=document.getElementById('hinhThucTL').value;
+  if(!ht){toast('Vui lòng chọn hình thức thanh lý');return;}
+  toast('Đã lưu khai báo thanh lý cho HD002195');
+}
+
+/* --- Ghi nhận nhắc nợ lần 3 --- */
+function ghiNhanNhacNo3(){
+  const nd=document.getElementById('nhac3NoiDung').value.trim();
+  if(!nd){toast('Vui lòng nhập nội dung nhắc nợ');document.getElementById('nhac3NoiDung').focus();return;}
+  toast('Đã ghi nhận nhắc nợ lần 3 cho HD002195');
+}
+</script>
+</body>
+</html>
