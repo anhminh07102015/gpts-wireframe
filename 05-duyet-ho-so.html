@@ -7,6 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  .toggle-detail{font-size:.78rem;font-weight:500;color:var(--blue);text-decoration:none;margin-left:8px;vertical-align:middle}
+  .toggle-detail:hover{text-decoration:underline}
+  .detail-expand{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+</style>
 </head>
 <body>
   <aside class="side">
@@ -24,6 +29,8 @@
       <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
       <a href="10-report.html">Report / Truy xuất</a>
       <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+      <a href="12-hop-dong-toi-han.html">HĐ tới hạn / Quá hạn</a>
+      <a href="13-cau-hinh-admin.html">Cấu hình Admin</a>
     </nav>
     <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
   </aside>
@@ -41,21 +48,91 @@
           • Số tiền cầm: 30.000.000 → <strong>28.000.000</strong> &nbsp; • Tỷ lệ thu lại TSCC #1: 85% → <strong>80%</strong> &nbsp; • Bổ sung hình tài sản (2 ảnh)<br>
           <span style="font-size:.78rem">Người duyệt chỉ cần rà các mục thay đổi, không phải xem lại toàn bộ hồ sơ</span>
         </div>
-        <div class="card"><h2>Khách hàng</h2>
+        <div class="card"><h2>Khách hàng <a href="#" class="toggle-detail" onclick="toggleDetail('khDetail');return false">▼ Xem chi tiết</a></h2>
           <table class="tbl"><tbody>
             <tr><td style="color:var(--sub);width:180px">Họ tên / Hạng</td><td>Nguyễn Thị Hồng · <span class="bg bg-gold">Gold (giảm phí)</span></td></tr>
             <tr><td style="color:var(--sub)">CCCD / SĐT</td><td>0790xxxxxxxx · 0903 xxx 111</td></tr>
             <tr><td style="color:var(--sub)">Dư nợ hiện tại</td><td>15.000.000 đ (2 HĐCC hiệu lực)</td></tr>
           </tbody></table>
+          <div id="khDetail" class="detail-expand" hidden>
+            <table class="tbl"><tbody>
+              <tr><td style="color:var(--sub);width:180px">Mã KH An Tín</td><td>KH-0045</td></tr>
+              <tr><td style="color:var(--sub)">Mã KH PNJ</td><td>PNJ-100567</td></tr>
+              <tr><td style="color:var(--sub)">Mã SAP (BP)</td><td>BP-600234</td></tr>
+              <tr><td style="color:var(--sub)">Ngày sinh</td><td>15/03/1988 (38 tuổi)</td></tr>
+              <tr><td style="color:var(--sub)">Giới tính</td><td>Nữ</td></tr>
+              <tr><td style="color:var(--sub)">Passport / CCCD QĐ</td><td>—</td></tr>
+              <tr><td style="color:var(--sub)">Ngày cấp / Nơi cấp</td><td>20/01/2022 · CA TP.HCM</td></tr>
+              <tr><td style="color:var(--sub)">Nguồn KH</td><td>PNJ/CAF</td></tr>
+              <tr><td style="color:var(--sub)">Nghề nghiệp</td><td>Kinh doanh tự do</td></tr>
+              <tr><td style="color:var(--sub)">Địa chỉ liên hệ</td><td>123 Nguyễn Trãi, P.2, Q.5, TP.HCM</td></tr>
+              <tr><td style="color:var(--sub)">Địa chỉ thường trú</td><td>45 Lê Lợi, P.Bến Nghé, Q.1, TP.HCM</td></tr>
+              <tr><td style="color:var(--sub)">Email</td><td>hong.nguyen@email.com</td></tr>
+              <tr><td style="color:var(--sub)">Hình KH / CCCD</td><td>📷 Hình KH · 📷 CCCD mặt trước · 📷 CCCD mặt sau</td></tr>
+            </tbody></table>
+          </div>
         </div>
-        <div class="card"><h2>Tài sản cầm cố (2)</h2>
+        <div class="card"><h2>Tài sản cầm cố (2) <a href="#" class="toggle-detail" onclick="toggleDetail('tsccDetail');return false">▼ Xem chi tiết</a></h2>
           <table class="tbl"><tbody>
             <tr><td style="color:var(--sub);width:180px">TSCC #1</td><td>Nữ trang trọng lượng · 2,5 chỉ · 75% · thị trường · 18.750.000 đ</td></tr>
-            <tr><td style="color:var(--sub)">TSCC #2</td><td>Kim cương/KCR · theo hóa đơn PNJ · 22.000.000 đ</td></tr>
+            <tr><td style="color:var(--sub)">TSCC #2</td><td>TS kim cương · theo hóa đơn PNJ · 22.000.000 đ</td></tr>
             <tr><td style="color:var(--sub)">Tổng trị giá / hạn mức</td><td><strong>40.750.000 đ / 31.900.000 đ</strong></td></tr>
           </tbody></table>
+          <div id="tsccDetail" class="detail-expand" hidden>
+            <div style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:12px;margin-top:8px;background:#f7fafc">
+              <strong style="font-size:.84rem">TSCC #1 — Nữ trang trọng lượng</strong>
+              <table class="tbl" style="margin-top:6px"><tbody>
+                <tr><td style="color:var(--sub);width:180px">Loại TSCC</td><td>Nữ trang trọng lượng</td></tr>
+                <tr><td style="color:var(--sub)">Tuổi vàng</td><td>75%</td></tr>
+                <tr><td style="color:var(--sub)">TL vàng (đá) / TL tổng</td><td>2,500 chỉ / 2,800 chỉ</td></tr>
+                <tr><td style="color:var(--sub)">Phương pháp định giá</td><td>Theo thị trường</td></tr>
+                <tr><td style="color:var(--sub)">Giá bóng (thời kỳ)</td><td>10.000.000 đ/chỉ</td></tr>
+                <tr><td style="color:var(--sub)">SIZE</td><td>16</td></tr>
+                <tr><td style="color:var(--sub)">Trị giá TSCC</td><td>18.750.000 đ</td></tr>
+                <tr><td style="color:var(--sub)">Nguồn gốc / thương hiệu</td><td>PNJ</td></tr>
+                <tr><td style="color:var(--sub)">Tỷ lệ thu lại</td><td>80% (đã điều chỉnh từ 85%)</td></tr>
+                <tr><td style="color:var(--sub)">Tỷ lệ cầm</td><td>85% (khóa)</td></tr>
+                <tr><td style="color:var(--sub)">Hạn mức tài sản</td><td>15.937.500 đ</td></tr>
+                <tr><td style="color:var(--sub)">Quyền sở hữu</td><td>Chính chủ</td></tr>
+                <tr><td style="color:var(--sub)">Hình thức kiểm định</td><td>Thợ cửa hàng</td></tr>
+                <tr><td style="color:var(--sub)">Thợ kỹ thuật</td><td>Lê Hoàng (NV034) · CN Quận 1 · le.hoang@antin.vn</td></tr>
+                <tr><td style="color:var(--sub)">Giấy KĐ GIA</td><td>—</td></tr>
+                <tr><td style="color:var(--sub)">Giấy KĐ PNJLAB/khác</td><td>PNJL-20260823-001</td></tr>
+                <tr><td style="color:var(--sub)">Tem niêm phong</td><td>NP-0012, NP-0013</td></tr>
+                <tr><td style="color:var(--sub)">Hình ảnh</td><td>📷 2 hình tài sản · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
+              </tbody></table>
+            </div>
+            <div style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:12px;margin-top:8px;background:#f7fafc">
+              <strong style="font-size:.84rem">TSCC #2 — TS kim cương</strong>
+              <table class="tbl" style="margin-top:6px"><tbody>
+                <tr><td style="color:var(--sub);width:180px">Loại TSCC</td><td>TS kim cương</td></tr>
+                <tr><td style="color:var(--sub)">Phương pháp định giá</td><td>Theo hóa đơn</td></tr>
+                <tr><td style="color:var(--sub)">Số hóa đơn</td><td>PNJ-HD-20250315-042</td></tr>
+                <tr><td style="color:var(--sub)">Mã SP theo hóa đơn</td><td>GNXMXMW003919</td></tr>
+                <tr><td style="color:var(--sub)">Giá theo hóa đơn</td><td>28.000.000 đ</td></tr>
+                <tr><td style="color:var(--sub)">Giảm trừ / Lý do</td><td>3.000.000 đ · Mòn/trầy nhẹ</td></tr>
+                <tr><td style="color:var(--sub)">Trị giá TSCC</td><td>22.000.000 đ</td></tr>
+                <tr><td style="color:var(--sub)">Nguồn gốc / thương hiệu</td><td>PNJ</td></tr>
+                <tr><td style="color:var(--sub)">Tỷ lệ thu lại</td><td>88%</td></tr>
+                <tr><td style="color:var(--sub)">Tỷ lệ cầm</td><td>80% (khóa)</td></tr>
+                <tr><td style="color:var(--sub)">Hạn mức tài sản</td><td>15.962.500 đ</td></tr>
+                <tr><td style="color:var(--sub)">NƯỚC</td><td>D</td></tr>
+                <tr><td style="color:var(--sub)">ĐỘ SẠCH</td><td>VS1</td></tr>
+                <tr><td style="color:var(--sub)">Quyền sở hữu</td><td>Chính chủ</td></tr>
+                <tr><td style="color:var(--sub)">Hình thức kiểm định</td><td>PNJL</td></tr>
+                <tr><td style="color:var(--sub)">Thợ kỹ thuật</td><td>Trần Minh (NV018) · CN Quận 1 · tran.minh@antin.vn</td></tr>
+                <tr><td style="color:var(--sub)">Giấy KĐ GIA</td><td>GIA-2260100234</td></tr>
+                <tr><td style="color:var(--sub)">Giấy KĐ PNJLAB/khác</td><td>—</td></tr>
+                <tr><td style="color:var(--sub)">Tem niêm phong</td><td>NP-0014</td></tr>
+                <tr><td style="color:var(--sub)">Hình ảnh</td><td>📷 4 hình tài sản · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
+              </tbody></table>
+            </div>
+            <table class="tbl" style="margin-top:8px"><tbody>
+              <tr><td style="color:var(--sub);width:180px">Niêm phong HĐ</td><td>2 hộp · 0,150 chỉ tổng TL hộp/túi</td></tr>
+            </tbody></table>
+          </div>
         </div>
-        <div class="card"><h2>Thông tin vay</h2>
+        <div class="card"><h2>Thông tin vay <a href="#" class="toggle-detail" onclick="toggleDetail('vayDetail');return false">▼ Xem chi tiết</a></h2>
           <table class="tbl"><tbody>
             <tr><td style="color:var(--sub);width:180px">Số tiền cầm</td><td>28.000.000 đ (trong hạn mức)</td></tr>
             <tr><td style="color:var(--sub)">Kỳ hạn / lãi / phí</td><td>30 ngày · lãi 1.5 · phí bậc &lt;50tr</td></tr>
@@ -63,6 +140,23 @@
             <tr><td style="color:var(--sub)">Chi vay</td><td>Chuyển khoản · VCB 0071xxxx · Nguyễn Thị Hồng</td></tr>
             <tr><td style="color:var(--sub)">Chứng từ đính kèm</td><td>6 hình tài sản · 1 giấy kiểm định · 1 tờ trình</td></tr>
           </tbody></table>
+          <div id="vayDetail" class="detail-expand" hidden>
+            <table class="tbl"><tbody>
+              <tr><td style="color:var(--sub);width:180px">Hạn mức HĐCC</td><td>31.900.000 đ (tổng hạn mức các TSCC)</td></tr>
+              <tr><td style="color:var(--sub)">Mức sàn</td><td>≥ 20% hạn mức (6.380.000 đ) và ≥ mức sàn tuyệt đối · ✔ Đạt</td></tr>
+              <tr><td style="color:var(--sub)">Lãi suất</td><td>1.5 (cố định, chưa gồm VAT) · [CHỜ CHỐT đơn vị]</td></tr>
+              <tr><td style="color:var(--sub)">Số ngày lãi tối thiểu</td><td>15 ngày</td></tr>
+              <tr><td style="color:var(--sub)">Phí bảo quản</td><td>Bậc < 50tr: 0.0205 · giảm phí theo hạng Gold</td></tr>
+              <tr><td style="color:var(--sub)">Lãi dự kiến (30 ngày)</td><td>420.000 đ</td></tr>
+              <tr><td style="color:var(--sub)">Phí dự kiến (30 ngày)</td><td>172.200 đ</td></tr>
+              <tr><td style="color:var(--sub)">VAT 10% (lãi + phí)</td><td>59.220 đ</td></tr>
+              <tr><td style="color:var(--sub)">Tổng KH trả cuối kỳ</td><td>28.651.420 đ</td></tr>
+              <tr><td style="color:var(--sub)">Số tài khoản</td><td>0071 000 xxx 789</td></tr>
+              <tr><td style="color:var(--sub)">Ngân hàng</td><td>Vietcombank (VCB)</td></tr>
+              <tr><td style="color:var(--sub)">Chủ tài khoản</td><td>NGUYEN THI HONG</td></tr>
+              <tr><td style="color:var(--sub)">Hình thức chi</td><td>Chuyển khoản (tiền mặt: TẮT GĐ1)</td></tr>
+            </tbody></table>
+          </div>
         </div>
       </div>
       <div class="stack">
@@ -125,6 +219,12 @@
 
 <script src="assets/app.js"></script>
 <script>
+function toggleDetail(id){
+  const el=document.getElementById(id);
+  const link=el.parentElement.querySelector('.toggle-detail');
+  if(el.hidden){el.hidden=false;link.textContent='▲ Ẩn chi tiết';}
+  else{el.hidden=true;link.textContent='▼ Xem chi tiết';}
+}
 function approve(){
   const s=document.getElementById('hsStatus');
   s.textContent='Đã phê duyệt';s.className='bg bg-teal';

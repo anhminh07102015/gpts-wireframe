@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HĐ tới hạn · Quá hạn · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .stat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px}
+  .stat-card .stat-label{font-size:.82rem;font-weight:500;color:var(--sub);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .stat-card .stat-num{font-size:1.35rem;font-weight:700;line-height:1.2}
+  .stat-card .stat-sub{font-size:.78rem;color:var(--sub);margin-top:4px}
+  .stat-card.stat-orange{border-left:4px solid #d9a715}
+  .stat-card.stat-blue{border-left:4px solid var(--blue)}
+  .stat-card.stat-red{border-left:4px solid var(--red)}
+  .stat-card.stat-teal{border-left:4px solid #0e7a63}
+  .info-box{background:#f8fafc;border:1px solid var(--line);border-radius:var(--r-card);padding:16px 18px}
+  .info-box h3{font-size:.92rem;font-weight:700;margin-bottom:10px}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+      <a href="12-hop-dong-toi-han.html" class="on">HĐ tới hạn / Quá hạn</a>
+      <a href="13-cau-hinh-admin.html">Cấu hình Admin</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="page-head">
+      <div>
+        <h1>Hợp đồng tới hạn · Quá hạn · Phải thu</h1>
+        <div class="desc">Theo dõi HĐ sắp đến hạn, quá hạn, cảnh báo thu nợ / tất toán</div>
+      </div>
+    </div>
+
+    <div class="stack">
+
+      <!-- ===== Section 1: Tổng quan nhanh ===== -->
+      <div class="grid4">
+        <div class="stat-card stat-orange">
+          <div class="stat-label"><span class="bg bg-warn">Sắp tới hạn</span></div>
+          <div class="stat-num">12 <span style="font-size:.82rem;font-weight:500;color:var(--sub)">hợp đồng</span></div>
+          <div class="stat-sub">156.000.000 đ dư nợ</div>
+        </div>
+        <div class="stat-card stat-blue">
+          <div class="stat-label"><span class="bg bg-blue">Tới hạn hôm nay</span></div>
+          <div class="stat-num">3 <span style="font-size:.82rem;font-weight:500;color:var(--sub)">hợp đồng</span></div>
+          <div class="stat-sub">45.000.000 đ dư nợ</div>
+        </div>
+        <div class="stat-card stat-red">
+          <div class="stat-label"><span class="bg bg-red">Quá hạn</span></div>
+          <div class="stat-num">8 <span style="font-size:.82rem;font-weight:500;color:var(--sub)">hợp đồng</span></div>
+          <div class="stat-sub">210.000.000 đ dư nợ</div>
+        </div>
+        <div class="stat-card stat-teal">
+          <div class="stat-label"><span class="bg bg-teal">Chờ chuộc đồ</span></div>
+          <div class="stat-num">5 <span style="font-size:.82rem;font-weight:500;color:var(--sub)">hợp đồng</span></div>
+          <div class="stat-sub">Đã tất toán · chờ KH chuộc</div>
+        </div>
+      </div>
+
+      <!-- ===== Section 2: Filters ===== -->
+      <div class="card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
+        <div class="f" style="width:220px">
+          <label>Trạng thái</label>
+          <select>
+            <option>Tất cả</option>
+            <option>Sắp tới hạn (&#8804; 7 ngày)</option>
+            <option>Tới hạn hôm nay</option>
+            <option>Quá hạn 1–15 ngày</option>
+            <option>Quá hạn 16–30 ngày</option>
+            <option>Quá hạn > 30 ngày</option>
+            <option>Đã tất toán chờ chuộc</option>
+          </select>
+        </div>
+        <div class="f" style="width:170px">
+          <label>Chi nhánh</label>
+          <select>
+            <option>Tất cả</option>
+            <option>CN Quận 1</option>
+            <option>CN Thủ Đức</option>
+            <option>CN Bình Thạnh</option>
+          </select>
+        </div>
+        <div class="f" style="width:160px">
+          <label>Tính đến ngày</label>
+          <input type="date" value="2026-09-08">
+        </div>
+        <div class="f" style="flex:1;min-width:200px">
+          <label>Tìm kiếm</label>
+          <input placeholder="Mã HĐ / CCCD / Tên KH…">
+        </div>
+        <button class="btn btn-line" onclick="toast('Xuất Excel danh sách HĐ tới hạn / quá hạn (mô phỏng)')">Xuất Excel</button>
+      </div>
+
+      <!-- ===== Section 3: Bảng hợp đồng tới hạn ===== -->
+      <div class="tbl-wrap" style="overflow-x:auto">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Mã HĐ</th>
+              <th>KH</th>
+              <th>Chi nhánh</th>
+              <th>Ngày GN</th>
+              <th>Hạn TT</th>
+              <th>Còn lại</th>
+              <th style="text-align:right">Dư nợ</th>
+              <th style="text-align:right">Lãi phải thu</th>
+              <th style="text-align:right">Phí phải thu</th>
+              <th style="text-align:right">Tổng phải thu</th>
+              <th>Trạng thái</th>
+              <th>Nhắc nợ</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002215</a></td>
+              <td>Nguyễn Văn An</td>
+              <td>CN Q1</td>
+              <td style="white-space:nowrap">15/08</td>
+              <td style="white-space:nowrap">14/09</td>
+              <td>6 ngày</td>
+              <td style="text-align:right">10.000.000</td>
+              <td style="text-align:right">450.000</td>
+              <td style="text-align:right">180.000</td>
+              <td style="text-align:right"><strong>10.693.000</strong></td>
+              <td><span class="bg bg-warn">Sắp tới hạn</span></td>
+              <td>0/3</td>
+              <td><a class="tbl-action" href="08-thu-no-tat-toan.html">Thu nợ</a></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002210</a></td>
+              <td>Trần Thị Bình</td>
+              <td>CN TĐ</td>
+              <td style="white-space:nowrap">01/08</td>
+              <td style="white-space:nowrap">31/08</td>
+              <td>0 ngày</td>
+              <td style="text-align:right">25.000.000</td>
+              <td style="text-align:right">1.125.000</td>
+              <td style="text-align:right">450.000</td>
+              <td style="text-align:right"><strong>26.732.500</strong></td>
+              <td><span class="bg bg-blue">Tới hạn hôm nay</span></td>
+              <td>0/3</td>
+              <td><a class="tbl-action" href="08-thu-no-tat-toan.html">Thu nợ</a></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002198</a></td>
+              <td>Lê Minh Châu</td>
+              <td>CN Q1</td>
+              <td style="white-space:nowrap">20/07</td>
+              <td style="white-space:nowrap">19/08</td>
+              <td style="color:var(--red);font-weight:600">-20 ngày</td>
+              <td style="text-align:right">45.000.000</td>
+              <td style="text-align:right">3.375.000</td>
+              <td style="text-align:right">1.350.000</td>
+              <td style="text-align:right"><strong>50.197.500</strong></td>
+              <td><span class="bg bg-red">Quá hạn 20 ngày</span></td>
+              <td>2/3</td>
+              <td style="white-space:nowrap"><a class="tbl-action" href="08-thu-no-tat-toan.html">Thu nợ</a> <a class="tbl-action" href="11-thanh-ly-nhac-no.html">Nhắc nợ</a></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+              <td class="link"><a href="11-thanh-ly-nhac-no.html">HD002195</a></td>
+              <td>Bùi Thị Lan</td>
+              <td>CN BT</td>
+              <td style="white-space:nowrap">10/07</td>
+              <td style="white-space:nowrap">09/08</td>
+              <td style="color:var(--red);font-weight:600">-30 ngày</td>
+              <td style="text-align:right">8.000.000</td>
+              <td style="text-align:right">720.000</td>
+              <td style="text-align:right">288.000</td>
+              <td style="text-align:right"><strong>9.108.800</strong></td>
+              <td><span class="bg bg-dark-red">Quá hạn 30 ngày</span></td>
+              <td>3/3</td>
+              <td><a class="tbl-action" href="11-thanh-ly-nhac-no.html">Thanh lý</a></td>
+            </tr>
+            <!-- Row 5 -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002188</a></td>
+              <td>Phạm Quốc Duy</td>
+              <td>CN TĐ</td>
+              <td style="white-space:nowrap">25/07</td>
+              <td style="white-space:nowrap">24/08</td>
+              <td style="color:var(--red);font-weight:600">-15 ngày</td>
+              <td style="text-align:right">18.000.000</td>
+              <td style="text-align:right">1.215.000</td>
+              <td style="text-align:right">486.000</td>
+              <td style="text-align:right"><strong>19.871.100</strong></td>
+              <td><span class="bg bg-red">Quá hạn 15 ngày</span></td>
+              <td>1/3</td>
+              <td style="white-space:nowrap"><a class="tbl-action" href="08-thu-no-tat-toan.html">Thu nợ</a> <a class="tbl-action" href="11-thanh-ly-nhac-no.html">Nhắc nợ</a></td>
+            </tr>
+            <!-- Row 6 -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002220</a></td>
+              <td>Võ Thúy An</td>
+              <td>CN Q1</td>
+              <td style="white-space:nowrap">20/08</td>
+              <td style="white-space:nowrap">19/09</td>
+              <td>11 ngày</td>
+              <td style="text-align:right">5.000.000</td>
+              <td style="text-align:right">225.000</td>
+              <td style="text-align:right">90.000</td>
+              <td style="text-align:right"><strong>5.346.500</strong></td>
+              <td><span class="bg bg-warn">Sắp tới hạn</span></td>
+              <td>0/3</td>
+              <td><a class="tbl-action" href="08-thu-no-tat-toan.html">Thu nợ</a></td>
+            </tr>
+            <!-- Row 7 — Đã tất toán chờ chuộc -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002201</a></td>
+              <td>Nguyễn Văn Tú</td>
+              <td>CN BT</td>
+              <td style="white-space:nowrap">05/08</td>
+              <td style="white-space:nowrap">04/09</td>
+              <td>—</td>
+              <td style="text-align:right">10.000.000</td>
+              <td style="text-align:right">—</td>
+              <td style="text-align:right">—</td>
+              <td style="text-align:right">—</td>
+              <td><span class="bg bg-teal">Đã tất toán · chờ chuộc</span></td>
+              <td>—</td>
+              <td><a class="tbl-action" href="08-thu-no-tat-toan.html">Chuộc đồ</a></td>
+            </tr>
+            <!-- Row 8 -->
+            <tr>
+              <td class="link"><a href="08-thu-no-tat-toan.html">HD002205</a></td>
+              <td>Hoàng Minh Tuấn</td>
+              <td>CN Q1</td>
+              <td style="white-space:nowrap">12/08</td>
+              <td style="white-space:nowrap">11/09</td>
+              <td>3 ngày</td>
+              <td style="text-align:right">30.000.000</td>
+              <td style="text-align:right">1.350.000</td>
+              <td style="text-align:right">540.000</td>
+              <td style="text-align:right"><strong>32.079.000</strong></td>
+              <td><span class="bg bg-warn">Sắp tới hạn</span></td>
+              <td>0/3</td>
+              <td><a class="tbl-action" href="08-thu-no-tat-toan.html">Thu nợ</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="tbl-foot">
+          <span>8 bản ghi (trang 1/1)</span>
+          <span class="grow"></span>
+          <span class="pg on">1</span>
+        </div>
+      </div>
+
+      <!-- ===== Notes ===== -->
+      <div class="note note-info">
+        Lãi/phí phải thu tính đến ngày hiện tại (realtime), bao gồm cả ngày quá hạn
+      </div>
+      <div class="note note-warn">
+        <strong>[CHỐT]</strong> Tài sản chờ thanh lý VẪN tính lãi + phí như đang cầm
+      </div>
+      <div class="note note-warn">
+        <strong>[CHỐT]</strong> Cutoff 17h: phải thu ghi nhận theo ngày ghi nhận, không theo ngày thực
+      </div>
+      <div class="note note-info">
+        Cột "Nhắc nợ" hiện số lần đã nhắc / tối đa 3 lần
+      </div>
+
+      <!-- ===== Section 4: Phí bảo quản sau tất toán — chờ chuộc ===== -->
+      <div class="card">
+        <h2>Phí bảo quản sau tất toán — chờ chuộc</h2>
+        <div class="note note-warn" style="margin-bottom:14px">
+          <strong>[CHỐT]</strong> Phí BQ sau tất toán: miễn 3 ngày; từ ngày thứ 4 tính lại TỪ NGÀY TẤT TOÁN (trọn cả 4 ngày), chỉ PHÍ không lãi
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Mã HĐ</th>
+                <th>Ngày tất toán</th>
+                <th>Số ngày chờ</th>
+                <th style="text-align:right">Phí BQ phát sinh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="link"><a href="08-thu-no-tat-toan.html">HD002201</a></td>
+                <td style="white-space:nowrap">02/09/2026</td>
+                <td>6 ngày</td>
+                <td style="text-align:right">30.750 đ <span style="font-size:.74rem;color:var(--sub)">(4 ngày tính phí x 0.0205% x 10.000.000)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /.stack -->
+
+  </main>
+<script src="assets/app.js"></script>
+</body>
+</html>

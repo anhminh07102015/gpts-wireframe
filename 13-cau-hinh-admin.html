@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cấu hình Admin · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .cfg-tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin-bottom:0}
+  .cfg-tab{flex:1;padding:12px 14px;font-size:.84rem;font-weight:500;background:#f5f8fb;color:var(--sub);
+    border:none;border-bottom:2px solid transparent;cursor:pointer;transition:background .12s,color .12s;margin-bottom:-2px;text-align:center}
+  .cfg-tab:hover{background:var(--blue-bg);color:var(--ink)}
+  .cfg-tab.cfg-tab-on{background:#fff;color:var(--navy-2);font-weight:600;border-bottom:2px solid var(--navy-2)}
+  .cfg-panel{display:none}
+  .cfg-panel.cfg-panel-on{display:block}
+  .cho-chot{display:inline-block;background:var(--red-bg);color:var(--red);font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:999px}
+  .cfg-input{width:100px;padding:6px 9px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.84rem;background:#fff;color:var(--ink);text-align:right}
+  .cfg-input:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+  .cfg-input-wide{width:160px;padding:6px 9px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.84rem;background:#fff;color:var(--ink)}
+  .cfg-input-wide:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+  .cfg-select{padding:6px 9px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.84rem;background:#fff;color:var(--ink)}
+  .cfg-select:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+  .cfg-time{width:90px;padding:6px 9px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.84rem;background:#fff;color:var(--ink)}
+  .cfg-time:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+  .tbl td .cfg-input,.tbl td .cfg-input-wide,.tbl td .cfg-select,.tbl td .cfg-time{margin:0}
+  .sticky-save{position:sticky;bottom:0;background:var(--bg);padding:16px 0 4px;z-index:10;border-top:1px solid var(--line);margin-top:20px}
+  .toggle-sw{position:relative;display:inline-block;width:38px;height:22px;vertical-align:middle}
+  .toggle-sw input{opacity:0;width:0;height:0}
+  .toggle-sw .slider{position:absolute;cursor:pointer;inset:0;background:#cdd5de;border-radius:22px;transition:.2s}
+  .toggle-sw .slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+  .toggle-sw input:checked+.slider{background:var(--green)}
+  .toggle-sw input:checked+.slider:before{transform:translateX(16px)}
+  .cat-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f3f6;font-size:.86rem}
+  .cat-item:last-child{border-bottom:none}
+  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .tag{display:inline-block;padding:5px 12px;border-radius:999px;font-size:.82rem;font-weight:500;background:var(--blue-bg);color:#155c8f;border:1px solid #c8ddef}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+      <a href="12-hop-dong-toi-han.html">HĐ tới hạn / Quá hạn</a>
+      <a href="13-cau-hinh-admin.html" class="on">Cấu hình Admin</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="page-head">
+      <div>
+        <h1>Cấu hình hệ thống</h1>
+        <div class="desc">Quản lý tham số nghiệp vụ — mọi giá trị tài chính KHÔNG hard-code (BA §14 mục 1)</div>
+      </div>
+      <span class="grow"></span>
+      <span class="bg bg-blue" style="font-size:.82rem;padding:5px 14px">Vai trò: Admin</span>
+    </div>
+
+    <div class="stack">
+
+      <!-- ===== Tab bar ===== -->
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="cfg-tabs">
+          <button class="cfg-tab cfg-tab-on" data-cfg="lp" onclick="switchCfg('lp')">Lãi suất &amp; Phí</button>
+          <button class="cfg-tab" data-cfg="tl" onclick="switchCfg('tl')">Tỷ lệ cầm &amp; Định giá</button>
+          <button class="cfg-tab" data-cfg="hm" onclick="switchCfg('hm')">Hạn mức &amp; Ngưỡng</button>
+          <button class="cfg-tab" data-cfg="ud" onclick="switchCfg('ud')">Ưu đãi &amp; Hạng KH</button>
+          <button class="cfg-tab" data-cfg="dm" onclick="switchCfg('dm')">Danh mục &amp; Hệ thống</button>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- TAB 1: Lãi suất & Phí                                       -->
+      <!-- ============================================================ -->
+      <div class="cfg-panel cfg-panel-on" id="panel-lp">
+
+        <!-- Card: Lãi suất cầm cố -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Lãi suất cầm cố</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lãi suất cố định</td>
+                  <td><input class="cfg-input" value="1.5"></td>
+                  <td>
+                    <select class="cfg-select">
+                      <option>%/tháng</option>
+                      <option>‰/ngày</option>
+                    </select>
+                    <span class="cho-chot" style="margin-left:6px">CHỜ CHỐT</span>
+                  </td>
+                  <td style="font-size:.8rem;color:var(--sub)">Áp dụng cho mọi KH, mọi hạng — hạng chỉ tác động PHÍ (BA §7)</td>
+                </tr>
+                <tr>
+                  <td>Số ngày lãi tối thiểu</td>
+                  <td><input class="cfg-input" value="15"></td>
+                  <td>ngày</td>
+                  <td style="font-size:.8rem;color:var(--sub)">Tất toán sớm hơn vẫn tính đủ 15 ngày</td>
+                </tr>
+                <tr>
+                  <td>Cơ sở quy đổi năm</td>
+                  <td><input class="cfg-input" value="365"></td>
+                  <td>ngày/năm</td>
+                  <td style="font-size:.8rem;color:var(--sub)"><span class="cho-chot">CHỜ CHỐT</span> 360 hay 365 — An Tín còn tranh cãi nội bộ</td>
+                </tr>
+                <tr>
+                  <td>Cutoff giờ</td>
+                  <td><input class="cfg-time" type="time" value="17:00"></td>
+                  <td></td>
+                  <td style="font-size:.8rem;color:var(--sub)">Tiền vào sau giờ này → ghi nhận ngày hôm sau</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Card: Phí bảo quản — 3 bậc -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Phí bảo quản — 3 bậc theo dư nợ</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl" id="tblPhiBQ">
+              <thead>
+                <tr><th>Bậc</th><th>Dư nợ từ</th><th>Dư nợ đến</th><th>Phí</th><th>Đơn vị</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>49.999.999</td>
+                  <td><input class="cfg-input" value="0.0205"></td>
+                  <td><span class="cho-chot">CHỜ CHỐT</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>50.000.000</td>
+                  <td>299.999.999</td>
+                  <td><input class="cfg-input" value="0.0177"></td>
+                  <td><span class="cho-chot">CHỜ CHỐT</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>300.000.000</td>
+                  <td>&#8734;</td>
+                  <td><input class="cfg-input" value="0.0123"></td>
+                  <td><span class="cho-chot">CHỜ CHỐT</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note note-warn" style="margin-top:10px">&#9888; <span class="cho-chot">CHỜ CHỐT</span> Đơn vị — template ghi 'VNĐ/ngày' mâu thuẫn với giá trị dạng %</div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm bậc phí bảo quản (mô phỏng)')">+ Thêm bậc</button>
+        </div>
+
+        <!-- Card: Phí bảo quản sau tất toán -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Phí bảo quản sau tất toán</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Số ngày miễn phí</td>
+                  <td><input class="cfg-input" value="3"></td>
+                  <td>ngày</td>
+                  <td style="font-size:.8rem;color:var(--sub)">Từ ngày thứ 4 tính lại TỪ NGÀY TẤT TOÁN, chỉ PHÍ không lãi</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Card: VAT -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>VAT</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Thuế suất GTGT</td>
+                  <td><input class="cfg-input" value="10"></td>
+                  <td>%</td>
+                  <td style="font-size:.8rem;color:var(--sub)">Trên lãi + phí thực thu — căn cứ SAP xuất HĐĐT</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Card: Biên độ thu thiếu -->
+        <div class="card">
+          <h2>Biên độ thu thiếu</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ngưỡng chấp nhận</td>
+                  <td><input class="cfg-input" value="" placeholder="—"></td>
+                  <td><span class="cho-chot">CHỜ CHỐT</span></td>
+                  <td style="font-size:.8rem;color:var(--sub)">Thiếu &#8804; ngưỡng → cảnh báo cho người duyệt, không chặn</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note note-warn" style="margin-top:10px"><span class="cho-chot">CHỜ CHỐT</span> giá trị ngưỡng chính xác — đang nói 1 ngày lãi</div>
+        </div>
+
+      </div><!-- /panel-lp -->
+
+      <!-- ============================================================ -->
+      <!-- TAB 2: Tỷ lệ cầm & Định giá                                -->
+      <!-- ============================================================ -->
+      <div class="cfg-panel" id="panel-tl">
+
+        <!-- Card: Tỷ lệ cầm theo nguồn gốc / thương hiệu -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Tỷ lệ cầm theo nguồn gốc / thương hiệu</h2>
+          <div class="note note-info" style="margin-bottom:12px"><strong>[CHỐT]</strong> Tỷ lệ cầm gắn theo TSCC, khóa không cho TVV sửa</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl" id="tblTyLeCam">
+              <thead>
+                <tr><th>Nguồn gốc / Thương hiệu</th><th>Tỷ lệ cầm (%)</th><th>Trạng thái</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>PNJ</td><td><input class="cfg-input" value="85"></td><td><span class="bg bg-green">Đang áp dụng</span></td></tr>
+                <tr><td>CAO</td><td><input class="cfg-input" value="80"></td><td><span class="bg bg-green">Đang áp dụng</span></td></tr>
+                <tr><td>DOJI</td><td><input class="cfg-input" value="78"></td><td><span class="bg bg-green">Đang áp dụng</span></td></tr>
+                <tr><td>SJC</td><td><input class="cfg-input" value="82"></td><td><span class="bg bg-green">Đang áp dụng</span></td></tr>
+                <tr><td>Thương hiệu khác</td><td><input class="cfg-input" value="75"></td><td><span class="bg bg-green">Đang áp dụng</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm thương hiệu (mô phỏng)')">+ Thêm thương hiệu</button>
+        </div>
+
+        <!-- Card: Tỷ lệ thu lại theo loại TSCC -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Tỷ lệ thu lại theo loại TSCC</h2>
+          <div class="note note-info" style="margin-bottom:12px"><strong>[CHỐT]</strong> Hệ thống GỢI Ý khi chọn loại, TVV được chỉnh tay</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Loại TSCC</th><th>Tỷ lệ thu lại mặc định (%)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>TSCN Ý có đá chính là KC</td><td><input class="cfg-input" value="88"></td></tr>
+                <tr><td>TS đá màu</td><td><input class="cfg-input" value="75"></td></tr>
+                <tr><td>TS kim cương</td><td><input class="cfg-input" value="85"></td></tr>
+                <tr><td>Nữ trang trọng lượng</td><td><input class="cfg-input" value="90"></td></tr>
+                <tr><td>TS ngọc trai</td><td><input class="cfg-input" value="70"></td></tr>
+                <tr><td>Khác (Style by PNJ)</td><td><input class="cfg-input" value="80"></td></tr>
+                <tr><td>Nguyên liệu</td><td><input class="cfg-input" value="95"></td></tr>
+                <tr><td>TS ECZ/CZ</td><td><input class="cfg-input" value="72"></td></tr>
+                <tr><td>TS KGĐ-dây-TSCN Ý</td><td><input class="cfg-input" value="78"></td></tr>
+                <tr><td>TS vỏ</td><td><input class="cfg-input" value="65"></td></tr>
+                <tr><td>Kim cương rời</td><td><input class="cfg-input" value="80"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Card: Giá bóng theo thời kỳ -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Giá bóng theo thời kỳ <span style="font-weight:400;color:var(--sub);font-size:.82rem">(cho định giá thị trường)</span></h2>
+          <div class="note note-info" style="margin-bottom:12px">Admin cập nhật giá bóng — dùng cho công thức: TL vàng × Tuổi vàng × Giá bóng</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl" id="tblGiaBong">
+              <thead>
+                <tr><th>Thời kỳ</th><th>Từ ngày</th><th>Đến ngày</th><th>Giá bóng (đ/chỉ)</th><th>Trạng thái</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TK-2026-08</td>
+                  <td>01/08/2026</td>
+                  <td>31/08/2026</td>
+                  <td><input class="cfg-input-wide" value="7.500.000"></td>
+                  <td><span class="bg bg-gray">Đã hết hạn</span></td>
+                </tr>
+                <tr>
+                  <td>TK-2026-09</td>
+                  <td>01/09/2026</td>
+                  <td>30/09/2026</td>
+                  <td><input class="cfg-input-wide" value="7.800.000"></td>
+                  <td><span class="bg bg-green">Đang áp dụng</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm thời kỳ giá bóng (mô phỏng)')">+ Thêm thời kỳ</button>
+        </div>
+
+        <!-- Card: Danh mục cầm không thợ -->
+        <div class="card">
+          <h2>Danh mục cầm không thợ</h2>
+          <div class="note note-info" style="margin-bottom:12px">Danh mục TSCC cho phép cầm không cần thợ kiểm định + tỷ lệ cầm riêng</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl" id="tblKhongTho">
+              <thead>
+                <tr><th>Loại TSCC</th><th>Tỷ lệ cầm (%)</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nguyên liệu (vàng miếng SJC)</td>
+                  <td><input class="cfg-input" value="90"></td>
+                  <td style="font-size:.8rem;color:var(--sub)">Không cần thợ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm danh mục cầm không thợ (mô phỏng)')">+ Thêm danh mục</button>
+        </div>
+
+      </div><!-- /panel-tl -->
+
+      <!-- ============================================================ -->
+      <!-- TAB 3: Hạn mức & Ngưỡng                                     -->
+      <!-- ============================================================ -->
+      <div class="cfg-panel" id="panel-hm">
+
+        <!-- Card: Mức sàn cho vay -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Mức sàn cho vay</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tỷ lệ tối thiểu so với hạn mức</td>
+                  <td><input class="cfg-input" value="20"></td>
+                  <td>%</td>
+                  <td style="font-size:.8rem;color:var(--sub)">Số tiền cầm &#8805; 20% hạn mức</td>
+                </tr>
+                <tr>
+                  <td>Mức sàn tuyệt đối</td>
+                  <td><input class="cfg-input" value="" placeholder="—"></td>
+                  <td>VND</td>
+                  <td style="font-size:.8rem;color:var(--sub)"><span class="cho-chot">CHỜ CHỐT</span> 500.000 hay 1.000.000 — anh Thọ/BP.KD quyết</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note note-info" style="margin-top:10px">Cả 2 ngưỡng phải thỏa đồng thời</div>
+        </div>
+
+        <!-- Card: Ngưỡng trả bớt -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Ngưỡng trả bớt (gia hạn)</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dư nợ tối thiểu sau trả bớt</td>
+                  <td><input class="cfg-input" value="20"></td>
+                  <td>% so với HĐ ban đầu</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Dư nợ tối thiểu tuyệt đối</td>
+                  <td><input class="cfg-input" value="" placeholder="—"></td>
+                  <td>VND</td>
+                  <td style="font-size:.8rem;color:var(--sub)">Trùng mức sàn cho vay ở trên</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note note-warn" style="margin-top:10px">Vi phạm → CHẶN (không cảnh báo)</div>
+        </div>
+
+        <!-- Card: Vượt hạn mức -->
+        <div class="card">
+          <h2>Vượt hạn mức</h2>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+            <label style="display:flex;gap:8px;align-items:center;font-size:.88rem;cursor:pointer">
+              <input type="radio" name="vuotHM" value="khong" checked> Không cho vay vượt hạn mức <span class="bg bg-green" style="margin-left:4px">mặc định</span>
+            </label>
+            <label style="display:flex;gap:8px;align-items:center;font-size:.88rem;cursor:pointer">
+              <input type="radio" name="vuotHM" value="co"> Cho phép vượt theo user (cần phê duyệt)
+            </label>
+          </div>
+          <div class="note note-warn" style="margin-top:12px">&#9888; <strong>[VÊNH §13.1 #2]</strong> kick-off chốt KHÔNG vượt ↔ template v2 có ý cho vượt. Mặc định theo 'không vượt', để flag cấu hình</div>
+        </div>
+
+      </div><!-- /panel-hm -->
+
+      <!-- ============================================================ -->
+      <!-- TAB 4: Chính sách ưu đãi & Hạng KH                         -->
+      <!-- ============================================================ -->
+      <div class="cfg-panel" id="panel-ud">
+
+        <!-- Card: Hạng khách hàng thân thiết -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Hạng khách hàng thân thiết</h2>
+          <div class="note note-info" style="margin-bottom:12px"><strong>[CHỐT]</strong> Hạng chỉ dùng để GIẢM PHÍ bảo quản, KHÔNG đổi lãi suất</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl" id="tblHangKH">
+              <thead>
+                <tr><th>Hạng</th><th>Dư nợ tối thiểu</th><th>Giảm phí BQ (%)</th><th>Trạng thái</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Chuẩn</td>
+                  <td>0</td>
+                  <td><input class="cfg-input" value="0"></td>
+                  <td><span class="bg bg-gray">Mặc định</span></td>
+                </tr>
+                <tr>
+                  <td>Gold</td>
+                  <td>50.000.000</td>
+                  <td><input class="cfg-input" value="10"></td>
+                  <td><span class="bg bg-green">Đang áp dụng</span></td>
+                </tr>
+                <tr>
+                  <td>Diamond</td>
+                  <td>200.000.000</td>
+                  <td><input class="cfg-input" value="20"></td>
+                  <td><span class="bg bg-green">Đang áp dụng</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm hạng khách hàng (mô phỏng)')">+ Thêm hạng</button>
+        </div>
+
+        <!-- Card: Chính sách ưu đãi -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Chính sách ưu đãi</h2>
+          <div class="note note-info" style="margin-bottom:12px"><strong>[CHỐT]</strong> 3 chính sách: Chuẩn (giảm phí theo hạng KH) / Ưu đãi đặc biệt 1 / Ưu đãi đặc biệt 2</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Chính sách</th><th>Mô tả</th><th>Phí BQ (override)</th><th>Trạng thái</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Chuẩn</td>
+                  <td style="font-size:.82rem">Giảm phí theo hạng KHTT</td>
+                  <td style="color:var(--sub);font-size:.82rem">— (theo hạng)</td>
+                  <td><span class="bg bg-gray">Mặc định</span></td>
+                </tr>
+                <tr>
+                  <td>Ưu đãi đặc biệt 1</td>
+                  <td style="font-size:.82rem">Chương trình A</td>
+                  <td><input class="cfg-input" value="0.0150"></td>
+                  <td><span class="bg bg-green">Đang áp dụng</span></td>
+                </tr>
+                <tr>
+                  <td>Ưu đãi đặc biệt 2</td>
+                  <td style="font-size:.82rem">Chương trình B</td>
+                  <td><input class="cfg-input" value="0.0100"></td>
+                  <td><span class="bg bg-green">Đang áp dụng</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note note-warn" style="margin-top:10px">Nếu phí ưu đãi &gt; phí chuẩn của KH → hệ thống CẢNH BÁO (không chặn)</div>
+        </div>
+
+        <!-- Card: Hạn thông báo từ chối gia hạn -->
+        <div class="card">
+          <h2>Hạn thông báo từ chối gia hạn</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Tham số</th><th>Giá trị</th><th>Đơn vị</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Số ngày thông báo trước</td>
+                  <td><input class="cfg-input" value="" placeholder="—"></td>
+                  <td>ngày</td>
+                  <td style="font-size:.8rem;color:var(--sub)"><span class="cho-chot">CHỜ CHỐT</span> 5 ngày (họp) vs 3 ngày (quy trình An Tín)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /panel-ud -->
+
+      <!-- ============================================================ -->
+      <!-- TAB 5: Danh mục & Hệ thống                                  -->
+      <!-- ============================================================ -->
+      <div class="cfg-panel" id="panel-dm">
+
+        <!-- Card: Danh mục loại TSCC -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Danh mục loại TSCC</h2>
+          <div style="padding:4px 0">
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 1. TSCN Ý có đá chính là KC</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 2. TS đá màu</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 3. TS kim cương</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 4. Nữ trang trọng lượng</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 5. TS ngọc trai</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 6. Khác (Style by PNJ)</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 7. Nguyên liệu</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 8. TS ECZ/CZ</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 9. TS KGĐ-dây-TSCN Ý</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 10. TS vỏ</div>
+            <div class="cat-item"><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> 11. Kim cương rời <span class="cho-chot" style="margin-left:8px">CHỜ CHỐT luồng P.TCKT</span></div>
+          </div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm loại TSCC (mô phỏng)')">+ Thêm loại</button>
+        </div>
+
+        <!-- Card: Danh mục tuổi vàng -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Danh mục tuổi vàng</h2>
+          <div class="tag-list">
+            <span class="tag">41.6</span>
+            <span class="tag">58.5</span>
+            <span class="tag">61</span>
+            <span class="tag">68</span>
+            <span class="tag">75</span>
+            <span class="tag">90</span>
+            <span class="tag">95</span>
+            <span class="tag">99</span>
+            <span class="tag">99.9</span>
+            <span class="tag">99.99</span>
+          </div>
+          <div style="font-size:.82rem;color:var(--sub);margin-bottom:8px">Cho nhập giá trị khác (ngoài danh sách)</div>
+          <button class="btn btn-line" onclick="toast('Thêm tuổi vàng (mô phỏng)')">+ Thêm</button>
+        </div>
+
+        <!-- Card: Nguồn khách hàng -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Nguồn khách hàng</h2>
+          <div class="tag-list">
+            <span class="tag">PNJ/CAF</span>
+            <span class="tag">Ngân hàng</span>
+            <span class="tag">Doanh nghiệp/Sỉ</span>
+            <span class="tag">Tiệm vàng</span>
+            <span class="tag">NV nội bộ PNJG</span>
+            <span class="tag">Vãng lai</span>
+          </div>
+        </div>
+
+        <!-- Card: Cấu hình chi nhánh -->
+        <div class="card" style="margin-bottom:16px">
+          <h2>Cấu hình chi nhánh</h2>
+          <div class="note note-warn" style="margin-bottom:12px"><span class="cho-chot">CHỜ CHỐT</span> Cấp CỬA HÀNG dưới chi nhánh — template report mới xuất hiện 'MÃ/TÊN CỬA HÀNG'. Data model sẵn 2 cấp (branch → store) nhưng CHƯA hard-code.</div>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl" id="tblChiNhanh">
+              <thead>
+                <tr><th>Mã CN</th><th>Tên chi nhánh</th><th>Trạng thái</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CN01</td>
+                  <td>CN Quận 1</td>
+                  <td><span class="bg bg-green">Hoạt động</span></td>
+                </tr>
+                <tr>
+                  <td>CN02</td>
+                  <td>CN Thủ Đức</td>
+                  <td><span class="bg bg-green">Hoạt động</span></td>
+                </tr>
+                <tr>
+                  <td>CN03</td>
+                  <td>CN Bình Thạnh</td>
+                  <td><span class="bg bg-green">Hoạt động</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-line" style="margin-top:10px" onclick="toast('Thêm chi nhánh (mô phỏng)')">+ Thêm chi nhánh</button>
+        </div>
+
+        <!-- Card: Sản phẩm kỳ hạn -->
+        <div class="card">
+          <h2>Sản phẩm kỳ hạn</h2>
+          <div class="tbl-wrap" style="border-radius:8px">
+            <table class="tbl">
+              <thead>
+                <tr><th>Kỳ hạn</th><th>Trạng thái</th><th>Ghi chú</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>30 ngày</td>
+                  <td><label class="toggle-sw"><input type="checkbox" checked><span class="slider"></span></label> <span style="font-size:.82rem;margin-left:6px">Đang mở</span></td>
+                  <td style="font-size:.82rem;color:var(--sub)">GĐ1</td>
+                </tr>
+                <tr>
+                  <td>60 ngày</td>
+                  <td><label class="toggle-sw"><input type="checkbox"><span class="slider"></span></label> <span style="font-size:.82rem;margin-left:6px;color:var(--sub)">Tắt</span></td>
+                  <td style="font-size:.82rem;color:var(--sub)">GĐ2</td>
+                </tr>
+                <tr>
+                  <td>90 ngày</td>
+                  <td><label class="toggle-sw"><input type="checkbox"><span class="slider"></span></label> <span style="font-size:.82rem;margin-left:6px;color:var(--sub)">Tắt</span></td>
+                  <td style="font-size:.82rem;color:var(--sub)">GĐ2</td>
+                </tr>
+                <tr>
+                  <td>180 ngày</td>
+                  <td><label class="toggle-sw"><input type="checkbox"><span class="slider"></span></label> <span style="font-size:.82rem;margin-left:6px;color:var(--sub)">Tắt</span></td>
+                  <td style="font-size:.82rem;color:var(--sub)">GĐ2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /panel-dm -->
+
+      <!-- ===== Sticky save footer ===== -->
+      <div class="sticky-save">
+        <div style="display:flex;align-items:center;gap:14px">
+          <button class="btn btn-pri" style="font-size:.92rem;padding:11px 28px" onclick="toast('Đã lưu tất cả thay đổi cấu hình (mô phỏng)')">&#128190; Lưu tất cả thay đổi</button>
+          <span style="font-size:.8rem;color:var(--sub)">Mọi thay đổi cấu hình được ghi audit log (user, thời điểm, giá trị cũ → mới) — BA §14 mục 3</span>
+        </div>
+      </div>
+
+    </div><!-- /stack -->
+
+  </main>
+<script src="assets/app.js"></script>
+<script>
+/* Config tab switching */
+function switchCfg(id){
+  document.querySelectorAll('.cfg-tab').forEach(t=>{
+    t.classList.toggle('cfg-tab-on',t.dataset.cfg===id);
+  });
+  document.querySelectorAll('.cfg-panel').forEach(p=>{
+    p.classList.toggle('cfg-panel-on',p.id==='panel-'+id);
+  });
+}
+</script>
+</body>
+</html>
