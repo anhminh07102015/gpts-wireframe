@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tạo tài khoản khách hàng · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html" class="on">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="01-danh-sach-khach-hang.html">Khách hàng</a> › Tạo mới</div>
+    <div class="page-head"><h1>Tạo tài khoản khách hàng</h1></div>
+    <div class="stack">
+      <div class="note note-warn" id="ageWarn" hidden>⚠ Khách hàng ngoài độ tuổi 18–70 — vui lòng kiểm tra kỹ trước khi tiếp tục (cảnh báo, không chặn giao dịch)</div>
+      <div class="card"><h2>Thông tin cá nhân</h2>
+        <div class="grid2">
+          <div class="f"><label>Họ và tên <span class="req">*</span></label><input placeholder="Nhập họ tên đầy đủ"></div>
+          <div class="f"><label>Ngày sinh <span class="req">*</span></label><input type="date" id="dob"><div class="hint">Cảnh báo nếu dưới 18 hoặc trên 70 tuổi — thử chọn năm 1950 để xem</div></div>
+          <div class="f"><label>Giới tính <span class="req">*</span></label><select><option>Chọn</option><option>Nam</option><option>Nữ</option></select></div>
+          <div class="f"><label>Nghề nghiệp</label><select><option>Chọn nghề nghiệp</option><option>Kinh doanh tự do</option><option>Nhân viên văn phòng</option><option>Khác</option></select><div class="hint">Đang chờ chốt bắt buộc hay không</div></div>
+        </div>
+      </div>
+      <div class="card"><h2>Giấy tờ tùy thân</h2>
+        <div class="grid2">
+          <div class="f"><label>Số CCCD <span class="req">*</span></label><input placeholder="Nhập 12 số CCCD" maxlength="12"><div class="hint">Validate cấu trúc số CCCD · duy nhất trên hệ thống</div></div>
+          <div class="f"><label>Số Passport / CCCD quân đội</label><input placeholder="Chỉ nhập khi không có CCCD"><div class="hint">Tách trường riêng — quy tắc kiểm tra khác CCCD</div></div>
+          <div class="f"><label>Ngày cấp <span class="req">*</span></label><input type="date"></div>
+          <div class="f"><label>Nơi cấp <span class="req">*</span></label><input placeholder="Nhập nơi cấp"></div>
+        </div>
+        <div class="grid3" style="margin-top:14px">
+          <div class="upload" onclick="toast('Mở hộp thoại chọn ảnh (mô phỏng)')">⬆ Hình khách hàng<small>JPG, PNG · tối đa 10MB</small></div>
+          <div class="upload" onclick="toast('Mở hộp thoại chọn ảnh (mô phỏng)')">⬆ CCCD mặt trước<small>JPG, PNG · tối đa 10MB</small></div>
+          <div class="upload" onclick="toast('Mở hộp thoại chọn ảnh (mô phỏng)')">⬆ CCCD mặt sau<small>JPG, PNG · tối đa 10MB</small></div>
+        </div>
+        <div class="hint" style="margin-top:8px">Hình KH + CCCD lưu tại hồ sơ khách hàng, được cập nhật khi KH cũ đổi giấy tờ</div>
+      </div>
+      <div class="card"><h2>Thông tin liên hệ</h2>
+        <div class="grid2">
+          <div class="f"><label>Số điện thoại <span class="req">*</span></label><input placeholder="Nhập SĐT"></div>
+          <div class="f"><label>Email</label><input placeholder="Nhập email (không bắt buộc)"></div>
+          <div class="f"><label>Địa chỉ thường trú <span class="req">*</span></label><input placeholder="Theo giấy tờ tùy thân"></div>
+          <div class="f"><label>Địa chỉ liên hệ <span class="req">*</span></label><input placeholder="Nhập địa chỉ liên hệ"><div class="hint">Bắt buộc (chốt theo phản hồi template v2)</div></div>
+        </div>
+      </div>
+      <div class="card"><h2>Phân loại &amp; mã tham chiếu</h2>
+        <div class="grid2">
+          <div class="f"><label>Nguồn khách hàng <span class="req">*</span></label><select><option>Chọn nguồn</option><option>PNJ / CAF</option><option>Ngân hàng</option><option>Doanh nghiệp / Sỉ</option><option>Tiệm vàng</option><option>NV nội bộ PNJG</option><option>Vãng lai</option></select></div>
+          <div class="f"><label>Mã KH PNJ</label><input placeholder="Nhập nếu có"></div>
+          <div class="f"><label>Mã khách hàng (An Tín)</label><input readonly value="Hệ thống tự sinh"></div>
+          <div class="f"><label>Hạng KHTT</label><input readonly value="Tự phân hạng theo dư nợ — ưu đãi giảm phí"></div>
+          <div class="f"><label>Mã SAP (Business Partner)</label><input readonly value="Nhận từ response API khi đồng bộ SAP"></div>
+          <div class="f"><label>Ghi chú</label><input placeholder="Ghi chú thêm về khách hàng"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <a class="btn btn-line" href="01-danh-sach-khach-hang.html">Hủy</a>
+        <button class="btn btn-pri" onclick="toast('Đã lưu khách hàng (mô phỏng) — mã KH000128')">Lưu khách hàng</button>
+      </div>
+    </div>
+
+  </main>
+<script src="assets/app.js"></script>
+<script>
+document.getElementById('dob').addEventListener('change',e=>{
+  const y=new Date(e.target.value).getFullYear(),age=new Date().getFullYear()-y;
+  document.getElementById('ageWarn').hidden=!(age<18||age>70);
+});
+</script>
+</body>
+</html>

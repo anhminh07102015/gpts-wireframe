@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luồng thu tiền → xuất hóa đơn · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html" class="on">Luồng xuất hóa đơn</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="page-head"><div><h1>Luồng thu tiền → xuất hóa đơn điện tử</h1>
+      <div class="desc">Hóa đơn lãi/phí xuất từ phía SAP — GPTS chỉ đẩy dữ liệu giao dịch đúng ngày (chốt họp 13/08)</div></div></div>
+    <div class="stack">
+      <div class="pipe">
+        <div class="node gpts"><h3>1 · Thu lãi + phí</h3><p>Tất toán / gia hạn / thu định kỳ (GĐ2). Tiền vào TKTG trước 17h tính ngày hôm đó, sau 17h tính ngày hôm sau. TVV đối chiếu sổ phụ, xác nhận thủ công.</p></div>
+        <div class="arr">→</div>
+        <div class="node gpts"><h3>2 · GPTS ghi nhận</h3><p>Tách nợ / lãi / phí (ưu tiên phí → lãi → nợ), ghi nhận giảm lãi/phí theo phê duyệt, tính VAT 10% trên lãi + phí.</p></div>
+        <div class="arr">→</div>
+        <div class="node gpts"><h3>3 · Đẩy dữ liệu cuối ngày</h3><p>GĐ1: xuất file Excel theo template SAP cung cấp. GĐ2: API tự động. Giao dịch ngày nào nằm trong dữ liệu ngày đó.</p></div>
+        <div class="arr">→</div>
+        <div class="node sap"><h3>4 · SAP (FI) hạch toán</h3><p>Giảm công nợ phải thu theo mã KH (BP), ghi nhận doanh thu lãi vào TK lãi, phí vào TK phí.</p></div>
+        <div class="arr">→</div>
+        <div class="node sap"><h3>5 · SAP xuất HĐĐT</h3><p>Hóa đơn điện tử cho khoản lãi + phí thực thu (VAT 10%), theo ngày ghi nhận — không theo giờ tiền thực vào.</p></div>
+        <div class="arr">→</div>
+        <div class="node"><h3>6 · Đối soát hàng ngày</h3><p>Đối chiếu GPTS ↔ FI: tổng thu nợ / lãi / phí / giảm trừ theo ngày. Lệch số → điều chỉnh trước khi chốt sổ.</p></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--navy-2)"></i>Bên GPTS (Mona)</span><span><i style="background:var(--gold)"></i>Bên SAP (An Tín)</span><span><i style="background:#c8d2dc"></i>Hai bên phối hợp</span></div>
+      <div class="card"><h2>Dữ liệu GPTS đẩy sang FI mỗi giao dịch thu</h2>
+        <div class="tbl-wrap" style="border:none">
+        <table class="tbl">
+          <thead><tr><th>Trường</th><th>Ví dụ</th><th>Ghi chú</th></tr></thead>
+          <tbody>
+            <tr><td>Mã KH (GPTS + mã SAP/BP)</td><td>KH000123 · BP1000021</td><td>Tham chiếu 2 chiều</td></tr>
+            <tr><td>Mã HĐCC / mã giao dịch thu</td><td>HD002199 · GD-2026-08812</td><td>Số chứng từ thu — chờ chốt gộp hay tách</td></tr>
+            <tr><td>Ngày ghi nhận</td><td>25/08/2026</td><td>Theo quy tắc cutoff 17h</td></tr>
+            <tr><td>Số tiền thu nợ / lãi / phí</td><td>28.000.000 / 345.205 / 172.200</td><td>Đã tách 3 khoản</td></tr>
+            <tr><td>Giảm lãi / giảm phí (nếu có)</td><td>0 / 15.000</td><td>Kèm phê duyệt đúng thẩm quyền</td></tr>
+            <tr><td>VAT</td><td>51.740 (10% trên lãi + phí)</td><td>Căn cứ xuất HĐĐT</td></tr>
+            <tr><td>Hình thức thanh toán · SBT</td><td>Chuyển khoản · BP cấp số</td><td>Tiền mặt: số chứng từ TM</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="note note-info">Báo cáo dự thu cuối tháng: lãi + phí phải thu nhưng chưa thu của mọi HĐ còn dư nợ tính đến ngày cuối tháng — kế toán hạch toán bút toán tổng theo mã đại diện, đầu tháng sau bút toán đảo. GĐ2 chạy được ngày bất kỳ.</div>
+    </div>
+
+  </main>
+<script src="assets/app.js"></script>
+
+</body>
+</html>

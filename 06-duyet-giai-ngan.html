@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duyệt giải ngân & ĐNTT · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html" class="on">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002208 › Giải ngân</div>
+    <div class="page-head"><h1>Duyệt giải ngân (bước 2) &amp; Đề nghị thanh toán</h1></div>
+    <div class="stack">
+      <div class="split">
+        <div class="stack">
+          <div class="card"><h2>Kiểm tra thông tin chi vay</h2>
+            <table class="tbl"><tbody>
+              <tr><td style="color:var(--sub);width:190px">Hợp đồng</td><td>HD002208 · Trần Văn Bảo · 12.000.000 đ · 30 ngày</td></tr>
+              <tr><td style="color:var(--sub)">HĐCC đã ký</td><td>✔ Bản scan đã upload (in sau duyệt bước 1)</td></tr>
+              <tr><td style="color:var(--sub)">Hình thức chi</td><td>Chuyển khoản</td></tr>
+              <tr><td style="color:var(--sub)">TK thụ hưởng</td><td>0071 000 xxx 456 · Vietcombank · TRAN VAN BAO</td></tr>
+              <tr><td style="color:var(--sub)">Đối chiếu chính chủ</td><td>✔ Tên TK trùng tên KH trên CCCD</td></tr>
+            </tbody></table>
+          </div>
+          <div class="note note-warn">↩ Trả về do <strong>sai thông tin thụ hưởng</strong>: hồ sơ quay lại TVV nhưng <strong>chỉ mở sửa thông tin chi vay</strong> — các thông tin khác giữ khóa</div>
+        </div>
+        <div class="card"><h2>Xử lý</h2>
+          <div class="stack" style="gap:9px">
+            <button class="btn btn-ok" style="justify-content:center" onclick="approveGN()">✓ Duyệt giải ngân</button>
+            <button class="btn btn-warn" style="justify-content:center" onclick="toast('Đã trả về — TVV chỉ được sửa thông tin chi vay')">↩ Trả về sửa thông tin chi vay</button>
+          </div>
+          <div class="hint" style="margin-top:10px">Duyệt xong → tạo đề nghị thanh toán, chuyển kế toán</div>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <div style="padding:16px 18px 0;font-weight:600">Đề nghị thanh toán — kế toán xử lý</div>
+        <table class="tbl" id="dntt">
+          <thead><tr><th>Mã ĐNTT</th><th>HĐCC</th><th>Thụ hưởng</th><th>Số tiền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+          <tbody>
+            <tr id="dn812"><td>DN00812</td><td>HD002208</td><td>VCB · TRAN VAN BAO</td><td>12.000.000</td>
+              <td><span class="bg bg-warn">Chờ duyệt GN</span></td><td>—</td></tr>
+            <tr><td>DN00810</td><td>HD002205</td><td>ACB · LE MINH CHAU</td><td>45.000.000</td>
+              <td><span class="bg bg-blue">Đã duyệt GN</span></td>
+              <td><button class="btn btn-line" style="padding:5px 10px;font-size:.78rem" onclick="exportVTB(this)">⬇ Xuất Excel Vietinbank</button></td></tr>
+            <tr><td>DN00807</td><td>HD002199</td><td>VTB · VO THUY AN</td><td>8.000.000</td>
+              <td><span class="bg bg-green">Đã chi tiền</span></td><td style="font-size:.78rem;color:var(--sub)">SBT: UNC-0921 · 20/08 16:05</td></tr>
+          </tbody>
+        </table>
+        <div class="tbl-foot">Kế toán duyệt → xuất Excel import Vietinbank (UNC) → tiền đi → Xác nhận đã chi tiền (kèm SBT) → HĐ chuyển "Đang hiệu lực"</div>
+      </div>
+    </div>
+
+  </main>
+<script src="assets/app.js"></script>
+<script>
+function approveGN(){
+  const tr=document.getElementById('dn812');
+  tr.cells[4].innerHTML='<span class="bg bg-blue">Đã duyệt GN</span>';
+  tr.cells[5].innerHTML='<button class="btn btn-line" style="padding:5px 10px;font-size:.78rem" onclick="exportVTB(this)">⬇ Xuất Excel Vietinbank</button>';
+  toast('Đã duyệt giải ngân — tạo đề nghị thanh toán DN00812');
+}
+function exportVTB(btn){
+  const tr=btn.closest('tr');
+  tr.cells[5].innerHTML='<button class="btn btn-ok" style="padding:5px 10px;font-size:.78rem" onclick="confirmPaid(this)">✓ Xác nhận đã chi tiền</button>';
+  toast('Đã xuất file Excel import Vietinbank (UNC) — mô phỏng');
+}
+function confirmPaid(btn){
+  const tr=btn.closest('tr');
+  tr.cells[4].innerHTML='<span class="bg bg-green">Đã chi tiền</span>';
+  tr.cells[5].innerHTML='<span style="font-size:.78rem;color:var(--sub)">SBT: UNC-'+(900+Math.floor(Math.random()*99))+' · hôm nay</span>';
+  toast('Đã xác nhận chi tiền — HĐ chuyển "Đang hiệu lực"');
+}
+</script>
+</body>
+</html>

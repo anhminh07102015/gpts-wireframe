@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duyệt hồ sơ (bước 1) · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html" class="on">· Duyệt hồ sơ (B1)</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002211 › Duyệt hồ sơ</div>
+    <div class="page-head"><h1>Duyệt hồ sơ HD002211 (bước 1)</h1><span class="bg bg-warn" id="hsStatus">Chờ duyệt hồ sơ</span></div>
+    <div class="split">
+      <div class="stack">
+        <div class="note note-info">
+          <strong>ℹ Hồ sơ được gửi lại sau khi trả về — 3 thông tin đã thay đổi:</strong><br>
+          • Số tiền cầm: 30.000.000 → <strong>28.000.000</strong> &nbsp; • Tỷ lệ thu lại TSCC #1: 85% → <strong>80%</strong> &nbsp; • Bổ sung hình tài sản (2 ảnh)<br>
+          <span style="font-size:.78rem">Người duyệt chỉ cần rà các mục thay đổi, không phải xem lại toàn bộ hồ sơ</span>
+        </div>
+        <div class="card"><h2>Khách hàng</h2>
+          <table class="tbl"><tbody>
+            <tr><td style="color:var(--sub);width:180px">Họ tên / Hạng</td><td>Nguyễn Thị Hồng · <span class="bg bg-gold">Gold (giảm phí)</span></td></tr>
+            <tr><td style="color:var(--sub)">CCCD / SĐT</td><td>0790xxxxxxxx · 0903 xxx 111</td></tr>
+            <tr><td style="color:var(--sub)">Dư nợ hiện tại</td><td>15.000.000 đ (2 HĐCC hiệu lực)</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card"><h2>Tài sản cầm cố (2)</h2>
+          <table class="tbl"><tbody>
+            <tr><td style="color:var(--sub);width:180px">TSCC #1</td><td>Nữ trang trọng lượng · 2,5 chỉ · 75% · thị trường · 18.750.000 đ</td></tr>
+            <tr><td style="color:var(--sub)">TSCC #2</td><td>Kim cương/KCR · theo hóa đơn PNJ · 22.000.000 đ</td></tr>
+            <tr><td style="color:var(--sub)">Tổng trị giá / hạn mức</td><td><strong>40.750.000 đ / 31.900.000 đ</strong></td></tr>
+          </tbody></table>
+        </div>
+        <div class="card"><h2>Thông tin vay</h2>
+          <table class="tbl"><tbody>
+            <tr><td style="color:var(--sub);width:180px">Số tiền cầm</td><td>28.000.000 đ (trong hạn mức)</td></tr>
+            <tr><td style="color:var(--sub)">Kỳ hạn / lãi / phí</td><td>30 ngày · lãi 1.5 · phí bậc &lt;50tr</td></tr>
+            <tr><td style="color:var(--sub)">Chính sách ưu đãi</td><td>Chuẩn — giảm phí theo hạng Gold</td></tr>
+            <tr><td style="color:var(--sub)">Chi vay</td><td>Chuyển khoản · VCB 0071xxxx · Nguyễn Thị Hồng</td></tr>
+            <tr><td style="color:var(--sub)">Chứng từ đính kèm</td><td>6 hình tài sản · 1 giấy kiểm định · 1 tờ trình</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="card"><h2>Tiến trình hồ sơ</h2>
+          <div class="steps">
+            <div class="st done"><span class="ic">✓</span><span class="t">Tạo hồ sơ (TVV)<small>23/08 · 14:32</small></span></div>
+            <div class="st now" id="st2"><span class="ic">●</span><span class="t">Duyệt hồ sơ — BP.TĐVPD<small>Đang chờ</small></span></div>
+            <div class="st todo" id="st3"><span class="ic">○</span><span class="t">In HĐCC + bảng lãi phí<small>Sau duyệt bước 1</small></span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Duyệt giải ngân (bước 2)</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Kế toán duyệt đề nghị TT</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chi tiền (Vietinbank)</span></div>
+          </div>
+        </div>
+        <div class="card"><h2>Xử lý hồ sơ</h2>
+          <div class="stack" style="gap:9px">
+            <button class="btn btn-ok" style="justify-content:center" onclick="approve()">✓ Duyệt hồ sơ</button>
+            <button class="btn btn-warn" style="justify-content:center" onclick="reject('Đã trả về — TVV được sửa mọi field, khi gửi lại sẽ hiện diff')">↩ Đề nghị chỉnh sửa (trả về)</button>
+            <button class="btn btn-danger" style="justify-content:center" onclick="reject('Đã từ chối hồ sơ')">✕ Từ chối</button>
+          </div>
+          <div class="f" style="margin-top:12px"><label>Lý do trả về / từ chối <span class="req">*</span> (ghi rõ thông tin cần sửa)</label>
+            <textarea id="reason" rows="3" placeholder="VD: sai số tài khoản thụ hưởng, bổ sung hình mặt sau tài sản…"></textarea>
+            <div class="hint">Trả về: không giới hạn field TVV được sửa · sau sửa hiện diff cho người duyệt</div>
+          </div>
+        </div>
+        <div class="note note-warn" id="printNote" hidden>🖨 Đã duyệt bước 1 — nút <a href="06-duyet-giai-ngan.html" style="text-decoration:underline"><strong>In HĐCC + bảng lãi phí</strong></a> đã mở. KH ký xong, TVV upload bản scan rồi chuyển duyệt giải ngân →</div>
+      </div>
+    </div>
+
+  </main>
+<script src="assets/app.js"></script>
+<script>
+function approve(){
+  const s=document.getElementById('hsStatus');
+  s.textContent='Đã duyệt hồ sơ';s.className='bg bg-green';
+  const st2=document.getElementById('st2');st2.className='st done';st2.querySelector('.ic').textContent='✓';st2.querySelector('small').textContent='Vừa xong';
+  const st3=document.getElementById('st3');st3.className='st now';st3.querySelector('.ic').textContent='●';
+  document.getElementById('printNote').hidden=false;
+  toast('Đã duyệt hồ sơ — mở bước in chứng từ');
+}
+function reject(msg){
+  const r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do trước khi trả về / từ chối');r.focus();return;}
+  const s=document.getElementById('hsStatus');
+  s.textContent='Bị trả về';s.className='bg bg-red';
+  toast(msg);
+}
+</script>
+</body>
+</html>
