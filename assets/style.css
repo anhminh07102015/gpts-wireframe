@@ -194,4 +194,16 @@ h1{font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
   .grid2,.grid3,.grid4,.split,.toc{grid-template-columns:1fr}
   .main{padding:18px 14px}
 }
+/* ===== diff highlight (resubmitted fields) ===== */
+tr.diff-changed>td,
+.tbl tr.diff-changed>td,
+table.tbl tr.diff-changed>td,
+.detail-block table tr.diff-changed>td{background:#fff3cd !important;border-bottom:1px solid #f59e0b !important}
+tr.diff-changed>td:first-child,
+.tbl tr.diff-changed>td:first-child,
+.detail-block table tr.diff-changed>td:first-child{border-left:4px solid #f59e0b !important;padding-left:12px !important}
+.diff-old{text-decoration:line-through;color:#b91c1c;font-size:.85rem;margin-right:4px;opacity:.7}
+.diff-new{color:#15803d;font-weight:700}
+.diff-arrow{color:#9ca3af;margin:0 5px;font-size:.8rem}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
