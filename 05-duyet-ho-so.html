@@ -11,6 +11,16 @@
   .toggle-detail{font-size:.78rem;font-weight:500;color:var(--blue);text-decoration:none;margin-left:8px;vertical-align:middle}
   .toggle-detail:hover{text-decoration:underline}
   .detail-expand{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  /* Diff highlight cho field đã sửa */
+  .diff-changed td{background:#fff8e1 !important;position:relative}
+  .diff-changed td:first-child{border-left:3px solid #f59e0b;padding-left:12px;font-weight:600;color:#92400e !important}
+  .diff-old{text-decoration:line-through;color:#b91c1c;font-size:.82rem;margin-right:6px}
+  .diff-new{color:#15803d;font-weight:600}
+  .diff-arrow{color:#9ca3af;margin:0 4px;font-size:.78rem}
+  .diff-badge{display:inline-block;background:#f59e0b;color:#fff;font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:999px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
+  .diff-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-ctl);font-size:.82rem;font-weight:600;cursor:pointer;border:1.5px solid #f59e0b;background:#fffbeb;color:#92400e;transition:all .15s}
+  .diff-toggle:hover{background:#fef3c7}
+  .diff-toggle.off{background:#f8fafc;border-color:var(--line);color:var(--sub)}
 </style>
 </head>
 <body>
@@ -43,10 +53,15 @@
         <div class="note note-info" style="font-size:.82rem">
           ℹ <strong>Hồ sơ gửi lại sau chỉnh sửa:</strong> ưu tiên hiển thị cho người duyệt cũ · có bộ lọc dự phòng khi người duyệt nghỉ
         </div>
-        <div class="note note-info">
-          <strong>ℹ Hồ sơ được gửi lại sau khi trả về — 3 thông tin đã thay đổi:</strong><br>
-          • Số tiền cầm: 30.000.000 → <strong>28.000.000</strong> &nbsp; • Tỷ lệ thu lại TSCC #1: 85% → <strong>80%</strong> &nbsp; • Bổ sung hình tài sản (2 ảnh)<br>
-          <span style="font-size:.78rem">Người duyệt chỉ cần rà các mục thay đổi, không phải xem lại toàn bộ hồ sơ</span>
+        <div class="note note-info" style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:280px">
+            <strong>ℹ Hồ sơ được gửi lại sau khi trả về — 3 thông tin đã thay đổi:</strong><br>
+            • Số tiền cầm: <span class="diff-old">30.000.000</span><span class="diff-arrow">→</span><span class="diff-new">28.000.000</span>
+            &nbsp; • Tỷ lệ thu lại TSCC #1: <span class="diff-old">85%</span><span class="diff-arrow">→</span><span class="diff-new">80%</span>
+            &nbsp; • Bổ sung hình tài sản (+2 ảnh)<br>
+            <span style="font-size:.78rem">Các ô đã sửa được <strong style="color:#f59e0b">tô vàng</strong> trong hồ sơ bên dưới</span>
+          </div>
+          <button class="diff-toggle" id="diffToggle" onclick="toggleDiffHighlight()">🔍 Hiện diff</button>
         </div>
         <div class="card"><h2>Khách hàng <a href="#" class="toggle-detail" onclick="toggleDetail('khDetail');return false">▼ Xem chi tiết</a></h2>
           <table class="tbl"><tbody>
@@ -90,7 +105,8 @@
                 <tr><td style="color:var(--sub)">SIZE</td><td>16</td></tr>
                 <tr><td style="color:var(--sub)">Trị giá TSCC</td><td>18.750.000 đ</td></tr>
                 <tr><td style="color:var(--sub)">Nguồn gốc / thương hiệu</td><td>PNJ</td></tr>
-                <tr><td style="color:var(--sub)">Tỷ lệ thu lại</td><td>80% (đã điều chỉnh từ 85%)</td></tr>
+                <tr class="diff-row" style="display:none"><td style="color:var(--sub)">Tỷ lệ thu lại <span class="diff-badge">ĐÃ SỬA</span></td><td><span class="diff-old">85%</span><span class="diff-arrow">→</span><span class="diff-new">80%</span></td></tr>
+                <tr class="diff-row-original"><td style="color:var(--sub)">Tỷ lệ thu lại</td><td>80% (đã điều chỉnh từ 85%)</td></tr>
                 <tr><td style="color:var(--sub)">Tỷ lệ cầm</td><td>85% (khóa)</td></tr>
                 <tr><td style="color:var(--sub)">Hạn mức tài sản</td><td>15.937.500 đ</td></tr>
                 <tr><td style="color:var(--sub)">Quyền sở hữu</td><td>Chính chủ</td></tr>
@@ -99,7 +115,8 @@
                 <tr><td style="color:var(--sub)">Giấy KĐ GIA</td><td>—</td></tr>
                 <tr><td style="color:var(--sub)">Giấy KĐ PNJLAB/khác</td><td>PNJL-20260823-001</td></tr>
                 <tr><td style="color:var(--sub)">Tem niêm phong</td><td>NP-0012, NP-0013</td></tr>
-                <tr><td style="color:var(--sub)">Hình ảnh</td><td>📷 2 hình tài sản · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
+                <tr class="diff-row" style="display:none"><td style="color:var(--sub)">Hình ảnh <span class="diff-badge">BỔ SUNG</span></td><td>📷 <span class="diff-new">4 hình tài sản (+2 mới)</span> · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
+                <tr class="diff-row-original"><td style="color:var(--sub)">Hình ảnh</td><td>📷 2 hình tài sản · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
               </tbody></table>
             </div>
             <div style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:12px;margin-top:8px;background:#f7fafc">
@@ -134,7 +151,8 @@
         </div>
         <div class="card"><h2>Thông tin vay <a href="#" class="toggle-detail" onclick="toggleDetail('vayDetail');return false">▼ Xem chi tiết</a></h2>
           <table class="tbl"><tbody>
-            <tr><td style="color:var(--sub);width:180px">Số tiền cầm</td><td>28.000.000 đ (trong hạn mức)</td></tr>
+            <tr class="diff-row" style="display:none"><td style="color:var(--sub);width:180px">Số tiền cầm <span class="diff-badge">ĐÃ SỬA</span></td><td><span class="diff-old">30.000.000 đ</span><span class="diff-arrow">→</span><span class="diff-new">28.000.000 đ</span> (trong hạn mức)</td></tr>
+            <tr class="diff-row-original"><td style="color:var(--sub);width:180px">Số tiền cầm</td><td>28.000.000 đ (trong hạn mức)</td></tr>
             <tr><td style="color:var(--sub)">Kỳ hạn / lãi / phí</td><td>30 ngày · lãi 1.5 · phí bậc &lt;50tr</td></tr>
             <tr><td style="color:var(--sub)">Chính sách ưu đãi</td><td>Chuẩn — giảm phí theo hạng Gold</td></tr>
             <tr><td style="color:var(--sub)">Chi vay</td><td>Chuyển khoản · VCB 0071xxxx · Nguyễn Thị Hồng</td></tr>
@@ -219,6 +237,27 @@
 
 <script src="assets/app.js"></script>
 <script>
+var _diffOn=false;
+function toggleDiffHighlight(){
+  _diffOn=!_diffOn;
+  const btn=document.getElementById('diffToggle');
+  const diffRows=document.querySelectorAll('.diff-row');
+  const origRows=document.querySelectorAll('.diff-row-original');
+  if(_diffOn){
+    btn.textContent='✕ Ẩn diff';btn.classList.remove('off');
+    diffRows.forEach(r=>{r.style.display='';r.classList.add('diff-changed');});
+    origRows.forEach(r=>{r.style.display='none';});
+    // auto expand detail sections that contain diff rows
+    ['tsccDetail','vayDetail'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el&&el.hidden){el.hidden=false;const lnk=el.parentElement.querySelector('.toggle-detail');if(lnk)lnk.textContent='▲ Ẩn chi tiết';}
+    });
+  }else{
+    btn.textContent='🔍 Hiện diff';btn.classList.add('off');
+    diffRows.forEach(r=>{r.style.display='none';r.classList.remove('diff-changed');});
+    origRows.forEach(r=>{r.style.display='';});
+  }
+}
 function toggleDetail(id){
   const el=document.getElementById(id);
   const link=el.parentElement.querySelector('.toggle-detail');
