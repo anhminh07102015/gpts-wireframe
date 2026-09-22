@@ -7,10 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-<style>
-  .bg-yellow{background:#fff8e1;color:#b8860b}
-  .bg-orange{background:#fff3e0;color:#e65100}
-</style>
 </head>
 <body>
   <aside class="side">
@@ -45,18 +41,17 @@
       <div class="card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
         <div class="f" style="flex:2;min-width:240px"><input placeholder="🔍  Tìm theo mã KH / họ tên / CCCD / SĐT…"></div>
         <div class="f" style="width:140px"><select><option>Hạng KH</option><option>Chuẩn</option><option>Gold</option><option>Diamond</option></select></div>
-        <div class="f" style="width:200px"><select><option>Trạng thái giao dịch</option><option>Đang giao dịch</option><option>Ngừng GD dưới 3 tháng</option><option>Ngừng GD dưới 6 tháng</option><option>Ngừng GD dưới 12 tháng</option></select></div>
         <button class="btn btn-ghost" onclick="toast('Đã xóa toàn bộ bộ lọc')">Xóa lọc</button>
       </div>
       <div class="tbl-wrap">
         <table class="tbl">
-          <thead><tr><th>Mã KH</th><th>Họ tên</th><th>CCCD</th><th>SĐT</th><th>Hạng</th><th style="text-align:right">Dư nợ</th><th>SL HĐCC</th><th>Mã SAP</th><th>Trạng thái giao dịch</th></tr></thead>
+          <thead><tr><th>Mã KH</th><th>Họ tên</th><th>CCCD</th><th>SĐT</th><th>Hạng</th><th style="text-align:right">Dư nợ</th><th>SL HĐCC</th><th>Mã SAP</th></tr></thead>
           <tbody>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000123</a></td><td>Nguyễn Thị Hồng</td><td>0790xxxxxxxx</td><td>0903 xxx 111</td><td><span class="bg bg-gold">Gold</span></td><td style="text-align:right;white-space:nowrap">45.000.000 đ</td><td>2</td><td>BP1000021</td><td><span class="bg bg-green">Đang giao dịch</span></td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000124</a></td><td>Trần Văn Bảo</td><td>0480xxxxxxxx</td><td>0912 xxx 222</td><td><span class="bg bg-gray">Chuẩn</span></td><td style="text-align:right;white-space:nowrap">12.500.000 đ</td><td>1</td><td>BP1000022</td><td><span class="bg bg-yellow">Ngừng GD dưới 3 tháng</span></td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000125</a></td><td>Lê Minh Châu</td><td>P1234xxxx</td><td>0938 xxx 333</td><td><span class="bg bg-blue">Diamond</span></td><td style="text-align:right;white-space:nowrap">78.200.000 đ</td><td>3</td><td>BP1000023</td><td><span class="bg bg-green">Đang giao dịch</span></td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000126</a></td><td>Phạm Quốc Duy</td><td>0250xxxxxxxx</td><td>0905 xxx 444</td><td><span class="bg bg-gray">Chuẩn</span></td><td style="text-align:right;white-space:nowrap">0 đ</td><td>0</td><td>—</td><td><span class="bg bg-orange">Ngừng GD dưới 12 tháng</span></td></tr>
-          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000127</a></td><td>Võ Thúy An</td><td>0790xxxxxxxx</td><td>0907 xxx 555</td><td><span class="bg bg-gold">Gold</span></td><td style="text-align:right;white-space:nowrap">8.000.000 đ</td><td>1</td><td>BP1000025</td><td><span class="bg bg-green">Đang giao dịch</span></td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000123</a></td><td>Nguyễn Thị Hồng</td><td>0790xxxxxxxx</td><td>0903 xxx 111</td><td><span class="bg bg-gold">Gold</span></td><td style="text-align:right;white-space:nowrap">45.000.000 đ</td><td>2</td><td>BP1000021</td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000124</a></td><td>Trần Văn Bảo</td><td>0480xxxxxxxx</td><td>0912 xxx 222</td><td><span class="bg bg-gray">Chuẩn</span></td><td style="text-align:right;white-space:nowrap">12.500.000 đ</td><td>1</td><td>BP1000022</td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000125</a></td><td>Lê Minh Châu</td><td>P1234xxxx</td><td>0938 xxx 333</td><td><span class="bg bg-blue">Diamond</span></td><td style="text-align:right;white-space:nowrap">78.200.000 đ</td><td>3</td><td>BP1000023</td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000126</a></td><td>Phạm Quốc Duy</td><td>0250xxxxxxxx</td><td>0905 xxx 444</td><td><span class="bg bg-gray">Chuẩn</span></td><td style="text-align:right;white-space:nowrap">0 đ</td><td>0</td><td>—</td></tr>
+          <tr><td class="link"><a href="02-tao-khach-hang.html">KH000127</a></td><td>Võ Thúy An</td><td>0790xxxxxxxx</td><td>0907 xxx 555</td><td><span class="bg bg-gold">Gold</span></td><td style="text-align:right;white-space:nowrap">8.000.000 đ</td><td>1</td><td>BP1000025</td></tr>
           </tbody>
         </table>
         <div class="tbl-foot"><span>Hiển thị 1–5 / 1.248 khách hàng</span><span class="grow"></span>
