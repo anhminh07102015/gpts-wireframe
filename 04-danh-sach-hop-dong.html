@@ -7,6 +7,38 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  .role-tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin-bottom:18px}
+  .role-tab{padding:11px 20px;font-size:.88rem;font-weight:500;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none}
+  .role-tab:hover{color:var(--ink);background:#f7fafc}
+  .role-tab.active{color:var(--navy-2);font-weight:600;border-bottom:2px solid var(--navy-2)}
+  .role-view{display:none}.role-view.active{display:block}
+  .greeting h1{font-size:1.4rem;font-weight:700}
+  .greeting p{color:var(--sub);font-size:.88rem;margin-top:4px}
+  .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .quick-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:20px;text-align:center;cursor:pointer;transition:border-color .12s;display:block}
+  .quick-card:hover{border-color:var(--blue)}
+  .quick-card .qicon{font-size:1.8rem;margin-bottom:8px}
+  .quick-card h3{font-size:.95rem;font-weight:600;margin-bottom:4px}
+  .quick-card p{font-size:.8rem;color:var(--sub)}
+  .sub-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+  .sub-tab{padding:8px 16px;border-radius:999px;font-size:.84rem;font-weight:500;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--sub);display:inline-flex;align-items:center;gap:6px}
+  .sub-tab:hover{border-color:var(--blue);color:var(--ink)}
+  .sub-tab.active{background:var(--navy-2);color:#fff;border-color:var(--navy-2)}
+  .sub-tab .cnt{padding:1px 8px;border-radius:999px;font-size:.76rem;font-weight:700}
+  .sub-tab.active .cnt{background:rgba(255,255,255,.3)}
+  .sub-tab:not(.active) .cnt{background:#eef1f4;color:var(--ink)}
+  .sub-content{display:none}.sub-content.active{display:block}
+  .sub-pills{display:flex;gap:6px;margin-bottom:10px}
+  .sub-pill{padding:5px 12px;border-radius:999px;font-size:.78rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--sub)}
+  .sub-pill:hover{background:var(--blue-bg);color:var(--navy-2)}
+  .sub-pill.active{background:var(--blue-bg);color:var(--navy-2);border-color:var(--blue);font-weight:500}
+  .role-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .role-header h1{font-size:1.3rem}
+  .rb{padding:4px 12px;border-radius:999px;font-size:.76rem;font-weight:600;white-space:nowrap}
+  .rb-blue{background:var(--blue-bg);color:#155c8f}
+  .rb-gold{background:var(--gold-bg);color:var(--gold)}
+</style>
 </head>
 <body>
   <aside class="side">
@@ -31,42 +63,147 @@
   </aside>
   <main class="main">
 
-    <div class="page-head">
-      <div><h1>Hợp đồng cầm cố</h1><div class="desc">Theo dõi trạng thái hợp đồng và tiến trình duyệt 2 bước — bấm cột "Bước tiếp theo" để nhảy tới màn xử lý</div></div>
-      <div class="grow"></div>
-      <a class="btn btn-pri" href="03-tao-hop-dong.html">+ Lên hợp đồng</a>
+    <div class="role-tabs">
+      <button class="role-tab active" onclick="switchRole('tvv',this)">👤 TVV</button>
+      <button class="role-tab" onclick="switchRole('pd',this)">🛡 Phê duyệt & Thẩm định</button>
+      <button class="role-tab" onclick="switchRole('kt',this)">💰 Kế toán</button>
     </div>
-    <div class="stack">
-      <div class="card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-        <div class="f" style="flex:2;min-width:220px"><input placeholder="🔍  Mã HĐ / tên KH / CCCD…"></div>
-        <div class="f" style="width:180px"><select><option>Trạng thái HĐ</option><option>Nháp</option><option>Chờ duyệt hồ sơ</option><option>Đã phê duyệt</option><option>Chờ duyệt giải ngân</option><option>Chờ chi tiền</option><option>Đang hiệu lực</option><option>Quá hạn</option><option>Đã tất toán</option><option>Bị trả về</option><option>Từ chối</option></select></div>
-        <div class="f" style="width:160px"><select><option>Loại giao dịch</option><option>Cầm mới</option><option>Gia hạn TT</option><option>Vay thêm</option><option>Trả bớt</option></select></div>
-        <div class="f" style="width:190px"><select><option>Đề nghị thanh toán</option><option>Chờ duyệt GN</option><option>Đã duyệt GN</option><option>Đã chi tiền</option></select></div>
-        <div class="f" style="width:150px"><select><option>Chi nhánh</option><option>CN Quận 1</option><option>CN Thủ Đức</option><option>CN Bình Thạnh</option></select></div>
-        <div class="f" style="width:170px"><input type="date"></div>
+
+    <!-- ===== VIEW TVV ===== -->
+    <div id="view-tvv" class="role-view active">
+      <div class="greeting">
+        <h1>Xin chào, Trần Thị Vân!</h1>
+        <p>Quản lý hợp đồng và giao dịch cầm cố của bạn.</p>
       </div>
-      <div class="tbl-wrap">
+      <div class="quick-actions">
+        <a href="03-tao-hop-dong.html" class="quick-card"><div class="qicon">📝</div><h3>Tạo hợp đồng</h3><p>Nhập thông tin khách hàng và tạo hợp đồng cầm cố mới</p></a>
+        <a href="01-danh-sach-khach-hang.html" class="quick-card"><div class="qicon">🔍</div><h3>Tìm kiếm khách hàng</h3><p>Tra cứu thông tin khách hàng, CCCD, số điện thoại</p></a>
+      </div>
+      <div class="card">
+        <h2>Danh sách giao dịch</h2>
+        <p style="font-size:.82rem;color:var(--sub);margin-bottom:12px">Tổng hợp và quản lý các hợp đồng đang xử lý của bạn</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+          <div class="f" style="flex:1;min-width:180px"><input placeholder="Mã KH / tên khách / CCCD / SĐT…"></div>
+          <div class="f" style="width:140px"><select><option>Trạng thái HĐ</option><option>Nháp</option><option>Chờ duyệt</option><option>Đang cầm</option></select></div>
+          <div class="f" style="width:120px"><select><option>Loại cầm</option><option>Cầm mới</option><option>Gia hạn</option></select></div>
+          <button class="btn btn-ghost" style="font-size:.82rem" onclick="toast('Tìm kiếm')">Tìm kiếm</button>
+        </div>
         <table class="tbl">
-          <thead><tr><th>Mã HĐCC</th><th>Khách hàng</th><th>Loại GD</th><th>Số tiền cầm</th><th>Kỳ hạn</th><th>Giải ngân</th><th>Đến hạn</th><th>Chi nhánh</th><th>Trạng thái HĐ</th><th>Đề nghị thanh toán</th><th>Bước tiếp theo</th><th></th></tr></thead>
+          <thead><tr><th>Mã HĐCC</th><th>Tên khách hàng</th><th>Trạng thái HĐ</th><th>Loại GD</th><th style="text-align:right">Số tiền cầm</th><th>Cửa hàng</th><th>Ngày tạo</th><th></th></tr></thead>
           <tbody>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002211</a></td><td>Nguyễn Thị Hồng</td><td>Cầm mới</td><td>28.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Quận 1</td><td><span class="bg bg-warn">Chờ duyệt hồ sơ</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">BP.TĐVPD duyệt (bước 1)</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002209</a></td><td>Hoàng Minh Tuấn</td><td>Cầm mới</td><td>35.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Thủ Đức</td><td><span class="bg bg-teal">Đã phê duyệt</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">In HĐCC + KH ký → upload scan → chuyển B2</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002207</a></td><td>Lý Thanh Mai</td><td>Gia hạn TT</td><td>18.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Bình Thạnh</td><td><span class="bg bg-teal">Đã phê duyệt</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="05-duyet-ho-so.html">In HĐCC + KH ký → upload scan → chuyển B2</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002208</a></td><td>Trần Văn Bảo</td><td>Cầm mới</td><td>12.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Quận 1</td><td><span class="bg bg-blue">Chờ duyệt giải ngân</span></td><td><span class="bg bg-warn">Chờ duyệt GN</span></td><td><a class="link" href="06-duyet-giai-ngan.html">Duyệt giải ngân (bước 2)</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002205</a></td><td>Lê Minh Châu</td><td>Cầm mới</td><td>45.000.000</td><td>30 ngày</td><td>22/08</td><td>21/09</td><td>CN Thủ Đức</td><td><span class="bg bg-blue">Chờ chi tiền</span></td><td><span class="bg bg-blue">Đã duyệt GN</span></td><td><a class="link" href="06-duyet-giai-ngan.html">KT export Vietinbank + chi tiền</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002199</a></td><td>Võ Thúy An</td><td>Cầm mới</td><td>8.000.000</td><td>30 ngày</td><td>20/08</td><td>19/09</td><td>CN Quận 1</td><td><span class="bg bg-green">Đang hiệu lực</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="07-luong-xuat-hoa-don.html">Theo dõi thu lãi/phí</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002150</a></td><td>Phạm Quốc Duy</td><td>Gia hạn TT</td><td>15.000.000</td><td>30 ngày</td><td>10/07</td><td>09/08</td><td>CN Bình Thạnh</td><td><span class="bg bg-red">Quá hạn</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="#">Nhắc nợ lần 2/3</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002101</a></td><td>Đỗ Thu Trang</td><td>Cầm mới</td><td>20.000.000</td><td>30 ngày</td><td>05/07</td><td>04/08</td><td>CN Quận 1</td><td><span class="bg bg-gray">Đã tất toán</span></td><td><span class="bg bg-green">Đã chi tiền</span></td><td><a class="link" href="07-luong-xuat-hoa-don.html">Đã đẩy SAP · HĐĐT đã xuất</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="05-duyet-ho-so.html">HD002210</a></td><td>Ngô Văn Hùng</td><td>Cầm mới</td><td>6.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Thủ Đức</td><td><span class="bg bg-red">Bị trả về</span></td><td><span class="bg bg-gray">—</span></td><td><a class="link" href="03-tao-hop-dong.html">TVV sửa theo lý do trả về</a></td><td>⋯</td></tr>
-          <tr><td class="link"><a href="#">HD002195</a></td><td>Bùi Thị Lan</td><td>Cầm mới</td><td>10.000.000</td><td>30 ngày</td><td>—</td><td>—</td><td>CN Quận 1</td><td><span class="bg bg-red">Từ chối</span></td><td><span class="bg bg-gray">—</span></td><td>Hồ sơ đã đóng</td><td><a class="act-link" onclick="toast('Đã duplicate → HD mới (nháp)')">Duplicate</a></td></tr>
+            <tr><td class="link">HD002211</td><td>Nguyễn Thị Hồng</td><td><span class="bg bg-warn">Chờ duyệt</span></td><td>Cầm mới</td><td style="text-align:right">28.000.000</td><td>Quận 1</td><td>23/08</td><td><a href="05-duyet-ho-so.html" class="tbl-action">Xem</a></td></tr>
+            <tr><td class="link">HD002210</td><td>Phạm Thị Lan</td><td><span class="bg bg-green">Đang cầm</span></td><td>Cầm mới</td><td style="text-align:right">15.000.000</td><td>Quận 1</td><td>22/08</td><td><a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td class="link">HD002209</td><td>Trịnh Quốc Đạt</td><td><span class="bg bg-blue">Chờ giải ngân</span></td><td>Cầm mới</td><td style="text-align:right">45.000.000</td><td>Quận 1</td><td>22/08</td><td><a href="06-duyet-giai-ngan.html" class="tbl-action">Xem</a></td></tr>
+            <tr><td class="link">HD002208</td><td>Trần Văn Bảo</td><td><span class="bg bg-blue">Chờ chi tiền</span></td><td>Cầm mới</td><td style="text-align:right">12.000.000</td><td>Quận 1</td><td>21/08</td><td><a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td class="link">HD002205</td><td>Lê Minh Châu</td><td><span class="bg bg-green">Đang cầm</span></td><td>Gia hạn TT</td><td style="text-align:right">78.200.000</td><td>Quận 1</td><td>20/08</td><td><a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td class="link">HD002199</td><td>Võ Thúy An</td><td><span class="bg bg-gray">Đã tất toán</span></td><td>Cầm mới</td><td style="text-align:right">8.000.000</td><td>Quận 1</td><td>18/08</td><td><a href="#" class="tbl-action">Xem</a></td></tr>
           </tbody>
         </table>
+        <div class="tbl-foot"><span>Hiển thị 1–6 / 9 giao dịch (đúng cửa hàng)</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div>
       </div>
-      <div class="hint">Vòng đời: Nháp → Chờ duyệt hồ sơ → <strong>Đã phê duyệt</strong> (in HĐCC + KH ký) → Chờ duyệt giải ngân → Chờ chi tiền → Đang hiệu lực → Quá hạn / Đã tất toán · "Bị trả về" quay lại TVV sửa theo lý do · "Từ chối" đóng vĩnh viễn (có thể Duplicate)</div>
+    </div>
+
+    <!-- ===== VIEW PHÊ DUYỆT ===== -->
+    <div id="view-pd" class="role-view">
+      <div class="role-header">
+        <div><h1>Hợp đồng cầm cố</h1><p style="font-size:.82rem;color:var(--sub);margin-top:2px">Các hồ sơ đang chờ phê duyệt thẩm định đến người duyệt</p></div>
+        <span class="rb rb-blue">BP.TĐVPD · Thẩm định</span>
+      </div>
+      <div class="sub-tabs" id="pd-tabs">
+        <button class="sub-tab active" onclick="switchSub('pd',0,this)">Chờ phê duyệt cầm <span class="cnt">12</span></button>
+        <button class="sub-tab" onclick="switchSub('pd',1,this)">Chờ phê duyệt gia hạn <span class="cnt">7</span></button>
+        <button class="sub-tab" onclick="switchSub('pd',2,this)">Chờ phê duyệt tất toán <span class="cnt">5</span></button>
+      </div>
+      <div class="pd-sub sub-content active">
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th style="width:30px"><input type="checkbox"></th><th>Mã HĐCC</th><th>Tên KH</th><th>Trạng thái</th><th>Loại GD</th><th>Cửa hàng</th><th>Ngày gửi duyệt</th><th>Thao tác</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox"></td><td class="link">HD002211</td><td>Nguyễn Thị Hồng</td><td><span class="bg bg-warn">Chờ duyệt</span></td><td>Cầm mới</td><td>Quận 1</td><td>23/08 14:45</td><td><a href="05-duyet-ho-so.html" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem">Duyệt</a> <a href="05-duyet-ho-so.html" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002212</td><td>Trần Quốc Đạt</td><td><span class="bg bg-warn">Chờ duyệt</span></td><td>Cầm mới</td><td>Quận 1</td><td>23/08 15:10</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002213</td><td>Lê Hoàng Nam</td><td><span class="bg bg-red">Đã trả PD</span></td><td>Cầm mới</td><td>Thủ Đức</td><td>23/08 09:20</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002214</td><td>Ngô Minh Anh</td><td><span class="bg bg-warn">Chờ duyệt</span></td><td>Cầm mới</td><td>Quận 7</td><td>22/08 16:30</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002215</td><td>Phạm Văn Hải</td><td><span class="bg bg-warn">Chờ duyệt</span></td><td>Cầm mới</td><td>Quận 1</td><td>22/08 14:00</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+          </tbody>
+        </table><div class="tbl-foot"><span>Hiển thị 1–5 / 12</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button></div></div>
+      </div>
+      <div class="pd-sub sub-content">
+        <div class="sub-pills"><button class="sub-pill active">Tất cả (7)</button><button class="sub-pill">Gia hạn TT (3)</button><button class="sub-pill">Vay thêm (2)</button><button class="sub-pill">Trả bớt (2)</button></div>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th style="width:30px"><input type="checkbox"></th><th>Mã HĐCC</th><th>Tên KH</th><th>Loại GH</th><th>Cửa hàng</th><th>Ngày gửi duyệt</th><th>Thao tác</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox"></td><td class="link">HD002190</td><td>Võ Thúy An</td><td><span class="bg bg-blue">Gia hạn TT</span></td><td>Quận 1</td><td>23/08 10:00</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002188</td><td>Nguyễn Văn Tú</td><td><span class="bg bg-teal">Vay thêm</span></td><td>Thủ Đức</td><td>22/08 15:30</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002185</td><td>Trần Thị Mai</td><td><span class="bg bg-gray">Trả bớt</span></td><td>Quận 7</td><td>22/08 11:00</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002183</td><td>Lý Thanh Hà</td><td><span class="bg bg-blue">Gia hạn TT</span></td><td>Quận 1</td><td>21/08 14:20</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+          </tbody>
+        </table><div class="tbl-foot"><span>Hiển thị 1–4 / 7</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div></div>
+      </div>
+      <div class="pd-sub sub-content">
+        <div class="sub-pills"><button class="sub-pill active">Tất cả (5)</button><button class="sub-pill">Tất toán nợ lãi (3)</button><button class="sub-pill">Chuộc đồ (2)</button></div>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th style="width:30px"><input type="checkbox"></th><th>Mã HĐCC</th><th>Tên KH</th><th>Loại</th><th>Cửa hàng</th><th>Ngày gửi</th><th>Thao tác</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox"></td><td class="link">HD002200</td><td>Đặng Văn Phú</td><td><span class="bg bg-green">Tất toán</span></td><td>Quận 1</td><td>23/08 09:00</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002198</td><td>Huỳnh Thị Nga</td><td><span class="bg bg-teal">Chuộc đồ</span></td><td>Thủ Đức</td><td>22/08 16:00</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+            <tr><td><input type="checkbox"></td><td class="link">HD002196</td><td>Lê Văn Khánh</td><td><span class="bg bg-green">Tất toán</span></td><td>Quận 1</td><td>22/08 10:30</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
+          </tbody>
+        </table><div class="tbl-foot"><span>Hiển thị 1–3 / 5</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div></div>
+      </div>
+    </div>
+
+    <!-- ===== VIEW KẾ TOÁN ===== -->
+    <div id="view-kt" class="role-view">
+      <div class="role-header">
+        <div><h1>Hợp đồng cầm cố</h1><p style="font-size:.82rem;color:var(--sub);margin-top:2px">Quản lý thanh toán và chi tiền cho hợp đồng đã duyệt</p></div>
+        <span class="rb rb-gold">Kế toán thanh toán</span>
+      </div>
+      <div class="sub-tabs" id="kt-tabs">
+        <button class="sub-tab active" onclick="switchSub('kt',0,this)">Chờ chi tiền <span class="cnt">8</span></button>
+        <button class="sub-tab" onclick="switchSub('kt',1,this)">Đã chi tiền (hôm nay) <span class="cnt">15</span></button>
+      </div>
+      <div class="kt-sub sub-content active">
+        <div class="sub-pills"><button class="sub-pill active">Tất cả (8)</button><button class="sub-pill">Chờ chi tiền cầm (6)</button><button class="sub-pill">Chờ chi tiền vay thêm (2)</button></div>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th>Mã ĐNTT</th><th style="text-align:right">Số tiền</th><th>Thụ hưởng</th><th>Cửa hàng</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead>
+          <tbody>
+            <tr><td class="link">HD002211</td><td>Nguyễn Thị Hồng</td><td>DN00812</td><td style="text-align:right">28.000.000</td><td>VCB · Nguyễn Thị Hồng</td><td>Quận 1</td><td>23/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
+            <tr><td class="link">HD002208</td><td>Trần Văn Bảo</td><td>DN00810</td><td style="text-align:right">12.000.000</td><td>VCB · Trần Văn Bảo</td><td>Quận 1</td><td>22/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
+            <tr><td class="link">HD002205</td><td>Lê Minh Châu</td><td>DN00808</td><td style="text-align:right">45.000.000</td><td>ACB · Lê Minh Châu</td><td>Thủ Đức</td><td>22/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
+            <tr><td class="link">HD002203</td><td>Nguyễn Văn Tú</td><td>DN00806</td><td style="text-align:right">20.000.000</td><td>TCB · Nguyễn Văn Tú</td><td>Quận 7</td><td>21/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
+            <tr><td class="link">HD002188</td><td>Võ Thúy An</td><td>DN00804</td><td style="text-align:right">5.000.000</td><td>VCB · Võ Thúy An</td><td>Quận 1</td><td>21/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
+          </tbody>
+        </table><div class="tbl-foot"><span>Hiển thị 1–5 / 8</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div></div>
+      </div>
+      <div class="kt-sub sub-content">
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th>Mã ĐNTT</th><th style="text-align:right">Số tiền</th><th>Thụ hưởng</th><th>SBT</th><th>Thời gian chi</th></tr></thead>
+          <tbody>
+            <tr><td>HD002199</td><td>Võ Thúy An</td><td>DN00807</td><td style="text-align:right">8.000.000</td><td>VTB · Võ Thúy An</td><td>UNC-0921</td><td>20/08 16:05</td></tr>
+            <tr><td>HD002197</td><td>Đặng Văn Phú</td><td>DN00805</td><td style="text-align:right">22.000.000</td><td>VCB · Đặng Văn Phú</td><td>UNC-0920</td><td>20/08 15:30</td></tr>
+            <tr><td>HD002194</td><td>Huỳnh Thị Nga</td><td>DN00803</td><td style="text-align:right">35.000.000</td><td>ACB · Huỳnh Thị Nga</td><td>UNC-0919</td><td>20/08 14:45</td></tr>
+            <tr><td>HD002192</td><td>Lê Văn Khánh</td><td>DN00801</td><td style="text-align:right">18.500.000</td><td>TCB · Lê Văn Khánh</td><td>UNC-0918</td><td>20/08 11:20</td></tr>
+            <tr><td>HD002190</td><td>Trần Thị Mai</td><td>DN00799</td><td style="text-align:right">9.000.000</td><td>VCB · Trần Thị Mai</td><td>UNC-0917</td><td>20/08 10:00</td></tr>
+          </tbody>
+        </table><div class="tbl-foot"><span>Hiển thị 1–5 / 15</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button></div></div>
+      </div>
     </div>
 
   </main>
 <script src="assets/app.js"></script>
-
+<script>
+function switchRole(r,btn){
+  document.querySelectorAll('.role-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.role-view').forEach(v=>v.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-'+r).classList.add('active');
+}
+function switchSub(prefix,idx,btn){
+  btn.closest('.sub-tabs').querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  var subs=document.querySelectorAll('.'+prefix+'-sub');
+  subs.forEach(s=>s.classList.remove('active'));
+  subs[idx].classList.add('active');
+}
+</script>
 </body>
 </html>

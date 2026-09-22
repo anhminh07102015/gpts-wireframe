@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Duyệt hồ sơ (bước 1) · GPTS An Tín</title>
+<title>Duyệt hồ sơ · GPTS An Tín</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .toggle-detail{font-size:.78rem;font-weight:500;color:var(--blue);text-decoration:none;margin-left:8px;vertical-align:middle}
-  .toggle-detail:hover{text-decoration:underline}
-  .detail-expand{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
-  /* Diff highlight cho field đã sửa — tô vàng mặc định */
-  tr.diff-changed>td,table.tbl tr.diff-changed>td{background:#fff3cd !important;border-bottom:1px solid #f59e0b !important}
-  tr.diff-changed>td:first-child{border-left:4px solid #f59e0b !important;padding-left:12px !important}
-  .diff-old{text-decoration:line-through;color:#b91c1c;font-size:.85rem;margin-right:4px;opacity:.7}
-  .diff-new{color:#15803d;font-weight:700}
-  .diff-arrow{color:#9ca3af;margin:0 5px;font-size:.8rem}
+  .img-placeholder{border:1.5px dashed var(--line);border-radius:var(--r-ctl);background:#fafbfd;
+    height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-size:.82rem;color:var(--sub);gap:4px}
+  .img-placeholder a{font-size:.76rem;color:var(--blue);text-decoration:underline}
+  .sub-head{font-size:.9rem;font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
+  .sub-head .step-n{background:var(--navy-2);color:#fff;font-size:.72rem;font-weight:600;
+    border-radius:999px;padding:2px 9px}
+  .detail-row{font-size:.82rem;color:var(--sub);padding:8px 0;line-height:1.55}
 </style>
 </head>
 <body>
@@ -43,180 +42,230 @@
   <main class="main">
 
     <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002211 › Duyệt hồ sơ</div>
-    <div class="page-head"><h1>Duyệt hồ sơ HD002211 (bước 1)</h1><span class="bg bg-warn" id="hsStatus">Chờ duyệt hồ sơ</span></div>
+    <div class="page-head">
+      <h1>Duyệt hồ sơ HD002211</h1>
+      <span class="bg bg-blue">HD002211</span>
+      <span class="bg bg-warn" id="hsStatus">Chờ duyệt hồ sơ</span>
+    </div>
+
     <div class="split">
+      <!-- ===== LEFT COLUMN ===== -->
       <div class="stack">
-        <div class="note note-info" style="font-size:.82rem">
-          ℹ <strong>Hồ sơ gửi lại sau chỉnh sửa:</strong> ưu tiên hiển thị cho người duyệt cũ · có bộ lọc dự phòng khi người duyệt nghỉ
-        </div>
-        <div class="note note-info">
-          <strong>ℹ Hồ sơ gửi lại sau trả về — 3 thông tin đã thay đổi</strong> (các ô <span style="background:#fff3cd;padding:1px 6px;border-left:3px solid #f59e0b">tô vàng</span> bên dưới)
-        </div>
-        <div class="card"><h2>Khách hàng <a href="#" class="toggle-detail" onclick="toggleDetail('khDetail');return false">▼ Xem chi tiết</a></h2>
-          <table class="tbl"><tbody>
-            <tr><td style="color:var(--sub);width:180px">Họ tên / Hạng</td><td>Nguyễn Thị Hồng · <span class="bg bg-gold">Gold (giảm phí)</span></td></tr>
-            <tr><td style="color:var(--sub)">CCCD / SĐT</td><td>0790xxxxxxxx · 0903 xxx 111</td></tr>
-            <tr><td style="color:var(--sub)">Dư nợ hiện tại</td><td>15.000.000 đ (2 HĐCC hiệu lực)</td></tr>
-          </tbody></table>
-          <div id="khDetail" class="detail-expand" hidden>
-            <table class="tbl"><tbody>
-              <tr><td style="color:var(--sub);width:180px">Mã KH An Tín</td><td>KH-0045</td></tr>
-              <tr><td style="color:var(--sub)">Mã KH PNJ</td><td>PNJ-100567</td></tr>
-              <tr><td style="color:var(--sub)">Mã SAP (BP)</td><td>BP-600234</td></tr>
-              <tr><td style="color:var(--sub)">Ngày sinh</td><td>15/03/1988 (38 tuổi)</td></tr>
-              <tr><td style="color:var(--sub)">Giới tính</td><td>Nữ</td></tr>
-              <tr><td style="color:var(--sub)">Passport / CCCD QĐ</td><td>—</td></tr>
-              <tr><td style="color:var(--sub)">Ngày cấp / Nơi cấp</td><td>20/01/2022 · CA TP.HCM</td></tr>
-              <tr><td style="color:var(--sub)">Nguồn KH</td><td>PNJ/CAF</td></tr>
-              <tr><td style="color:var(--sub)">Nghề nghiệp</td><td>Kinh doanh tự do</td></tr>
-              <tr><td style="color:var(--sub)">Địa chỉ liên hệ</td><td>123 Nguyễn Trãi, P.2, Q.5, TP.HCM</td></tr>
-              <tr><td style="color:var(--sub)">Địa chỉ thường trú</td><td>45 Lê Lợi, P.Bến Nghé, Q.1, TP.HCM</td></tr>
-              <tr><td style="color:var(--sub)">Email</td><td>hong.nguyen@email.com</td></tr>
-              <tr><td style="color:var(--sub)">Hình KH / CCCD</td><td>📷 Hình KH · 📷 CCCD mặt trước · 📷 CCCD mặt sau</td></tr>
-            </tbody></table>
-          </div>
-        </div>
-        <div class="card"><h2>Tài sản cầm cố (2) <a href="#" class="toggle-detail" onclick="toggleDetail('tsccDetail');return false">▼ Xem chi tiết</a></h2>
-          <table class="tbl"><tbody>
-            <tr><td style="color:var(--sub);width:180px">TSCC #1</td><td>Nữ trang trọng lượng · 2,5 chỉ · 75% · thị trường · 18.750.000 đ</td></tr>
-            <tr><td style="color:var(--sub)">TSCC #2</td><td>TS kim cương · theo hóa đơn PNJ · 22.000.000 đ</td></tr>
-            <tr><td style="color:var(--sub)">Tổng trị giá / hạn mức</td><td><strong>40.750.000 đ / 31.900.000 đ</strong></td></tr>
-          </tbody></table>
-          <div id="tsccDetail" class="detail-expand" hidden>
-            <div style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:12px;margin-top:8px;background:#f7fafc">
-              <strong style="font-size:.84rem">TSCC #1 — Nữ trang trọng lượng</strong>
-              <table class="tbl" style="margin-top:6px"><tbody>
-                <tr><td style="color:var(--sub);width:180px">Loại TSCC</td><td>Nữ trang trọng lượng</td></tr>
-                <tr><td style="color:var(--sub)">Tuổi vàng</td><td>75%</td></tr>
-                <tr><td style="color:var(--sub)">TL vàng (đá) / TL tổng</td><td>2,500 chỉ / 2,800 chỉ</td></tr>
-                <tr><td style="color:var(--sub)">Phương pháp định giá</td><td>Theo thị trường</td></tr>
-                <tr><td style="color:var(--sub)">Giá bóng (thời kỳ)</td><td>10.000.000 đ/chỉ</td></tr>
-                <tr><td style="color:var(--sub)">SIZE</td><td>16</td></tr>
-                <tr><td style="color:var(--sub)">Trị giá TSCC</td><td>18.750.000 đ</td></tr>
-                <tr><td style="color:var(--sub)">Nguồn gốc / thương hiệu</td><td>PNJ</td></tr>
-                <tr class="diff-changed"><td style="color:var(--sub);background:#fff3cd;border-left:4px solid #f59e0b;padding-left:12px">Tỷ lệ thu lại</td><td style="background:#fff3cd">80%</td></tr>
-                <tr><td style="color:var(--sub)">Tỷ lệ cầm</td><td>85% (khóa)</td></tr>
-                <tr><td style="color:var(--sub)">Hạn mức tài sản</td><td>15.937.500 đ</td></tr>
-                <tr><td style="color:var(--sub)">Quyền sở hữu</td><td>Chính chủ</td></tr>
-                <tr><td style="color:var(--sub)">Hình thức kiểm định</td><td>Thợ cửa hàng</td></tr>
-                <tr><td style="color:var(--sub)">Thợ kỹ thuật</td><td>Lê Hoàng (NV034) · CN Quận 1 · le.hoang@antin.vn</td></tr>
-                <tr><td style="color:var(--sub)">Giấy KĐ GIA</td><td>—</td></tr>
-                <tr><td style="color:var(--sub)">Giấy KĐ PNJLAB/khác</td><td>PNJL-20260823-001</td></tr>
-                <tr><td style="color:var(--sub)">Tem niêm phong</td><td>NP-0012, NP-0013</td></tr>
-                <tr class="diff-changed"><td style="color:var(--sub);background:#fff3cd;border-left:4px solid #f59e0b;padding-left:12px">Hình ảnh</td><td style="background:#fff3cd">📷 4 hình tài sản · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
-              </tbody></table>
+
+        <!-- Card 1: Chi tiết khách hàng -->
+        <div class="card">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">
+            <div>
+              <h2 style="margin-bottom:2px">Chi tiết khách hàng</h2>
+              <div style="font-size:.82rem;color:var(--sub)">Xem và kiểm tra thông tin khách hàng phục vụ thẩm định, phê duyệt hồ sơ</div>
             </div>
-            <div style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:12px;margin-top:8px;background:#f7fafc">
-              <strong style="font-size:.84rem">TSCC #2 — TS kim cương</strong>
-              <table class="tbl" style="margin-top:6px"><tbody>
-                <tr><td style="color:var(--sub);width:180px">Loại TSCC</td><td>TS kim cương</td></tr>
-                <tr><td style="color:var(--sub)">Phương pháp định giá</td><td>Theo hóa đơn</td></tr>
-                <tr><td style="color:var(--sub)">Số hóa đơn</td><td>PNJ-HD-20250315-042</td></tr>
-                <tr><td style="color:var(--sub)">Mã SP theo hóa đơn</td><td>GNXMXMW003919</td></tr>
-                <tr><td style="color:var(--sub)">Giá theo hóa đơn</td><td>28.000.000 đ</td></tr>
-                <tr><td style="color:var(--sub)">Giảm trừ / Lý do</td><td>3.000.000 đ · Mòn/trầy nhẹ</td></tr>
-                <tr><td style="color:var(--sub)">Trị giá TSCC</td><td>22.000.000 đ</td></tr>
-                <tr><td style="color:var(--sub)">Nguồn gốc / thương hiệu</td><td>PNJ</td></tr>
-                <tr><td style="color:var(--sub)">Tỷ lệ thu lại</td><td>88%</td></tr>
-                <tr><td style="color:var(--sub)">Tỷ lệ cầm</td><td>80% (khóa)</td></tr>
-                <tr><td style="color:var(--sub)">Hạn mức tài sản</td><td>15.962.500 đ</td></tr>
-                <tr><td style="color:var(--sub)">NƯỚC</td><td>D</td></tr>
-                <tr><td style="color:var(--sub)">ĐỘ SẠCH</td><td>VS1</td></tr>
-                <tr><td style="color:var(--sub)">Quyền sở hữu</td><td>Chính chủ</td></tr>
-                <tr><td style="color:var(--sub)">Hình thức kiểm định</td><td>PNJL</td></tr>
-                <tr><td style="color:var(--sub)">Thợ kỹ thuật</td><td>Trần Minh (NV018) · CN Quận 1 · tran.minh@antin.vn</td></tr>
-                <tr><td style="color:var(--sub)">Giấy KĐ GIA</td><td>GIA-2260100234</td></tr>
-                <tr><td style="color:var(--sub)">Giấy KĐ PNJLAB/khác</td><td>—</td></tr>
-                <tr><td style="color:var(--sub)">Tem niêm phong</td><td>NP-0014</td></tr>
-                <tr><td style="color:var(--sub)">Hình ảnh</td><td>📷 4 hình tài sản · 📷 Hình hộp niêm phong · 📷 Giấy KĐ 2 mặt</td></tr>
-              </tbody></table>
-            </div>
-            <table class="tbl" style="margin-top:8px"><tbody>
-              <tr><td style="color:var(--sub);width:180px">Niêm phong HĐ</td><td>2 hộp · 0,150 chỉ tổng TL hộp/túi</td></tr>
-            </tbody></table>
           </div>
+          <div class="grid2" style="font-size:.86rem">
+            <div><span style="color:var(--sub)">Họ tên / Hạng</span><br>Nguyễn Thị Hồng · <span class="bg bg-gold">Gold (giảm phí)</span></div>
+            <div><span style="color:var(--sub)">CCCD / SĐT</span><br>0790xxxxxxxx · 0903 xxx 111</div>
+            <div><span style="color:var(--sub)">Ngày sinh</span><br>15/03/1988 (38 tuổi)</div>
+            <div><span style="color:var(--sub)">Giới tính</span><br>Nữ</div>
+            <div><span style="color:var(--sub)">Ngày cấp / Nơi cấp</span><br>20/01/2022 · CA TP.HCM</div>
+            <div><span style="color:var(--sub)">Nguồn khách</span><br>PNJ/CAF</div>
+            <div><span style="color:var(--sub)">Nghề nghiệp</span><br>Kinh doanh tự do</div>
+            <div><span style="color:var(--sub)">Địa chỉ liên hệ</span><br>123 Nguyễn Trãi, P.2, Q.5, TP.HCM</div>
+            <div><span style="color:var(--sub)">Địa chỉ thường trú</span><br>45 Lê Lợi, P.Bến Nghé, Q.1, TP.HCM</div>
+            <div><span style="color:var(--sub)">Email</span><br>hong.nguyen@email.com</div>
+          </div>
+          <div class="grid3" style="margin-top:14px">
+            <div class="img-placeholder">📷 Hình khách hàng<a href="#" onclick="toast('Xem ảnh khách hàng');return false">Xem ảnh</a></div>
+            <div class="img-placeholder">📷 CCCD mặt trước<a href="#" onclick="toast('Xem ảnh CCCD mặt trước');return false">Xem ảnh</a></div>
+            <div class="img-placeholder">📷 CCCD mặt sau<a href="#" onclick="toast('Xem ảnh CCCD mặt sau');return false">Xem ảnh</a></div>
+          </div>
+          <div class="note note-info" style="margin-top:14px">ℹ Thông tin khách hàng được đồng bộ từ dữ liệu Tổng. Vui lòng kiểm tra trước khi phê duyệt.</div>
         </div>
-        <div class="card"><h2>Thông tin vay <a href="#" class="toggle-detail" onclick="toggleDetail('vayDetail');return false">▼ Xem chi tiết</a></h2>
-          <table class="tbl"><tbody>
-            <tr class="diff-changed"><td style="color:var(--sub);width:180px;background:#fff3cd;border-left:4px solid #f59e0b;padding-left:12px">Số tiền cầm</td><td style="background:#fff3cd">28.000.000 đ (trong hạn mức)</td></tr>
-            <tr><td style="color:var(--sub)">Kỳ hạn / lãi / phí</td><td>30 ngày · lãi 1.5 · phí bậc &lt;50tr</td></tr>
-            <tr><td style="color:var(--sub)">Chính sách ưu đãi</td><td>Chuẩn — giảm phí theo hạng Gold</td></tr>
-            <tr><td style="color:var(--sub)">Chi vay</td><td>Chuyển khoản · VCB 0071xxxx · Nguyễn Thị Hồng</td></tr>
-            <tr><td style="color:var(--sub)">Chứng từ đính kèm</td><td>6 hình tài sản · 1 giấy kiểm định · 1 tờ trình</td></tr>
-          </tbody></table>
-          <div id="vayDetail" class="detail-expand" hidden>
-            <table class="tbl"><tbody>
-              <tr><td style="color:var(--sub);width:180px">Hạn mức HĐCC</td><td>31.900.000 đ (tổng hạn mức các TSCC)</td></tr>
-              <tr><td style="color:var(--sub)">Mức sàn</td><td>≥ 20% hạn mức (6.380.000 đ) và ≥ mức sàn tuyệt đối · ✔ Đạt</td></tr>
-              <tr><td style="color:var(--sub)">Lãi suất</td><td>1.5 (cố định, chưa gồm VAT) · [CHỜ CHỐT đơn vị]</td></tr>
-              <tr><td style="color:var(--sub)">Số ngày lãi tối thiểu</td><td>15 ngày</td></tr>
-              <tr><td style="color:var(--sub)">Phí bảo quản</td><td>Bậc < 50tr: 0.0205 · giảm phí theo hạng Gold</td></tr>
-              <tr><td style="color:var(--sub)">Lãi dự kiến (30 ngày)</td><td>420.000 đ</td></tr>
-              <tr><td style="color:var(--sub)">Phí dự kiến (30 ngày)</td><td>172.200 đ</td></tr>
-              <tr><td style="color:var(--sub)">VAT 10% (lãi + phí)</td><td>59.220 đ</td></tr>
-              <tr><td style="color:var(--sub)">Tổng KH trả cuối kỳ</td><td>28.651.420 đ</td></tr>
-              <tr><td style="color:var(--sub)">Số tài khoản</td><td>0071 000 xxx 789</td></tr>
+
+        <!-- Card 2: Chi tiết khoản vay -->
+        <div class="card">
+          <h2>Chi tiết khoản vay</h2>
+
+          <!-- Sub-section 1: Tài sản cầm cố -->
+          <div class="sub-head"><span class="step-n">①</span> Tài sản cầm cố (2)</div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Dòng hàng</th>
+                <th>Mô tả TSCC</th>
+                <th>PP định giá</th>
+                <th>Giá trị định giá</th>
+                <th>Tỷ lệ cầm</th>
+                <th>Hạn mức TSCC</th>
+                <th>👁</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TS1</td>
+                <td>Nhẫn nữ 18K</td>
+                <td>Theo hóa đơn PNJ</td>
+                <td>15.000.000 đ</td>
+                <td>85%</td>
+                <td>12.750.000 đ</td>
+                <td><a href="#" onclick="toast('Xem chi tiết TSCC #1');return false">👁</a></td>
+              </tr>
+              <tr>
+                <td>TS2</td>
+                <td>Lắc tay vàng 24K</td>
+                <td>Theo thị trường</td>
+                <td>20.000.000 đ</td>
+                <td>85%</td>
+                <td>17.000.000 đ</td>
+                <td><a href="#" onclick="toast('Xem chi tiết TSCC #2');return false">👁</a></td>
+              </tr>
+              <tr style="font-weight:700">
+                <td colspan="3" style="text-align:right">Tổng giá trị định giá:</td>
+                <td>35.000.000 đ</td>
+                <td></td>
+                <td>29.750.000 đ</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Sub-section 2: Thông tin vay -->
+          <div class="sub-head"><span class="step-n">②</span> Thông tin vay</div>
+          <table class="tbl">
+            <tbody>
+              <tr>
+                <td style="color:var(--sub);width:180px;background:#fff3cd;border-left:4px solid #f59e0b;padding-left:12px">Số tiền cầm</td>
+                <td style="background:#fff3cd">28.000.000 đ (trong hạn mức)</td>
+              </tr>
+              <tr><td style="color:var(--sub);width:180px">Kỳ hạn</td><td>30 ngày</td></tr>
+              <tr><td style="color:var(--sub)">Lãi suất</td><td>1.5 %/tháng</td></tr>
+              <tr><td style="color:var(--sub)">Phí bảo quản</td><td>0.0205 (bậc &lt; 50tr)</td></tr>
+              <tr><td style="color:var(--sub)">Chính sách ưu đãi</td><td>Chuẩn — giảm phí theo hạng Gold</td></tr>
+            </tbody>
+          </table>
+          <div class="note note-ok" style="margin-top:10px">✔ Giá trị cầm ≥ 20% hạn mức = 5.950.000 đ · ≥ mức sàn · Đạt</div>
+
+          <!-- Sub-section 3: Thông tin giải ngân -->
+          <div class="sub-head"><span class="step-n">③</span> Thông tin giải ngân</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td style="color:var(--sub);width:180px">Số tài khoản</td><td>0071 000 xxx 789</td></tr>
               <tr><td style="color:var(--sub)">Ngân hàng</td><td>Vietcombank (VCB)</td></tr>
               <tr><td style="color:var(--sub)">Chủ tài khoản</td><td>NGUYEN THI HONG</td></tr>
-              <tr><td style="color:var(--sub)">Hình thức chi</td><td>Chuyển khoản (tiền mặt: TẮT GĐ1)</td></tr>
-            </tbody></table>
+              <tr><td style="color:var(--sub)">Hình thức chi</td><td>Chuyển khoản</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Card 3: Thông tin kiểm định -->
+        <div class="card">
+          <h2>Thông tin kiểm định</h2>
+          <div class="grid2" style="font-size:.86rem">
+            <div><span style="color:var(--sub)">Số tem</span><br>AT00001</div>
+            <div><span style="color:var(--sub)">Trọng lượng hao</span><br>1.5 chỉ</div>
+            <div><span style="color:var(--sub)">Số lượng hộp/túi NP</span><br>2</div>
+            <div><span style="color:var(--sub)">Tên thợ kiểm định</span><br>Trần Văn Minh (NV034)</div>
+          </div>
+          <div class="grid2" style="margin-top:14px">
+            <div class="img-placeholder">📷 Giấy kiểm định mặt trước<a href="#" onclick="toast('Xem giấy kiểm định mặt trước');return false">Xem ảnh</a></div>
+            <div class="img-placeholder">📷 Giấy kiểm định mặt sau<a href="#" onclick="toast('Xem giấy kiểm định mặt sau');return false">Xem ảnh</a></div>
+          </div>
+          <div class="img-placeholder" style="margin-top:14px">📷 Hình tài sản (4 hình)<a href="#" onclick="toast('Xem hình tài sản');return false">Xem ảnh</a></div>
+          <div class="img-placeholder" style="margin-top:14px">📷 Hình hộp/túi niêm phong<a href="#" onclick="toast('Xem hình hộp/túi niêm phong');return false">Xem ảnh</a></div>
+        </div>
+
+        <!-- Card 4: Lịch sử chỉnh sửa phiếu -->
+        <div class="card">
+          <h2>Lịch sử chỉnh sửa phiếu</h2>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Lần</th>
+                <th>Thời điểm</th>
+                <th>Người sửa</th>
+                <th>Trường</th>
+                <th>Giá trị cũ</th>
+                <th>Giá trị mới</th>
+                <th>Lý do trả về</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff8e1">
+                <td>1</td>
+                <td>24/08/2026 10:15</td>
+                <td>Nguyễn Thị Mai (TVV)</td>
+                <td>Số tiền cầm</td>
+                <td>30.000.000 đ</td>
+                <td>28.000.000 đ</td>
+                <td rowspan="3" style="vertical-align:top;font-size:.82rem">Giảm số tiền cầm, bổ sung hình và điều chỉnh tỷ lệ thu lại cho phù hợp</td>
+              </tr>
+              <tr style="background:#fff8e1">
+                <td>1</td>
+                <td>24/08/2026 10:15</td>
+                <td>Nguyễn Thị Mai (TVV)</td>
+                <td>Tỷ lệ thu lại #1</td>
+                <td>85%</td>
+                <td>80%</td>
+              </tr>
+              <tr style="background:#fff8e1">
+                <td>1</td>
+                <td>24/08/2026 10:18</td>
+                <td>Nguyễn Thị Mai (TVV)</td>
+                <td>Hình tài sản #1</td>
+                <td>2 hình</td>
+                <td>4 hình</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="detail-row" style="margin-top:10px">
+            <strong>Người trả về:</strong> Trần Văn Hùng (BP.TĐVPD) · 23/08/2026 17:45<br>
+            <strong>Lý do trả về:</strong> "Số tiền cầm quá cao so với trị giá, giảm xuống 28tr. Bổ sung hình mặt sau tài sản."<br>
+            <strong>Người gửi lại:</strong> Nguyễn Thị Mai (TVV) · 24/08/2026 10:20
           </div>
         </div>
-        <div class="card"><h2>Lịch sử chỉnh sửa phiếu <a href="#" class="toggle-detail" onclick="toggleDetail('editHistory');return false">▼ Xem chi tiết</a></h2>
-          <table class="tbl"><thead><tr><th>Lần</th><th>Thời điểm</th><th>Người sửa</th><th>Trường</th><th>Giá trị cũ</th><th>Giá trị mới</th><th>Lý do trả về</th></tr></thead>
-          <tbody>
-            <tr style="background:#fff8e1"><td>1</td><td>24/08/2026 10:15</td><td>Nguyễn Thị Mai (TVV)</td><td>Số tiền cầm</td><td>30.000.000 đ</td><td>28.000.000 đ</td><td rowspan="3" style="vertical-align:top;font-size:.82rem">Giảm số tiền cầm, bổ sung hình và điều chỉnh tỷ lệ thu lại cho phù hợp</td></tr>
-            <tr style="background:#fff8e1"><td>1</td><td>24/08/2026 10:15</td><td>Nguyễn Thị Mai (TVV)</td><td>Tỷ lệ thu lại #1</td><td>85%</td><td>80%</td></tr>
-            <tr style="background:#fff8e1"><td>1</td><td>24/08/2026 10:18</td><td>Nguyễn Thị Mai (TVV)</td><td>Hình tài sản #1</td><td>2 hình</td><td>4 hình</td></tr>
-          </tbody></table>
-          <div id="editHistory" class="detail-expand" hidden>
-            <div style="font-size:.82rem;color:var(--sub);padding:8px 0">
-              <strong>Người trả về:</strong> Trần Văn Hùng (BP.TĐVPD) · 23/08/2026 17:45<br>
-              <strong>Lý do trả về:</strong> "Số tiền cầm quá cao so với trị giá, giảm xuống 28tr. Bổ sung hình mặt sau tài sản."<br>
-              <strong>Người gửi lại:</strong> Nguyễn Thị Mai (TVV) · 24/08/2026 10:20
-            </div>
-          </div>
-        </div>
+
       </div>
+
+      <!-- ===== RIGHT COLUMN ===== -->
       <div class="stack">
-        <div class="card"><h2>Tiến trình hồ sơ</h2>
+
+        <!-- Card: Tiến trình hợp đồng -->
+        <div class="card">
+          <h2>Tiến trình hợp đồng</h2>
           <div class="steps">
-            <div class="st done"><span class="ic">✓</span><span class="t">Tạo hồ sơ (TVV)<small>23/08 · 14:32</small></span></div>
-            <div class="st now" id="st2"><span class="ic">●</span><span class="t">Duyệt hồ sơ — BP.TĐVPD<small>Đang chờ</small></span></div>
-            <div class="st todo" id="st3"><span class="ic">○</span><span class="t">In HĐCC + bảng lãi phí + biên nhận<small>Sau duyệt bước 1</small></span></div>
-            <div class="st todo" id="st3b"><span class="ic">○</span><span class="t">KH ký HĐCC → upload bản scan<small>TVV upload scan HĐCC đã ký</small></span></div>
-            <div class="st todo"><span class="ic">○</span><span class="t">Duyệt giải ngân (bước 2)</span></div>
-            <div class="st todo"><span class="ic">○</span><span class="t">Kế toán duyệt đề nghị TT</span></div>
-            <div class="st todo"><span class="ic">○</span><span class="t">Chi tiền (Vietinbank)</span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Tạo hợp đồng (TVV)<small>Nguyễn Thị Mai · 23/08 14:32</small></span></div>
+            <div class="st now"><span class="ic">→</span><span class="t">Chờ phê duyệt<small>TVV gửi BP.TĐVPD · 23/08 14:45</small></span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Đã phê duyệt</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chờ upload HĐCC</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">In HĐCC + scan</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chuyển giải ngân</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chờ chi tiền</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Đang cầm (Kết thúc)</span></div>
           </div>
         </div>
-        <div class="card"><h2>Xử lý hồ sơ</h2>
+
+        <!-- Card: Xử lý hồ sơ -->
+        <div class="card">
+          <h2>Xử lý hồ sơ</h2>
           <div class="stack" style="gap:9px">
-            <button class="btn btn-ok" style="justify-content:center" onclick="approve()">✓ Duyệt hồ sơ</button>
-            <button class="btn btn-warn" style="justify-content:center" onclick="returnHS()">↩ Đề nghị chỉnh sửa (trả về)</button>
-            <button class="btn btn-danger" style="justify-content:center" onclick="showRejectConfirm()">✕ Từ chối</button>
+            <button class="btn btn-ok" style="justify-content:center;width:auto" onclick="approve()">✓ Duyệt hồ sơ</button>
+            <button class="btn btn-warn" style="justify-content:center;width:auto" onclick="returnHS()">↩ Đề nghị chỉnh sửa (trả về)</button>
+            <button class="btn btn-danger" style="justify-content:center;width:auto" onclick="showRejectConfirm()">✕ Từ chối</button>
           </div>
-          <div class="f" style="margin-top:12px"><label>Lý do trả về / từ chối <span class="req">*</span> (ghi rõ thông tin cần sửa)</label>
+          <div class="f" style="margin-top:12px">
+            <label>Lý do trả về / từ chối <span class="req">*</span> (ghi rõ thông tin cần sửa)</label>
             <textarea id="reason" rows="3" placeholder="VD: sai số tài khoản thụ hưởng, bổ sung hình mặt sau tài sản…"></textarea>
             <div class="hint">Trả về: không giới hạn field TVV được sửa · sau sửa hiện diff cho người duyệt</div>
           </div>
         </div>
-        <div class="note note-warn" id="printNote" hidden>
-          🖨 Đã duyệt bước 1 — nút <a href="#" style="text-decoration:underline" onclick="toast('Đã mở trang in HĐCC + bảng lãi phí + biên nhận')"><strong>In HĐCC + bảng lãi phí + biên nhận</strong></a> đã mở. KH ký xong, TVV upload bản scan rồi chuyển duyệt giải ngân.
-        </div>
-        <div class="card" id="uploadScanCard" hidden>
-          <h2>Upload bản scan HĐCC đã ký</h2>
-          <div class="upload-compact" onclick="document.getElementById('scanFile').click()">
-            📎 Kéo thả hoặc bấm chọn file scan HĐCC đã ký<br>
-            <small>PDF, JPG, PNG — tối đa 10 MB</small>
+
+        <!-- Card: Thông tin bổ sung -->
+        <div class="card">
+          <h2>Thông tin bổ sung (nếu có)</h2>
+          <div class="f">
+            <label>Ghi chú bổ sung</label>
+            <textarea rows="2" placeholder="Nhập ghi chú…"></textarea>
           </div>
-          <input type="file" id="scanFile" hidden accept=".pdf,.jpg,.jpeg,.png" onchange="onScanUpload()">
-          <div id="scanFileName" style="font-size:.82rem;color:var(--sub);margin-top:6px" hidden></div>
-          <button class="btn btn-pri" style="width:100%;justify-content:center;margin-top:10px" id="btnChuyenB2" disabled onclick="chuyenB2()">Chuyển duyệt giải ngân (B2)</button>
         </div>
-        <div class="note note-ok" id="rejectedBanner" hidden>
-          Hồ sơ đã bị từ chối. <a href="#" class="act-link" style="font-size:.84rem;color:var(--green);font-weight:600" onclick="toast('Đã duplicate → HD mới (nháp)');return false;">Duplicate thành hồ sơ mới</a>
-        </div>
+
       </div>
     </div>
 
@@ -238,56 +287,28 @@
 
 <script src="assets/app.js"></script>
 <script>
-function toggleDetail(id){
-  const el=document.getElementById(id);
-  const link=el.parentElement.querySelector('.toggle-detail');
-  if(el.hidden){el.hidden=false;link.textContent='▲ Ẩn chi tiết';}
-  else{el.hidden=true;link.textContent='▼ Xem chi tiết';}
-}
 function approve(){
-  const s=document.getElementById('hsStatus');
-  s.textContent='Đã phê duyệt';s.className='bg bg-teal';
-  const st2=document.getElementById('st2');st2.className='st done';st2.querySelector('.ic').textContent='✓';st2.querySelector('small').textContent='Vừa xong';
-  const st3=document.getElementById('st3');st3.className='st now';st3.querySelector('.ic').textContent='●';
-  document.getElementById('printNote').hidden=false;
-  document.getElementById('uploadScanCard').hidden=false;
-  toast('Đã duyệt hồ sơ — mở bước in chứng từ + upload scan');
+  document.getElementById('hsStatus').textContent='Đã phê duyệt';
+  document.getElementById('hsStatus').className='bg bg-teal';
+  toast('Đã duyệt hồ sơ');
 }
 function returnHS(){
-  const r=document.getElementById('reason');
-  if(!r.value.trim()){toast('Bắt buộc nhập lý do trước khi trả về');r.focus();return;}
-  const s=document.getElementById('hsStatus');
-  s.textContent='Bị trả về';s.className='bg bg-red';
-  toast('Đã trả về — TVV được sửa mọi field, khi gửi lại sẽ hiện diff');
+  var r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do');r.focus();return;}
+  document.getElementById('hsStatus').textContent='Bị trả về';
+  document.getElementById('hsStatus').className='bg bg-red';
+  toast('Đã trả về — TVV được sửa mọi field');
 }
 function showRejectConfirm(){
-  const r=document.getElementById('reason');
-  if(!r.value.trim()){toast('Bắt buộc nhập lý do trước khi từ chối');r.focus();return;}
+  var r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do');r.focus();return;}
   document.getElementById('rejectModal').classList.add('open');
 }
 function confirmReject(){
   document.getElementById('rejectModal').classList.remove('open');
-  const s=document.getElementById('hsStatus');
-  s.textContent='Từ chối';s.className='bg bg-red';
-  document.getElementById('rejectedBanner').hidden=false;
-  toast('Đã từ chối hồ sơ — hồ sơ đóng vĩnh viễn');
-}
-function onScanUpload(){
-  const f=document.getElementById('scanFile');
-  if(f.files.length){
-    const name=f.files[0].name;
-    const el=document.getElementById('scanFileName');
-    el.textContent='📄 '+name;el.hidden=false;
-    document.getElementById('btnChuyenB2').disabled=false;
-  }
-}
-function chuyenB2(){
-  const st3=document.getElementById('st3');st3.className='st done';st3.querySelector('.ic').textContent='✓';st3.querySelector('small').textContent='Đã in';
-  const st3b=document.getElementById('st3b');st3b.className='st done';st3b.querySelector('.ic').textContent='✓';st3b.querySelector('small').textContent='Đã upload';
-  const s=document.getElementById('hsStatus');
-  s.textContent='Chờ duyệt giải ngân';s.className='bg bg-blue';
-  document.getElementById('uploadScanCard').hidden=true;
-  toast('Đã chuyển duyệt giải ngân (bước 2)');
+  document.getElementById('hsStatus').textContent='Từ chối';
+  document.getElementById('hsStatus').className='bg bg-red';
+  toast('Đã từ chối hồ sơ');
 }
 </script>
 </body>
