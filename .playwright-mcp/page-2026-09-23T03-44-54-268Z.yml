@@ -1,0 +1,197 @@
+- generic [active] [ref=f2e1]:
+  - complementary [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - text: GPTS
+      - generic [ref=f2e4]: Hệ thống cầm đồ An Tín — wireframe
+    - navigation [ref=f2e5]:
+      - link "Tổng quan" [ref=f2e6] [cursor=pointer]:
+        - /url: index.html
+      - link "Khách hàng" [ref=f2e7] [cursor=pointer]:
+        - /url: 01-danh-sach-khach-hang.html
+      - link "· Tạo khách hàng" [ref=f2e8] [cursor=pointer]:
+        - /url: 02-tao-khach-hang.html
+      - link "Hợp đồng cầm cố" [ref=f2e9] [cursor=pointer]:
+        - /url: 04-danh-sach-hop-dong.html
+      - link "· Lên hợp đồng" [ref=f2e10] [cursor=pointer]:
+        - /url: 03-tao-hop-dong.html
+      - link "· Duyệt hồ sơ (B1)" [ref=f2e11] [cursor=pointer]:
+        - /url: 05-duyet-ho-so.html
+      - link "· Upload HĐCC" [ref=f2e12] [cursor=pointer]:
+        - /url: 05b-upload-hdcc.html
+      - link "· Chuyển giải ngân" [ref=f2e13] [cursor=pointer]:
+        - /url: 05c-chuyen-giai-ngan.html
+      - link "· Duyệt giải ngân (B2)" [ref=f2e14] [cursor=pointer]:
+        - /url: 06-duyet-giai-ngan.html
+      - link "Luồng xuất hóa đơn" [ref=f2e15] [cursor=pointer]:
+        - /url: 07-luong-xuat-hoa-don.html
+      - link "· Thu nợ / Tất toán" [ref=f2e16] [cursor=pointer]:
+        - /url: 08-thu-no-tat-toan.html
+      - link "· Gia hạn / Vay thêm" [ref=f2e17] [cursor=pointer]:
+        - /url: 09-gia-han.html
+      - link "Report / Truy xuất" [ref=f2e18] [cursor=pointer]:
+        - /url: 10-report.html
+      - link "Thanh lý / Nhắc nợ" [ref=f2e19] [cursor=pointer]:
+        - /url: 11-thanh-ly-nhac-no.html
+      - link "HĐ tới hạn / Quá hạn" [ref=f2e20] [cursor=pointer]:
+        - /url: 12-hop-dong-toi-han.html
+      - link "Cấu hình Admin" [ref=f2e21] [cursor=pointer]:
+        - /url: 13-cau-hinh-admin.html
+    - generic [ref=f2e22]: Bản wireframe thao tác · số liệu minh họa
+  - main [ref=f2e23]:
+    - generic [ref=f2e24]:
+      - link "Hợp đồng cầm cố" [ref=f2e25] [cursor=pointer]:
+        - /url: 04-danh-sach-hop-dong.html
+      - text: › HD002211 › Upload HĐCC
+    - generic [ref=f2e26]:
+      - heading "Upload HĐCC — HD002211" [level=1] [ref=f2e27]
+      - generic [ref=f2e28]: HD002211
+      - generic [ref=f2e29]: Đã phê duyệt
+    - generic [ref=f2e30]:
+      - generic [ref=f2e31]:
+        - generic [ref=f2e32]:
+          - heading "Tóm tắt hợp đồng" [level=2] [ref=f2e33]
+          - generic [ref=f2e34]:
+            - generic [ref=f2e35]:
+              - text: Khách hàng
+              - strong [ref=f2e36]: Nguyễn Thị Hồng
+              - text: ·
+              - generic [ref=f2e37]: Gold
+            - generic [ref=f2e38]: CCCD / SĐT0790xxxxxxxx · 0903 xxx 111
+            - generic [ref=f2e39]: Cửa hàng6117 - Cửa hàng Quận 1
+            - generic [ref=f2e40]: TVVNguyễn Thị Mai (TVV001)
+            - generic [ref=f2e41]:
+              - text: Số tiền cầm
+              - strong [ref=f2e42]: 28.000.000 đ
+            - generic [ref=f2e43]: Kỳ hạn30 ngày (23/08 → 22/09/2026)
+        - generic [ref=f2e44]:
+          - generic [ref=f2e45]:
+            - generic [ref=f2e46]: ①
+            - text: Tài sản cầm cố (2)
+          - table [ref=f2e47]:
+            - rowgroup [ref=f2e48]:
+              - row [ref=f2e49]:
+                - columnheader "Dòng hàng" [ref=f2e50]
+                - columnheader "Mô tả TSCC" [ref=f2e51]
+                - columnheader "PP định giá" [ref=f2e52]
+                - columnheader "Giá trị định giá" [ref=f2e53]
+                - columnheader "Hạn mức TSCC" [ref=f2e54]
+            - rowgroup [ref=f2e55]:
+              - row [ref=f2e56]:
+                - cell "TS1" [ref=f2e57]
+                - cell "Nhẫn nữ 18K PNJ đính CZ" [ref=f2e58]
+                - cell "Theo hóa đơn" [ref=f2e59]
+                - cell "15.000.000 đ" [ref=f2e60]
+                - cell "12.750.000 đ" [ref=f2e61]
+              - row [ref=f2e62]:
+                - cell "TS2" [ref=f2e63]
+                - cell "Lắc tay vàng 24K SJC 2 chỉ" [ref=f2e64]
+                - cell "Theo thị trường" [ref=f2e65]
+                - cell "20.000.000 đ" [ref=f2e66]
+                - cell "17.000.000 đ" [ref=f2e67]
+              - row [ref=f2e68]:
+                - cell "Tổng:" [ref=f2e69]
+                - cell "35.000.000 đ" [ref=f2e70]
+                - cell "29.750.000 đ" [ref=f2e71]
+          - generic [ref=f2e72]:
+            - generic [ref=f2e73]: ②
+            - text: Thông tin vay
+          - table [ref=f2e74]:
+            - rowgroup [ref=f2e75]:
+              - row [ref=f2e76]:
+                - cell "Số tiền cầm" [ref=f2e77]
+                - cell [ref=f2e78]:
+                  - strong [ref=f2e79]: 28.000.000 đ
+              - row [ref=f2e80]:
+                - cell "Kỳ hạn" [ref=f2e81]
+                - cell "30 ngày" [ref=f2e82]
+              - row [ref=f2e83]:
+                - cell "Lãi suất" [ref=f2e84]
+                - cell "1.5 %/tháng" [ref=f2e85]
+              - row [ref=f2e86]:
+                - cell "Chính sách" [ref=f2e87]
+                - cell "Chuẩn — giảm phí theo hạng Gold" [ref=f2e88]
+          - generic [ref=f2e89]:
+            - generic [ref=f2e90]: ③
+            - text: Thông tin giải ngân
+          - table [ref=f2e91]:
+            - rowgroup [ref=f2e92]:
+              - row [ref=f2e93]:
+                - cell "Số tài khoản" [ref=f2e94]
+                - cell "0071 000 xxx 789" [ref=f2e95]
+              - row [ref=f2e96]:
+                - cell "Ngân hàng" [ref=f2e97]
+                - cell "Vietcombank (VCB)" [ref=f2e98]
+              - row [ref=f2e99]:
+                - cell "Chủ tài khoản" [ref=f2e100]
+                - cell "NGUYEN THI HONG" [ref=f2e101]
+              - row [ref=f2e102]:
+                - cell "Hình thức chi" [ref=f2e103]
+                - cell "Chuyển khoản" [ref=f2e104]
+        - generic [ref=f2e105]:
+          - heading "Thông tin phê duyệt" [level=2] [ref=f2e106]
+          - table [ref=f2e107]:
+            - rowgroup [ref=f2e108]:
+              - row [ref=f2e109]:
+                - cell "Người phê duyệt" [ref=f2e110]
+                - cell "Trần Văn Hùng (BP.TĐVPD)" [ref=f2e111]
+              - row [ref=f2e112]:
+                - cell "Thời gian duyệt" [ref=f2e113]
+                - cell "24/08/2026 15:30" [ref=f2e114]
+              - row [ref=f2e115]:
+                - cell "Trạng thái" [ref=f2e116]
+                - cell "Đã phê duyệt" [ref=f2e117]
+      - generic [ref=f2e119]:
+        - generic [ref=f2e120]:
+          - heading "Tiến trình hợp đồng" [level=2] [ref=f2e121]
+          - generic [ref=f2e122]:
+            - generic [ref=f2e123]:
+              - generic [ref=f2e124]: ✓
+              - generic [ref=f2e125]:
+                - text: Tạo hợp đồng (TVV)
+                - generic [ref=f2e126]: Nguyễn Thị Mai · 23/08 14:32
+            - generic [ref=f2e127]:
+              - generic [ref=f2e128]: ✓
+              - generic [ref=f2e129]:
+                - text: Chờ phê duyệt
+                - generic [ref=f2e130]: TVV gửi BP.TĐVPD · 23/08 14:45
+            - generic [ref=f2e131]:
+              - generic [ref=f2e132]: ✓
+              - generic [ref=f2e133]:
+                - text: Đã phê duyệt
+                - generic [ref=f2e134]: Trần Văn Hùng · 24/08 15:30
+            - generic [ref=f2e135]:
+              - generic [ref=f2e136]: →
+              - generic [ref=f2e137]:
+                - text: Chờ upload HĐCC
+                - generic [ref=f2e138]: TVV in, ký, scan và upload
+            - generic [ref=f2e139]:
+              - generic [ref=f2e140]: ○
+              - generic [ref=f2e141]: Đã upload HĐCC
+            - generic [ref=f2e142]:
+              - generic [ref=f2e143]: ○
+              - generic [ref=f2e144]: Chuyển giải ngân
+            - generic [ref=f2e145]:
+              - generic [ref=f2e146]: ○
+              - generic [ref=f2e147]: Chờ chi tiền
+            - generic [ref=f2e148]:
+              - generic [ref=f2e149]: ○
+              - generic [ref=f2e150]: Đang cầm (Kết thúc)
+        - generic [ref=f2e151]:
+          - heading "In & Upload HĐCC" [level=2] [ref=f2e152]
+          - generic [ref=f2e153]:
+            - generic [ref=f2e154]: "Bước 1: In hợp đồng"
+            - button "🖨 In hợp đồng cầm cố (PDF)" [ref=f2e155] [cursor=pointer]
+            - generic [ref=f2e156]: In 2 bản — 1 cho khách hàng, 1 lưu cửa hàng. Ký tên đầy đủ trước khi scan.
+          - generic [ref=f2e157]:
+            - generic [ref=f2e158]: "Bước 2: Upload bản scan đã ký"
+            - generic [ref=f2e159] [cursor=pointer]:
+              - generic [ref=f2e160]: 📤
+              - generic [ref=f2e161]: Chọn hoặc kéo thả file bản scan
+              - generic [ref=f2e162]: PDF, PNG, JPG — tối đa 20MB
+          - button "✓ Xác nhận đã upload HĐCC" [ref=f2e164] [cursor=pointer]
+          - generic [ref=f2e165]: Sau khi xác nhận, hợp đồng sẽ chuyển sang trạng thái "Đã upload HĐCC" và sẵn sàng chuyển giải ngân.
+        - generic [ref=f2e166]:
+          - heading "Ghi chú" [level=2] [ref=f2e167]
+          - generic [ref=f2e168]:
+            - generic [ref=f2e169]: Ghi chú bổ sung (nếu có)
+            - 'textbox "VD: Khách ký thiếu trang 2, cần bổ sung..." [ref=f2e170]'
