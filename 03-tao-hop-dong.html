@@ -18,6 +18,8 @@
       <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
       <a href="03-tao-hop-dong.html" class="on">· Lên hợp đồng</a>
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="05b-upload-hdcc.html">· Upload HĐCC</a>
+      <a href="05c-chuyen-giai-ngan.html">· Chuyển giải ngân</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
       <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
@@ -124,42 +126,36 @@
                 <th>Dòng hàng TSCC</th>
                 <th>Mô tả TSCC</th>
                 <th>Phương pháp định giá</th>
-                <th>Giá trị định giá TSCC</th>
+                <th style="text-align:right">Giá trị định giá TSCC</th>
                 <th>Tỷ lệ cầm</th>
-                <th>Hạn mức TSCC</th>
-                <th style="width:40px"></th>
+                <th style="text-align:right">Hạn mức TSCC</th>
+                <th style="width:72px"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>TS1</td>
-                <td><input type="text" placeholder="Nhập mô tả..." style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:100%"></td>
-                <td>
-                  <select style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:100%">
-                    <option>Chọn phương pháp</option>
-                    <option>Theo hóa đơn</option>
-                    <option>Theo thị trường</option>
-                  </select>
+                <td><input type="text" value="Nhẫn nữ vàng 18K PNJ đính CZ" style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:100%"></td>
+                <td style="color:var(--sub);font-size:.84rem">Theo hóa đơn</td>
+                <td style="text-align:right;font-weight:600">8.500.000 đ</td>
+                <td><input type="text" value="70%" style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:72px;text-align:center"></td>
+                <td style="text-align:right;font-weight:600">5.950.000 đ</td>
+                <td style="text-align:center;white-space:nowrap">
+                  <span data-modal-open="#modalTSCC" style="cursor:pointer;color:var(--pri);margin-right:6px" title="Chỉnh sửa">&#x270E;</span>
+                  <span style="cursor:pointer;color:var(--red)" title="Xóa">&#x1F5D1;</span>
                 </td>
-                <td>0 đ</td>
-                <td>0%</td>
-                <td>0 đ</td>
-                <td style="text-align:center;cursor:pointer;color:var(--red)">&#x1F5D1;</td>
               </tr>
               <tr>
                 <td>TS2</td>
-                <td><input type="text" placeholder="Nhập mô tả..." style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:100%"></td>
-                <td>
-                  <select style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:100%">
-                    <option>Chọn phương pháp</option>
-                    <option>Theo hóa đơn</option>
-                    <option>Theo thị trường</option>
-                  </select>
+                <td><input type="text" value="Lắc tay vàng 24K SJC 2 chỉ" style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:100%"></td>
+                <td style="color:var(--sub);font-size:.84rem">Theo thị trường</td>
+                <td style="text-align:right;font-weight:600">15.200.000 đ</td>
+                <td><input type="text" value="65%" style="border:1px solid var(--line);border-radius:var(--r-ctl);padding:5px 8px;font:inherit;font-size:.84rem;width:72px;text-align:center"></td>
+                <td style="text-align:right;font-weight:600">9.880.000 đ</td>
+                <td style="text-align:center;white-space:nowrap">
+                  <span data-modal-open="#modalTSCC" style="cursor:pointer;color:var(--pri);margin-right:6px" title="Chỉnh sửa">&#x270E;</span>
+                  <span style="cursor:pointer;color:var(--red)" title="Xóa">&#x1F5D1;</span>
                 </td>
-                <td>0 đ</td>
-                <td>0%</td>
-                <td>0 đ</td>
-                <td style="text-align:center;cursor:pointer;color:var(--red)">&#x1F5D1;</td>
               </tr>
             </tbody>
           </table>
@@ -167,9 +163,10 @@
         <div style="margin-top:10px">
           <button class="btn btn-line" data-modal-open="#modalTSCC">+ Thêm tài sản</button>
         </div>
+        <div style="margin-top:6px;font-size:.78rem;color:var(--sub)">Nhấn &#x270E; để mở form chỉnh sửa chi tiết — phương pháp định giá, giá trị và hạn mức chỉ thay đổi được bên trong form.</div>
         <div style="margin-top:14px;display:flex;gap:24px;font-size:.9rem;font-weight:600">
-          <span>Tổng giá trị định giá: <strong>0 đ</strong></span>
-          <span>Hạn mức cầm cố: <strong>0 đ</strong></span>
+          <span>Tổng giá trị định giá: <strong>23.700.000 đ</strong></span>
+          <span>Hạn mức cầm cố: <strong>15.830.000 đ</strong></span>
         </div>
       </div>
 

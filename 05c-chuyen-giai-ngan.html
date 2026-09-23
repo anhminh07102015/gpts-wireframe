@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chuyển giải ngân · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .img-thumb{border:1px solid var(--line);border-radius:var(--r-ctl);overflow:hidden;
+    position:relative;cursor:pointer;background:#fafbfd}
+  .img-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .img-thumb .img-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);
+    color:#fff;font-size:.72rem;padding:3px 8px;text-align:center}
+  .sub-head{font-size:.9rem;font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
+  .sub-head .step-n{background:var(--navy-2);color:#fff;font-size:.72rem;font-weight:600;
+    border-radius:999px;padding:2px 9px}
+  .check-list{list-style:none;padding:0;margin:0}
+  .check-list li{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.86rem}
+  .check-list li:last-child{border-bottom:0}
+  .check-list input[type="checkbox"]{margin-top:2px;accent-color:var(--pri)}
+  .scan-preview{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:#fafbfd;text-align:center}
+  .scan-preview .icon{font-size:2.4rem;margin-bottom:6px}
+  .scan-preview .filename{font-size:.86rem;font-weight:600;color:var(--navy)}
+  .scan-preview .meta{font-size:.78rem;color:var(--sub);margin-top:2px}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="05b-upload-hdcc.html">· Upload HĐCC</a>
+      <a href="05c-chuyen-giai-ngan.html" class="on">· Chuyển giải ngân</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+      <a href="12-hop-dong-toi-han.html">HĐ tới hạn / Quá hạn</a>
+      <a href="13-cau-hinh-admin.html">Cấu hình Admin</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002211 › Chuyển giải ngân</div>
+    <div class="page-head">
+      <h1>Chuyển giải ngân — HD002211</h1>
+      <span class="bg bg-blue">HD002211</span>
+      <span class="bg bg-teal" id="gnStatus">Đã upload HĐCC</span>
+    </div>
+
+    <div class="split">
+      <!-- ===== LEFT COLUMN ===== -->
+      <div class="stack">
+
+        <!-- Card 1: Tóm tắt hợp đồng -->
+        <div class="card">
+          <h2>Tóm tắt hợp đồng</h2>
+          <div class="grid2" style="font-size:.86rem">
+            <div><span style="color:var(--sub)">Khách hàng</span><br><strong>Nguyễn Thị Hồng</strong> · <span class="bg bg-gold">Gold</span></div>
+            <div><span style="color:var(--sub)">CCCD / SĐT</span><br>0790xxxxxxxx · 0903 xxx 111</div>
+            <div><span style="color:var(--sub)">Cửa hàng</span><br>6117 - Cửa hàng Quận 1</div>
+            <div><span style="color:var(--sub)">TVV</span><br>Nguyễn Thị Mai (TVV001)</div>
+            <div><span style="color:var(--sub)">Số tiền cầm</span><br><strong style="font-size:1rem">28.000.000 đ</strong></div>
+            <div><span style="color:var(--sub)">Kỳ hạn</span><br>30 ngày (23/08 → 22/09/2026)</div>
+          </div>
+        </div>
+
+        <!-- Card 2: TSCC + Thông tin vay -->
+        <div class="card">
+          <div class="sub-head"><span class="step-n">①</span> Tài sản cầm cố (2)</div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Dòng hàng</th>
+                <th>Mô tả TSCC</th>
+                <th>PP định giá</th>
+                <th>Giá trị định giá</th>
+                <th>Hạn mức TSCC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TS1</td>
+                <td>Nhẫn nữ 18K PNJ đính CZ</td>
+                <td>Theo hóa đơn</td>
+                <td>15.000.000 đ</td>
+                <td>12.750.000 đ</td>
+              </tr>
+              <tr>
+                <td>TS2</td>
+                <td>Lắc tay vàng 24K SJC 2 chỉ</td>
+                <td>Theo thị trường</td>
+                <td>20.000.000 đ</td>
+                <td>17.000.000 đ</td>
+              </tr>
+              <tr style="font-weight:700">
+                <td colspan="3" style="text-align:right">Tổng:</td>
+                <td>35.000.000 đ</td>
+                <td>29.750.000 đ</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="sub-head"><span class="step-n">②</span> Thông tin vay</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td style="color:var(--sub);width:180px">Số tiền cầm</td><td><strong>28.000.000 đ</strong></td></tr>
+              <tr><td style="color:var(--sub)">Kỳ hạn</td><td>30 ngày</td></tr>
+              <tr><td style="color:var(--sub)">Lãi suất</td><td>1.5 %/tháng</td></tr>
+              <tr><td style="color:var(--sub)">Chính sách</td><td>Chuẩn — giảm phí theo hạng Gold</td></tr>
+            </tbody>
+          </table>
+
+          <div class="sub-head"><span class="step-n">③</span> Thông tin giải ngân</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td style="color:var(--sub);width:180px">Số tài khoản</td><td>0071 000 xxx 789</td></tr>
+              <tr><td style="color:var(--sub)">Ngân hàng</td><td>Vietcombank (VCB)</td></tr>
+              <tr><td style="color:var(--sub)">Chủ tài khoản</td><td>NGUYEN THI HONG</td></tr>
+              <tr><td style="color:var(--sub)">Hình thức chi</td><td>Chuyển khoản</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Card 3: Bản scan HĐCC đã upload -->
+        <div class="card">
+          <h2>HĐCC đã ký (bản scan)</h2>
+          <div class="scan-preview">
+            <div class="icon">📄</div>
+            <div class="filename">HDCC_HD002211_signed.pdf</div>
+            <div class="meta">Upload bởi TVV Nguyễn Thị Mai · 25/08/2026 09:15 · 2.3 MB</div>
+            <button class="btn btn-line" style="margin-top:10px" onclick="toast('Mở xem file PDF bản scan HĐCC')">👁 Xem bản scan</button>
+          </div>
+        </div>
+
+        <!-- Card 4: Thông tin kiểm định -->
+        <div class="card">
+          <h2>Thông tin kiểm định</h2>
+          <div class="grid2" style="font-size:.86rem">
+            <div><span style="color:var(--sub)">Số tem</span><br>AT00001</div>
+            <div><span style="color:var(--sub)">Trọng lượng hao</span><br>1.5 chỉ</div>
+            <div><span style="color:var(--sub)">Số lượng hộp/túi NP</span><br>2</div>
+            <div><span style="color:var(--sub)">Tên thợ kiểm định</span><br>Trần Văn Minh (NV034)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== RIGHT COLUMN ===== -->
+      <div class="stack">
+
+        <!-- Card: Tiến trình hợp đồng -->
+        <div class="card">
+          <h2>Tiến trình hợp đồng</h2>
+          <div class="steps">
+            <div class="st done"><span class="ic">✓</span><span class="t">Tạo hợp đồng (TVV)<small>Nguyễn Thị Mai · 23/08 14:32</small></span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Chờ phê duyệt<small>TVV gửi BP.TĐVPD · 23/08 14:45</small></span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Đã phê duyệt<small>Trần Văn Hùng · 24/08 15:30</small></span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Chờ upload HĐCC<small>TVV in, ký, scan</small></span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Đã upload HĐCC<small>TVV upload · 25/08 09:15</small></span></div>
+            <div class="st now"><span class="ic">→</span><span class="t">Chuyển giải ngân<small>BP.PDVTĐ kiểm tra và chuyển KT</small></span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chờ chi tiền</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Đang cầm (Kết thúc)</span></div>
+          </div>
+        </div>
+
+        <!-- Card: Xử lý chuyển giải ngân -->
+        <div class="card">
+          <h2>Xử lý chuyển giải ngân</h2>
+
+          <div style="font-size:.86rem;font-weight:600;margin-bottom:10px">Checklist kiểm tra trước khi chuyển:</div>
+          <ul class="check-list" id="checklist">
+            <li><input type="checkbox" onchange="updateChecklist()"> HĐCC đã ký đầy đủ (2 bên)</li>
+            <li><input type="checkbox" onchange="updateChecklist()"> Bản scan rõ ràng, đọc được</li>
+            <li><input type="checkbox" onchange="updateChecklist()"> Thông tin TSCC khớp phiếu kiểm định</li>
+            <li><input type="checkbox" onchange="updateChecklist()"> Thông tin TK thụ hưởng chính xác</li>
+            <li><input type="checkbox" onchange="updateChecklist()"> Số tiền cầm trong hạn mức</li>
+          </ul>
+
+          <div style="margin-top:16px" class="stack" style="gap:9px">
+            <button class="btn btn-ok" style="width:100%;justify-content:center" id="btnTransfer" onclick="transferGN()" disabled>
+              ✓ Chuyển giải ngân (gửi Kế toán)
+            </button>
+            <button class="btn btn-warn" style="width:100%;justify-content:center;margin-top:9px" onclick="returnUpload()">
+              ↩ Trả về (yêu cầu upload lại)
+            </button>
+            <button class="btn btn-danger" style="width:100%;justify-content:center;margin-top:9px" onclick="showRejectModal()">
+              ✕ Từ chối
+            </button>
+          </div>
+
+          <div class="f" style="margin-top:12px">
+            <label>Lý do trả về / từ chối</label>
+            <textarea id="reason" rows="2" placeholder="VD: Bản scan mờ, thiếu chữ ký trang 2..."></textarea>
+          </div>
+
+          <div id="checkNote" class="note note-warn" style="margin-top:12px">⚠ Vui lòng đánh dấu tất cả checklist trước khi chuyển giải ngân.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal xác nhận từ chối -->
+  <div class="overlay" id="rejectModal">
+    <div class="modal" style="max-width:460px">
+      <div class="m-head"><h3>Xác nhận từ chối hồ sơ</h3></div>
+      <p style="font-size:.88rem;line-height:1.5;margin-bottom:16px;color:var(--sub)">
+        Hồ sơ sẽ bị <strong style="color:var(--red)">đóng vĩnh viễn</strong>. TVV có thể tạo hồ sơ mới bằng chức năng Duplicate.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn btn-line" data-modal-close>Hủy</button>
+        <button class="btn btn-danger" style="background:var(--red);color:#fff;border-color:var(--red)" onclick="confirmReject()">Xác nhận từ chối</button>
+      </div>
+    </div>
+  </div>
+
+<script src="assets/app.js"></script>
+<script>
+function updateChecklist(){
+  var boxes=document.querySelectorAll('#checklist input[type="checkbox"]');
+  var allChecked=Array.from(boxes).every(function(b){return b.checked});
+  document.getElementById('btnTransfer').disabled=!allChecked;
+  document.getElementById('checkNote').style.display=allChecked?'none':'';
+}
+function transferGN(){
+  document.getElementById('gnStatus').textContent='Chờ chi tiền';
+  document.getElementById('gnStatus').className='bg bg-warn';
+  var steps=document.querySelectorAll('.st');
+  steps[5].className='st done';steps[5].querySelector('.ic').textContent='✓';
+  steps[5].innerHTML='<span class="ic">✓</span><span class="t">Chuyển giải ngân<small>BP.PDVTĐ chuyển · vừa xong</small></span>';
+  steps[6].className='st now';steps[6].querySelector('.ic').textContent='→';
+  steps[6].innerHTML='<span class="ic">→</span><span class="t">Chờ chi tiền<small>Đợi KT duyệt giải ngân</small></span>';
+  toast('Đã chuyển giải ngân — Kế toán sẽ xử lý chi tiền');
+}
+function returnUpload(){
+  var r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do');r.focus();return;}
+  document.getElementById('gnStatus').textContent='Đã trả giải ngân';
+  document.getElementById('gnStatus').className='bg bg-red';
+  toast('Đã trả về — TVV cần upload lại bản scan');
+}
+function showRejectModal(){
+  var r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do');r.focus();return;}
+  document.getElementById('rejectModal').classList.add('open');
+}
+function confirmReject(){
+  document.getElementById('rejectModal').classList.remove('open');
+  document.getElementById('gnStatus').textContent='Từ chối';
+  document.getElementById('gnStatus').className='bg bg-red';
+  toast('Đã từ chối hồ sơ');
+}
+</script>
+</body>
+</html>

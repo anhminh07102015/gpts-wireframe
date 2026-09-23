@@ -1,0 +1,190 @@
+- generic [active] [ref=f4e1]:
+  - complementary [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - text: GPTS
+      - generic [ref=f4e4]: Hệ thống cầm đồ An Tín — wireframe
+    - navigation [ref=f4e5]:
+      - link "Tổng quan" [ref=f4e6] [cursor=pointer]:
+        - /url: index.html
+      - link "Khách hàng" [ref=f4e7] [cursor=pointer]:
+        - /url: 01-danh-sach-khach-hang.html
+      - link "· Tạo khách hàng" [ref=f4e8] [cursor=pointer]:
+        - /url: 02-tao-khach-hang.html
+      - link "Hợp đồng cầm cố" [ref=f4e9] [cursor=pointer]:
+        - /url: 04-danh-sach-hop-dong.html
+      - link "· Lên hợp đồng" [ref=f4e10] [cursor=pointer]:
+        - /url: 03-tao-hop-dong.html
+      - link "· Duyệt hồ sơ (B1)" [ref=f4e11] [cursor=pointer]:
+        - /url: 05-duyet-ho-so.html
+      - link "· Duyệt giải ngân (B2)" [ref=f4e12] [cursor=pointer]:
+        - /url: 06-duyet-giai-ngan.html
+      - link "Luồng xuất hóa đơn" [ref=f4e13] [cursor=pointer]:
+        - /url: 07-luong-xuat-hoa-don.html
+      - link "· Thu nợ / Tất toán" [ref=f4e14] [cursor=pointer]:
+        - /url: 08-thu-no-tat-toan.html
+      - link "· Gia hạn / Vay thêm" [ref=f4e15] [cursor=pointer]:
+        - /url: 09-gia-han.html
+      - link "Report / Truy xuất" [ref=f4e16] [cursor=pointer]:
+        - /url: 10-report.html
+      - link "Thanh lý / Nhắc nợ" [ref=f4e17] [cursor=pointer]:
+        - /url: 11-thanh-ly-nhac-no.html
+      - link "HĐ tới hạn / Quá hạn" [ref=f4e18] [cursor=pointer]:
+        - /url: 12-hop-dong-toi-han.html
+      - link "Cấu hình Admin" [ref=f4e19] [cursor=pointer]:
+        - /url: 13-cau-hinh-admin.html
+    - generic [ref=f4e20]: Bản wireframe thao tác · số liệu minh họa
+  - main [ref=f4e21]:
+    - generic [ref=f4e22]:
+      - link "Hợp đồng cầm cố" [ref=f4e23] [cursor=pointer]:
+        - /url: 04-danh-sach-hop-dong.html
+      - text: › HD002211 › Duyệt hồ sơ
+    - generic [ref=f4e24]:
+      - heading "Duyệt hồ sơ HD002211 (bước 1)" [level=1] [ref=f4e25]
+      - generic [ref=f4e26]: Chờ duyệt hồ sơ
+    - generic [ref=f4e27]:
+      - generic [ref=f4e28]:
+        - generic [ref=f4e29]:
+          - text: ℹ
+          - strong [ref=f4e30]: "Hồ sơ gửi lại sau chỉnh sửa:"
+          - text: ưu tiên hiển thị cho người duyệt cũ · có bộ lọc dự phòng khi người duyệt nghỉ
+        - generic [ref=f4e31]:
+          - strong [ref=f4e32]: ℹ Hồ sơ gửi lại sau trả về — 3 thông tin đã thay đổi
+          - text: (các ô tô vàng bên dưới)
+        - generic [ref=f4e33]:
+          - heading [level=2] [ref=f4e34]:
+            - text: Khách hàng
+            - link "▼ Xem chi tiết" [ref=f4e35] [cursor=pointer]:
+              - /url: "#"
+          - table [ref=f4e36]:
+            - rowgroup [ref=f4e37]:
+              - row [ref=f4e38]:
+                - cell "Họ tên / Hạng" [ref=f4e39]
+                - cell "Nguyễn Thị Hồng · Gold (giảm phí)" [ref=f4e40]:
+                  - text: Nguyễn Thị Hồng ·
+                  - generic [ref=f4e41]: Gold (giảm phí)
+              - row [ref=f4e42]:
+                - cell "CCCD / SĐT" [ref=f4e43]
+                - cell "0790xxxxxxxx · 0903 xxx 111" [ref=f4e44]
+              - row [ref=f4e45]:
+                - cell "Dư nợ hiện tại" [ref=f4e46]
+                - cell "15.000.000 đ (2 HĐCC hiệu lực)" [ref=f4e47]
+        - generic [ref=f4e48]:
+          - heading [level=2] [ref=f4e49]:
+            - text: Tài sản cầm cố (2)
+            - link "▼ Xem chi tiết" [ref=f4e50] [cursor=pointer]:
+              - /url: "#"
+          - table [ref=f4e51]:
+            - rowgroup [ref=f4e52]:
+              - row [ref=f4e53]:
+                - 'cell "TSCC #1" [ref=f4e54]'
+                - cell "Nữ trang trọng lượng · 2,5 chỉ · 75% · thị trường · 18.750.000 đ" [ref=f4e55]
+              - row [ref=f4e56]:
+                - 'cell "TSCC #2" [ref=f4e57]'
+                - cell "TS kim cương · theo hóa đơn PNJ · 22.000.000 đ" [ref=f4e58]
+              - row [ref=f4e59]:
+                - cell "Tổng trị giá / hạn mức" [ref=f4e60]
+                - cell [ref=f4e61]:
+                  - strong [ref=f4e62]: 40.750.000 đ / 31.900.000 đ
+        - generic [ref=f4e63]:
+          - heading [level=2] [ref=f4e64]:
+            - text: Thông tin vay
+            - link "▼ Xem chi tiết" [ref=f4e65] [cursor=pointer]:
+              - /url: "#"
+          - table [ref=f4e66]:
+            - rowgroup [ref=f4e67]:
+              - row [ref=f4e68]:
+                - cell "Số tiền cầm" [ref=f4e69]
+                - cell "30.000.000 đ→28.000.000 đ (trong hạn mức)" [ref=f4e70]
+              - row [ref=f4e71]:
+                - cell "Kỳ hạn / lãi / phí" [ref=f4e72]
+                - cell "30 ngày · lãi 1.5 · phí bậc <50tr" [ref=f4e73]
+              - row [ref=f4e74]:
+                - cell "Chính sách ưu đãi" [ref=f4e75]
+                - cell "Chuẩn — giảm phí theo hạng Gold" [ref=f4e76]
+              - row [ref=f4e77]:
+                - cell "Chi vay" [ref=f4e78]
+                - cell "Chuyển khoản · VCB 0071xxxx · Nguyễn Thị Hồng" [ref=f4e79]
+              - row [ref=f4e80]:
+                - cell "Chứng từ đính kèm" [ref=f4e81]
+                - cell "6 hình tài sản · 1 giấy kiểm định · 1 tờ trình" [ref=f4e82]
+        - generic [ref=f4e83]:
+          - heading [level=2] [ref=f4e84]:
+            - text: Lịch sử chỉnh sửa phiếu
+            - link "▼ Xem chi tiết" [ref=f4e85] [cursor=pointer]:
+              - /url: "#"
+          - table [ref=f4e86]:
+            - rowgroup [ref=f4e87]:
+              - row [ref=f4e88]:
+                - columnheader "Lần" [ref=f4e89]
+                - columnheader "Thời điểm" [ref=f4e90]
+                - columnheader "Người sửa" [ref=f4e91]
+                - columnheader "Trường" [ref=f4e92]
+                - columnheader "Giá trị cũ" [ref=f4e93]
+                - columnheader "Giá trị mới" [ref=f4e94]
+                - columnheader "Lý do trả về" [ref=f4e95]
+            - rowgroup [ref=f4e96]:
+              - row [ref=f4e97]:
+                - cell "1" [ref=f4e98]
+                - cell "24/08/2026 10:15" [ref=f4e99]
+                - cell "Nguyễn Thị Mai (TVV)" [ref=f4e100]
+                - cell "Số tiền cầm" [ref=f4e101]
+                - cell "30.000.000 đ" [ref=f4e102]
+                - cell "28.000.000 đ" [ref=f4e103]
+                - cell "Giảm số tiền cầm, bổ sung hình và điều chỉnh tỷ lệ thu lại cho phù hợp" [ref=f4e104]
+              - row [ref=f4e105]:
+                - cell "1" [ref=f4e106]
+                - cell "24/08/2026 10:15" [ref=f4e107]
+                - cell "Nguyễn Thị Mai (TVV)" [ref=f4e108]
+                - 'cell "Tỷ lệ thu lại #1" [ref=f4e109]'
+                - cell "85%" [ref=f4e110]
+                - cell "80%" [ref=f4e111]
+              - row [ref=f4e112]:
+                - cell "1" [ref=f4e113]
+                - cell "24/08/2026 10:18" [ref=f4e114]
+                - cell "Nguyễn Thị Mai (TVV)" [ref=f4e115]
+                - 'cell "Hình tài sản #1" [ref=f4e116]'
+                - cell "2 hình" [ref=f4e117]
+                - cell "4 hình" [ref=f4e118]
+      - generic [ref=f4e119]:
+        - generic [ref=f4e120]:
+          - heading "Tiến trình hồ sơ" [level=2] [ref=f4e121]
+          - generic [ref=f4e122]:
+            - generic [ref=f4e123]:
+              - generic [ref=f4e124]: ✓
+              - generic [ref=f4e125]:
+                - text: Tạo hồ sơ (TVV)
+                - generic [ref=f4e126]: 23/08 · 14:32
+            - generic [ref=f4e127]:
+              - generic [ref=f4e128]: ●
+              - generic [ref=f4e129]:
+                - text: Duyệt hồ sơ — BP.TĐVPD
+                - generic [ref=f4e130]: Đang chờ
+            - generic [ref=f4e131]:
+              - generic [ref=f4e132]: ○
+              - generic [ref=f4e133]:
+                - text: In HĐCC + bảng lãi phí + biên nhận
+                - generic [ref=f4e134]: Sau duyệt bước 1
+            - generic [ref=f4e135]:
+              - generic [ref=f4e136]: ○
+              - generic [ref=f4e137]:
+                - text: KH ký HĐCC → upload bản scan
+                - generic [ref=f4e138]: TVV upload scan HĐCC đã ký
+            - generic [ref=f4e139]:
+              - generic [ref=f4e140]: ○
+              - generic [ref=f4e141]: Duyệt giải ngân (bước 2)
+            - generic [ref=f4e142]:
+              - generic [ref=f4e143]: ○
+              - generic [ref=f4e144]: Kế toán duyệt đề nghị TT
+            - generic [ref=f4e145]:
+              - generic [ref=f4e146]: ○
+              - generic [ref=f4e147]: Chi tiền (Vietinbank)
+        - generic [ref=f4e148]:
+          - heading "Xử lý hồ sơ" [level=2] [ref=f4e149]
+          - generic [ref=f4e150]:
+            - button "✓ Duyệt hồ sơ" [ref=f4e151] [cursor=pointer]
+            - button "↩ Đề nghị chỉnh sửa (trả về)" [ref=f4e152] [cursor=pointer]
+            - button "✕ Từ chối" [ref=f4e153] [cursor=pointer]
+          - generic [ref=f4e154]:
+            - generic [ref=f4e155]: Lý do trả về / từ chối * (ghi rõ thông tin cần sửa)
+            - 'textbox "VD: sai số tài khoản thụ hưởng, bổ sung hình mặt sau tài sản…" [ref=f4e156]'
+            - generic [ref=f4e157]: "Trả về: không giới hạn field TVV được sửa · sau sửa hiện diff cho người duyệt"

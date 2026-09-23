@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upload HĐCC · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .img-placeholder{border:1.5px dashed var(--line);border-radius:var(--r-ctl);background:#fafbfd;
+    height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-size:.82rem;color:var(--sub);gap:4px}
+  .img-thumb{border:1px solid var(--line);border-radius:var(--r-ctl);overflow:hidden;
+    position:relative;cursor:pointer;background:#fafbfd}
+  .img-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .img-thumb .img-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);
+    color:#fff;font-size:.72rem;padding:3px 8px;text-align:center}
+  .sub-head{font-size:.9rem;font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
+  .sub-head .step-n{background:var(--navy-2);color:#fff;font-size:.72rem;font-weight:600;
+    border-radius:999px;padding:2px 9px}
+  .upload-zone{border:2px dashed var(--pri);border-radius:var(--r);background:rgba(37,99,235,.04);
+    padding:28px;text-align:center;cursor:pointer;transition:background .15s}
+  .upload-zone:hover{background:rgba(37,99,235,.08)}
+  .upload-zone .icon{font-size:2rem;margin-bottom:6px}
+  .upload-zone .label{font-size:.9rem;font-weight:600;color:var(--navy)}
+  .upload-zone small{font-size:.78rem;color:var(--sub);display:block;margin-top:4px}
+  .file-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);
+    border-radius:var(--r-ctl);font-size:.84rem;background:#fff}
+  .file-item .name{flex:1;font-weight:500}
+  .file-item .size{color:var(--sub);font-size:.78rem}
+  .file-item .remove{color:var(--red);cursor:pointer;font-size:.9rem}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ (B1)</a>
+      <a href="05b-upload-hdcc.html" class="on">· Upload HĐCC</a>
+      <a href="05c-chuyen-giai-ngan.html">· Chuyển giải ngân</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+      <a href="12-hop-dong-toi-han.html">HĐ tới hạn / Quá hạn</a>
+      <a href="13-cau-hinh-admin.html">Cấu hình Admin</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002211 › Upload HĐCC</div>
+    <div class="page-head">
+      <h1>Upload HĐCC — HD002211</h1>
+      <span class="bg bg-blue">HD002211</span>
+      <span class="bg bg-teal" id="uploadStatus">Đã phê duyệt</span>
+    </div>
+
+    <div class="split">
+      <!-- ===== LEFT COLUMN ===== -->
+      <div class="stack">
+
+        <!-- Card 1: Tóm tắt hợp đồng -->
+        <div class="card">
+          <h2>Tóm tắt hợp đồng</h2>
+          <div class="grid2" style="font-size:.86rem">
+            <div><span style="color:var(--sub)">Khách hàng</span><br><strong>Nguyễn Thị Hồng</strong> · <span class="bg bg-gold">Gold</span></div>
+            <div><span style="color:var(--sub)">CCCD / SĐT</span><br>0790xxxxxxxx · 0903 xxx 111</div>
+            <div><span style="color:var(--sub)">Cửa hàng</span><br>6117 - Cửa hàng Quận 1</div>
+            <div><span style="color:var(--sub)">TVV</span><br>Nguyễn Thị Mai (TVV001)</div>
+            <div><span style="color:var(--sub)">Số tiền cầm</span><br><strong style="font-size:1rem">28.000.000 đ</strong></div>
+            <div><span style="color:var(--sub)">Kỳ hạn</span><br>30 ngày (23/08 → 22/09/2026)</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Tài sản cầm cố -->
+        <div class="card">
+          <div class="sub-head"><span class="step-n">①</span> Tài sản cầm cố (2)</div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Dòng hàng</th>
+                <th>Mô tả TSCC</th>
+                <th>PP định giá</th>
+                <th>Giá trị định giá</th>
+                <th>Hạn mức TSCC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TS1</td>
+                <td>Nhẫn nữ 18K PNJ đính CZ</td>
+                <td>Theo hóa đơn</td>
+                <td>15.000.000 đ</td>
+                <td>12.750.000 đ</td>
+              </tr>
+              <tr>
+                <td>TS2</td>
+                <td>Lắc tay vàng 24K SJC 2 chỉ</td>
+                <td>Theo thị trường</td>
+                <td>20.000.000 đ</td>
+                <td>17.000.000 đ</td>
+              </tr>
+              <tr style="font-weight:700">
+                <td colspan="3" style="text-align:right">Tổng:</td>
+                <td>35.000.000 đ</td>
+                <td>29.750.000 đ</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="sub-head"><span class="step-n">②</span> Thông tin vay</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td style="color:var(--sub);width:180px">Số tiền cầm</td><td><strong>28.000.000 đ</strong></td></tr>
+              <tr><td style="color:var(--sub)">Kỳ hạn</td><td>30 ngày</td></tr>
+              <tr><td style="color:var(--sub)">Lãi suất</td><td>1.5 %/tháng</td></tr>
+              <tr><td style="color:var(--sub)">Chính sách</td><td>Chuẩn — giảm phí theo hạng Gold</td></tr>
+            </tbody>
+          </table>
+
+          <div class="sub-head"><span class="step-n">③</span> Thông tin giải ngân</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td style="color:var(--sub);width:180px">Số tài khoản</td><td>0071 000 xxx 789</td></tr>
+              <tr><td style="color:var(--sub)">Ngân hàng</td><td>Vietcombank (VCB)</td></tr>
+              <tr><td style="color:var(--sub)">Chủ tài khoản</td><td>NGUYEN THI HONG</td></tr>
+              <tr><td style="color:var(--sub)">Hình thức chi</td><td>Chuyển khoản</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Card 3: Thông tin phê duyệt -->
+        <div class="card">
+          <h2>Thông tin phê duyệt</h2>
+          <table class="tbl">
+            <tbody>
+              <tr><td style="color:var(--sub);width:180px">Người phê duyệt</td><td>Trần Văn Hùng (BP.TĐVPD)</td></tr>
+              <tr><td style="color:var(--sub)">Thời gian duyệt</td><td>24/08/2026 15:30</td></tr>
+              <tr><td style="color:var(--sub)">Trạng thái</td><td><span class="bg bg-teal">Đã phê duyệt</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- ===== RIGHT COLUMN ===== -->
+      <div class="stack">
+
+        <!-- Card: Tiến trình hợp đồng -->
+        <div class="card">
+          <h2>Tiến trình hợp đồng</h2>
+          <div class="steps">
+            <div class="st done"><span class="ic">✓</span><span class="t">Tạo hợp đồng (TVV)<small>Nguyễn Thị Mai · 23/08 14:32</small></span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Chờ phê duyệt<small>TVV gửi BP.TĐVPD · 23/08 14:45</small></span></div>
+            <div class="st done"><span class="ic">✓</span><span class="t">Đã phê duyệt<small>Trần Văn Hùng · 24/08 15:30</small></span></div>
+            <div class="st now"><span class="ic">→</span><span class="t">Chờ upload HĐCC<small>TVV in, ký, scan và upload</small></span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Đã upload HĐCC</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chuyển giải ngân</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Chờ chi tiền</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Đang cầm (Kết thúc)</span></div>
+          </div>
+        </div>
+
+        <!-- Card: In & Upload HĐCC -->
+        <div class="card">
+          <h2>In & Upload HĐCC</h2>
+
+          <div style="margin-bottom:16px">
+            <div style="font-size:.86rem;font-weight:600;margin-bottom:8px">Bước 1: In hợp đồng</div>
+            <button class="btn btn-line" style="width:100%;justify-content:center" onclick="toast('Đang tạo file PDF hợp đồng...')">
+              🖨 In hợp đồng cầm cố (PDF)
+            </button>
+            <div style="font-size:.78rem;color:var(--sub);margin-top:6px">In 2 bản — 1 cho khách hàng, 1 lưu cửa hàng. Ký tên đầy đủ trước khi scan.</div>
+          </div>
+
+          <div style="margin-bottom:16px">
+            <div style="font-size:.86rem;font-weight:600;margin-bottom:8px">Bước 2: Upload bản scan đã ký</div>
+            <div class="upload-zone" id="uploadZone" onclick="simulateUpload()">
+              <div class="icon">📤</div>
+              <div class="label">Chọn hoặc kéo thả file bản scan</div>
+              <small>PDF, PNG, JPG — tối đa 20MB</small>
+            </div>
+            <div id="uploadedFiles" style="margin-top:10px;display:none" class="stack" style="gap:8px">
+              <div class="file-item">
+                <span>📄</span>
+                <span class="name">HDCC_HD002211_signed.pdf</span>
+                <span class="size">2.3 MB</span>
+                <span class="remove" onclick="removeFile()">✕</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--line);padding-top:14px">
+            <button class="btn btn-ok" style="width:100%;justify-content:center" id="btnConfirmUpload" onclick="confirmUpload()">
+              ✓ Xác nhận đã upload HĐCC
+            </button>
+          </div>
+
+          <div class="note note-info" style="margin-top:12px">Sau khi xác nhận, hợp đồng sẽ chuyển sang trạng thái "Đã upload HĐCC" và sẵn sàng chuyển giải ngân.</div>
+        </div>
+
+        <!-- Card: Trả lại (nếu có vấn đề) -->
+        <div class="card">
+          <h2>Ghi chú</h2>
+          <div class="f">
+            <label>Ghi chú bổ sung (nếu có)</label>
+            <textarea rows="2" placeholder="VD: Khách ký thiếu trang 2, cần bổ sung..."></textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/app.js"></script>
+<script>
+function simulateUpload(){
+  document.getElementById('uploadedFiles').style.display='';
+  document.getElementById('uploadZone').style.borderColor='var(--green)';
+  document.getElementById('uploadZone').innerHTML='<div class="icon">✅</div><div class="label">Đã chọn file</div><small>Nhấn để chọn file khác</small>';
+  toast('Đã upload file bản scan');
+}
+function removeFile(){
+  document.getElementById('uploadedFiles').style.display='none';
+  document.getElementById('uploadZone').style.borderColor='';
+  document.getElementById('uploadZone').innerHTML='<div class="icon">📤</div><div class="label">Chọn hoặc kéo thả file bản scan</div><small>PDF, PNG, JPG — tối đa 20MB</small>';
+}
+function confirmUpload(){
+  document.getElementById('uploadStatus').textContent='Đã upload HĐCC';
+  document.getElementById('uploadStatus').className='bg bg-teal';
+  // Update step
+  var steps=document.querySelectorAll('.st');
+  steps[3].className='st done';steps[3].querySelector('.ic').textContent='✓';
+  steps[4].className='st done';steps[4].querySelector('.ic').textContent='✓';
+  steps[4].innerHTML='<span class="ic">✓</span><span class="t">Đã upload HĐCC<small>TVV upload · vừa xong</small></span>';
+  toast('Xác nhận thành công — sẵn sàng chuyển giải ngân');
+}
+</script>
+</body>
+</html>

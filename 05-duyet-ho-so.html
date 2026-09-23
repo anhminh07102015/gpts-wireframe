@@ -8,15 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .img-placeholder{border:1.5px dashed var(--line);border-radius:var(--r-ctl);background:#fafbfd;
-    height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    font-size:.82rem;color:var(--sub);gap:4px}
-  .img-placeholder a{font-size:.76rem;color:var(--blue);text-decoration:underline}
-  .img-thumb{border:1px solid var(--line);border-radius:var(--r-ctl);overflow:hidden;
-    position:relative;cursor:pointer;background:#fafbfd}
+  .img-thumb{border:1px solid var(--line);border-radius:8px;overflow:hidden;
+    position:relative;cursor:pointer;background:#f8fafc;transition:box-shadow .2s}
+  .img-thumb:hover{box-shadow:0 2px 12px rgba(0,0,0,.12)}
   .img-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .img-thumb .img-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);
-    color:#fff;font-size:.72rem;padding:3px 8px;text-align:center}
+  .img-thumb .img-label{position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.6));
+    color:#fff;font-size:.72rem;padding:8px 10px 6px;text-align:center}
+  .img-section{margin-top:16px}
+  .img-section-title{font-size:.82rem;font-weight:600;color:var(--sub);margin-bottom:8px}
+  .img-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .img-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .img-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .view-btn{display:flex;align-items:center;justify-content:center;gap:4px;
+    margin-top:6px;font-size:.76rem;color:var(--blue);cursor:pointer}
+  .view-btn:hover{text-decoration:underline}
   .sub-head{font-size:.9rem;font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
   .sub-head .step-n{background:var(--navy-2);color:#fff;font-size:.72rem;font-weight:600;
     border-radius:999px;padding:2px 9px}
@@ -33,6 +39,8 @@
       <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
       <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
       <a href="05-duyet-ho-so.html" class="on">· Duyệt hồ sơ (B1)</a>
+      <a href="05b-upload-hdcc.html">· Upload HĐCC</a>
+      <a href="05c-chuyen-giai-ngan.html">· Chuyển giải ngân</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân (B2)</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
       <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
@@ -77,10 +85,33 @@
             <div><span style="color:var(--sub)">Địa chỉ thường trú</span><br>45 Lê Lợi, P.Bến Nghé, Q.1, TP.HCM</div>
             <div><span style="color:var(--sub)">Email</span><br>hong.nguyen@email.com</div>
           </div>
-          <div class="grid3" style="margin-top:14px">
-            <div class="img-thumb" style="height:120px" onclick="toast('Xem ảnh khách hàng')"><img src="assets/img/portrait-customer.jpg" alt="Hình khách hàng"><div class="img-label">📷 Hình khách hàng</div></div>
-            <div class="img-thumb" style="height:120px" onclick="toast('Xem ảnh CCCD mặt trước')"><img src="assets/img/cccd-front.svg" alt="CCCD mặt trước"><div class="img-label">📷 CCCD mặt trước</div></div>
-            <div class="img-thumb" style="height:120px" onclick="toast('Xem ảnh CCCD mặt sau')"><img src="assets/img/cccd-back.svg" alt="CCCD mặt sau"><div class="img-label">📷 CCCD mặt sau</div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:16px;margin-top:16px">
+            <div>
+              <div class="img-section-title">Hình khách hàng</div>
+              <div class="img-thumb" style="width:130px;height:170px" onclick="toast('Xem ảnh khách hàng')">
+                <img src="assets/img/portrait-customer.jpg" alt="Hình khách hàng">
+              </div>
+              <div class="view-btn" onclick="toast('Xem ảnh khách hàng')">👁 Xem ảnh</div>
+            </div>
+            <div>
+              <div class="img-section-title">Hình CCCD</div>
+              <div class="img-grid-2">
+                <div>
+                  <div style="font-size:.76rem;color:var(--sub);margin-bottom:4px">Mặt trước</div>
+                  <div class="img-thumb" style="height:100px" onclick="toast('Xem ảnh CCCD mặt trước')">
+                    <img src="assets/img/cccd-front.jpg" alt="CCCD mặt trước">
+                  </div>
+                  <div class="view-btn" onclick="toast('Xem ảnh CCCD mặt trước')">👁 Xem ảnh</div>
+                </div>
+                <div>
+                  <div style="font-size:.76rem;color:var(--sub);margin-bottom:4px">Mặt sau</div>
+                  <div class="img-thumb" style="height:100px" onclick="toast('Xem ảnh CCCD mặt sau')">
+                    <img src="assets/img/cccd-back.jpg" alt="CCCD mặt sau">
+                  </div>
+                  <div class="view-btn" onclick="toast('Xem ảnh CCCD mặt sau')">👁 Xem ảnh</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="note note-info" style="margin-top:14px">ℹ Thông tin khách hàng được đồng bộ từ dữ liệu Tổng. Vui lòng kiểm tra trước khi phê duyệt.</div>
         </div>
@@ -169,17 +200,40 @@
             <div><span style="color:var(--sub)">Số lượng hộp/túi NP</span><br>2</div>
             <div><span style="color:var(--sub)">Tên thợ kiểm định</span><br>Trần Văn Minh (NV034)</div>
           </div>
-          <div class="grid2" style="margin-top:14px">
-            <div class="img-thumb" style="height:100px" onclick="toast('Xem giấy kiểm định mặt trước')"><img src="assets/img/certificate.jpg" alt="Giấy kiểm định mặt trước"><div class="img-label">📷 Giấy kiểm định mặt trước</div></div>
-            <div class="img-thumb" style="height:100px" onclick="toast('Xem giấy kiểm định mặt sau')"><img src="assets/img/certificate.jpg" alt="Giấy kiểm định mặt sau" style="filter:hue-rotate(15deg)"><div class="img-label">📷 Giấy kiểm định mặt sau</div></div>
+          <div class="img-section">
+            <div class="img-grid-2">
+              <div>
+                <div class="img-section-title">Giấy kiểm định mặt trước</div>
+                <div class="img-thumb" style="height:140px" onclick="toast('Xem giấy kiểm định mặt trước')">
+                  <img src="assets/img/cert-front.jpg" alt="Giấy kiểm định mặt trước">
+                </div>
+                <div class="view-btn" onclick="toast('Xem giấy kiểm định mặt trước')">👁 Xem ảnh</div>
+              </div>
+              <div>
+                <div class="img-section-title">Giấy kiểm định mặt sau</div>
+                <div class="img-thumb" style="height:140px" onclick="toast('Xem giấy kiểm định mặt sau')">
+                  <img src="assets/img/cert-back.jpg" alt="Giấy kiểm định mặt sau">
+                </div>
+                <div class="view-btn" onclick="toast('Xem giấy kiểm định mặt sau')">👁 Xem ảnh</div>
+              </div>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px">
-            <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #1')"><img src="assets/img/jewelry-1.jpg" alt="Nhẫn nữ 18K"><div class="img-label">Nhẫn nữ 18K</div></div>
-            <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #2')"><img src="assets/img/jewelry-2.jpg" alt="Lắc tay vàng 24K"><div class="img-label">Lắc tay 24K</div></div>
-            <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #3')"><img src="assets/img/jewelry-1.jpg" alt="Mặt trước TS" style="filter:brightness(1.1)"><div class="img-label">Mặt trước</div></div>
-            <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #4')"><img src="assets/img/jewelry-2.jpg" alt="Mặt sau TS" style="filter:brightness(.9)"><div class="img-label">Mặt sau</div></div>
+          <div class="img-section">
+            <div class="img-section-title">Hình tài sản (4 hình)</div>
+            <div class="img-grid-4">
+              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #1')"><img src="assets/img/jewelry-1.jpg" alt="Nhẫn nữ 18K"><div class="img-label">Nhẫn nữ 18K</div></div>
+              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #2')"><img src="assets/img/jewelry-2.jpg" alt="Lắc tay vàng 24K"><div class="img-label">Lắc tay 24K</div></div>
+              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #3')"><img src="assets/img/jewelry-1.jpg" alt="Mặt trước TS" style="filter:brightness(1.05)"><div class="img-label">Mặt trước</div></div>
+              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #4')"><img src="assets/img/jewelry-2.jpg" alt="Mặt sau TS" style="filter:brightness(.92)"><div class="img-label">Mặt sau</div></div>
+            </div>
           </div>
-          <div class="img-thumb" style="height:100px;margin-top:14px" onclick="toast('Xem hình hộp/túi niêm phong')"><img src="assets/img/sealed-bag.svg" alt="Hộp/túi niêm phong"><div class="img-label">📷 Hộp/túi niêm phong (2 túi)</div></div>
+          <div class="img-section">
+            <div class="img-section-title">Hình hộp/túi niêm phong (2 túi)</div>
+            <div class="img-thumb" style="height:110px" onclick="toast('Xem hình hộp/túi niêm phong')">
+              <img src="assets/img/sealed-bag.svg" alt="Hộp/túi niêm phong">
+            </div>
+            <div class="view-btn" onclick="toast('Xem hình hộp/túi niêm phong')">👁 Xem ảnh</div>
+          </div>
         </div>
 
         <!-- Card 4: Lịch sử chỉnh sửa phiếu -->
@@ -245,7 +299,7 @@
             <div class="st now"><span class="ic">→</span><span class="t">Chờ phê duyệt<small>TVV gửi BP.TĐVPD · 23/08 14:45</small></span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Đã phê duyệt</span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Chờ upload HĐCC</span></div>
-            <div class="st todo"><span class="ic">○</span><span class="t">In HĐCC + scan</span></div>
+            <div class="st todo"><span class="ic">○</span><span class="t">Đã upload HĐCC</span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Chuyển giải ngân</span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Chờ chi tiền</span></div>
             <div class="st todo"><span class="ic">○</span><span class="t">Đang cầm (Kết thúc)</span></div>

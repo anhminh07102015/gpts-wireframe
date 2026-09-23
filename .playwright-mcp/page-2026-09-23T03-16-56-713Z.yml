@@ -1,0 +1,291 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - text: GPTS
+      - generic [ref=e4]: Hệ thống cầm đồ An Tín — wireframe
+    - navigation [ref=e5]:
+      - link "Tổng quan" [ref=e6] [cursor=pointer]:
+        - /url: index.html
+      - link "Khách hàng" [ref=e7] [cursor=pointer]:
+        - /url: 01-danh-sach-khach-hang.html
+      - link "· Tạo khách hàng" [ref=e8] [cursor=pointer]:
+        - /url: 02-tao-khach-hang.html
+      - link "Hợp đồng cầm cố" [ref=e9] [cursor=pointer]:
+        - /url: 04-danh-sach-hop-dong.html
+      - link "· Lên hợp đồng" [ref=e10] [cursor=pointer]:
+        - /url: 03-tao-hop-dong.html
+      - link "· Duyệt hồ sơ (B1)" [ref=e11] [cursor=pointer]:
+        - /url: 05-duyet-ho-so.html
+      - link "· Duyệt giải ngân (B2)" [ref=e12] [cursor=pointer]:
+        - /url: 06-duyet-giai-ngan.html
+      - link "Luồng xuất hóa đơn" [ref=e13] [cursor=pointer]:
+        - /url: 07-luong-xuat-hoa-don.html
+      - link "· Thu nợ / Tất toán" [ref=e14] [cursor=pointer]:
+        - /url: 08-thu-no-tat-toan.html
+      - link "· Gia hạn / Vay thêm" [ref=e15] [cursor=pointer]:
+        - /url: 09-gia-han.html
+      - link "Report / Truy xuất" [ref=e16] [cursor=pointer]:
+        - /url: 10-report.html
+      - link "Thanh lý / Nhắc nợ" [ref=e17] [cursor=pointer]:
+        - /url: 11-thanh-ly-nhac-no.html
+      - link "HĐ tới hạn / Quá hạn" [ref=e18] [cursor=pointer]:
+        - /url: 12-hop-dong-toi-han.html
+      - link "Cấu hình Admin" [ref=e19] [cursor=pointer]:
+        - /url: 13-cau-hinh-admin.html
+    - generic [ref=e20]: Bản wireframe thao tác · số liệu minh họa
+  - main [ref=e21]:
+    - generic [ref=e22]:
+      - link "Tổng quan" [ref=e23] [cursor=pointer]:
+        - /url: index.html
+      - text: ›
+      - link "Hợp đồng cầm cố" [ref=e24] [cursor=pointer]:
+        - /url: 04-danh-sach-hop-dong.html
+      - text: › Lên hợp đồng
+    - generic [ref=e26]:
+      - heading "Lên hợp đồng cầm cố" [level=1] [ref=e27]
+      - generic [ref=e28]: Tạo hợp đồng mới qua 6 bước — thông tin, khách hàng, tài sản, cầm cố, giải ngân, kiểm định.
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "1 Thông tin hợp đồng" [level=2] [ref=e31]:
+          - generic [ref=e32]: "1"
+          - text: Thông tin hợp đồng
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - generic [ref=e36]: Cửa hàng *
+              - combobox [ref=e37]:
+                - option "6117 - Cửa hàng Quận 1" [selected]
+                - option "6118 - CN Thủ Đức"
+                - option "6119 - CN Quận 7"
+            - generic [ref=e38]:
+              - generic [ref=e39]: Loại TSCC
+              - combobox [ref=e40]:
+                - option "J - JEWELRY" [selected]
+                - option "V - VEHICLE"
+                - option "O - OTHER"
+            - generic [ref=e41]:
+              - generic [ref=e42]: Kỳ hạn
+              - combobox [ref=e43]:
+                - option "30 ngày" [selected]
+                - option "60 ngày"
+                - option "90 ngày"
+            - generic [ref=e44]:
+              - generic [ref=e45]: TVV
+              - textbox [disabled] [ref=e46]: TVV001 - Nguyễn Văn A
+            - generic [ref=e47]:
+              - generic [ref=e48]: Khu vực
+              - textbox [disabled] [ref=e49]: Khu vực HCM
+          - generic [ref=e50]:
+            - generic [ref=e51]: Mã hợp đồng
+            - generic [ref=e52]: 6117 J1 000001
+            - generic [ref=e53]:
+              - generic [ref=e54]:
+                - strong [ref=e55]: Cửa hàng
+                - text: "6117"
+              - generic [ref=e56]:
+                - strong [ref=e57]: Loại hàng
+                - text: J
+              - generic [ref=e58]:
+                - strong [ref=e59]: Kỳ hạn
+                - text: "1"
+              - generic [ref=e60]:
+                - strong [ref=e61]: Số HĐ
+                - text: "000001"
+            - generic [ref=e62]: "Quy tắc sinh mã hợp đồng: Mã cửa hàng theo cửa hàng bán sản phẩm, loại hàng theo loại TSCC, kỳ hạn theo lựa chọn, số HĐ tự tăng."
+      - generic [ref=e63]:
+        - heading "2 Khách hàng" [level=2] [ref=e64]:
+          - generic [ref=e65]: "2"
+          - text: Khách hàng
+        - generic [ref=e66]:
+          - textbox "🔍 Tìm khách hàng theo CCCD / SĐT / tên / mã KH…" [ref=e67]
+          - link "Tạo KH mới" [ref=e68] [cursor=pointer]:
+            - /url: 02-tao-khach-hang.html
+        - generic [ref=e69]:
+          - generic [ref=e70]: Thông tin khách hàng
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - text: Họ tên
+              - strong [ref=e73]: Nguyễn Thị Hồng
+            - generic [ref=e74]:
+              - text: Hạng
+              - generic [ref=e75]: Gold
+            - generic [ref=e76]: CCCD0790xxxxxxxx
+            - generic [ref=e77]: SĐT0903 xxx 111
+            - generic [ref=e78]:
+              - text: Dư nợ
+              - strong [ref=e79]: 15.000.000 đ
+              - text: (2 HĐCC)
+          - generic [ref=e80]: Vui lòng tìm khách hàng hoặc tạo mới để hiện thị thông tin.
+      - generic [ref=e81]:
+        - heading "3 Tài sản cầm cố" [level=2] [ref=e82]:
+          - generic [ref=e83]: "3"
+          - text: Tài sản cầm cố
+        - generic [ref=e84]: Tối đa 20 dòng hàng TSCC trên 1 hợp đồng
+        - table [ref=e86]:
+          - rowgroup [ref=e87]:
+            - row [ref=e88]:
+              - columnheader "Dòng hàng TSCC" [ref=e89]
+              - columnheader "Mô tả TSCC" [ref=e90]
+              - columnheader "Phương pháp định giá" [ref=e91]
+              - columnheader "Giá trị định giá TSCC" [ref=e92]
+              - columnheader "Tỷ lệ cầm" [ref=e93]
+              - columnheader "Hạn mức TSCC" [ref=e94]
+              - columnheader [ref=e95]
+          - rowgroup [ref=e96]:
+            - row [ref=e97]:
+              - cell "TS1" [ref=e98]
+              - cell [ref=e99]:
+                - textbox [ref=e100]: Nhẫn nữ vàng 18K PNJ đính CZ
+              - cell "Theo hóa đơn" [ref=e101]
+              - cell "8.500.000 đ" [ref=e102]
+              - cell [ref=e103]:
+                - textbox [ref=e104]: 70%
+              - cell "5.950.000 đ" [ref=e105]
+              - cell "✎ 🗑" [ref=e106]
+            - row [ref=e107]:
+              - cell "TS2" [ref=e108]
+              - cell [ref=e109]:
+                - textbox [ref=e110]: Lắc tay vàng 24K SJC 2 chỉ
+              - cell "Theo thị trường" [ref=e111]
+              - cell "15.200.000 đ" [ref=e112]
+              - cell [ref=e113]:
+                - textbox [ref=e114]: 65%
+              - cell "9.880.000 đ" [ref=e115]
+              - cell "✎ 🗑" [ref=e116]
+        - button "+ Thêm tài sản" [ref=e118] [cursor=pointer]
+        - generic [ref=e119]: Nhấn ✎ để mở form chỉnh sửa chi tiết — phương pháp định giá, giá trị và hạn mức chỉ thay đổi được bên trong form.
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - text: "Tổng giá trị định giá:"
+            - strong [ref=e122]: 23.700.000 đ
+          - generic [ref=e123]:
+            - text: "Hạn mức cầm cố:"
+            - strong [ref=e124]: 15.830.000 đ
+      - generic [ref=e125]:
+        - heading "4 Thông tin cầm cố" [level=2] [ref=e126]:
+          - generic [ref=e127]: "4"
+          - text: Thông tin cầm cố
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e130]: Trị giá cầm *
+            - generic [ref=e131]:
+              - textbox "Nhập trị giá cầm" [ref=e132]
+              - generic [ref=e133]: đ
+          - generic [ref=e134]:
+            - generic [ref=e135]: Ngày cầm (Tự sinh)
+            - textbox [ref=e136]: 23/08/2026
+          - generic [ref=e137]:
+            - generic [ref=e138]: Ngày đến hạn (Tự sinh)
+            - textbox [ref=e139]: 22/09/2026
+        - generic [ref=e140]:
+          - generic [ref=e141]: Chính sách ưu đãi lãi suất *
+          - combobox [ref=e142]:
+            - option "Chọn chính sách" [selected]
+            - option "Chuẩn"
+            - option "Ưu đãi 1"
+            - option "Ưu đãi 2"
+            - option "CTKM1"
+            - option "CTKM2"
+        - generic [ref=e143]: ℹ Lãi suất và phí sẽ tự động sinh theo chính sách ưu đãi đã chọn.
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - generic [ref=e146]: Lãi suất
+            - generic [ref=e147]:
+              - generic [ref=e148]: Lãi suất (Lãi)
+              - textbox [ref=e149]: 0 %/tháng
+            - generic [ref=e150]:
+              - generic [ref=e151]: VAT lãi
+              - textbox [ref=e152]: 0 %/tháng
+          - generic [ref=e153]:
+            - generic [ref=e154]: Phí
+            - generic [ref=e155]:
+              - generic [ref=e156]: Phí (Phí')
+              - textbox [ref=e157]: 0 %/tháng
+            - generic [ref=e158]:
+              - generic [ref=e159]: VAT phí
+              - textbox [ref=e160]: 0 %/tháng
+        - generic [ref=e161]: ℹ Lãi suất và phí được tự động áp dụng theo chính sách ưu đãi đã chọn.
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - generic [ref=e164]: Tiền lãi (30 ngày)
+            - textbox [ref=e165]: 0 đ
+          - generic [ref=e166]:
+            - generic [ref=e167]: Tiền VAT lãi (30 ngày)
+            - textbox [ref=e168]: 0 đ
+          - generic [ref=e169]:
+            - generic [ref=e170]: Tiền phí (30 ngày)
+            - textbox [ref=e171]: 0 đ
+          - generic [ref=e172]:
+            - generic [ref=e173]: Tiền VAT phí (30 ngày)
+            - textbox [ref=e174]: 0 đ
+          - generic [ref=e175]:
+            - generic [ref=e176]: Tổng thu
+            - textbox [ref=e177]: 0 đ
+        - generic [ref=e178]: ⚠ Giá trị cầm phải ≥ 20% hạn mức và ≥ mức sàn tuyệt đối
+      - generic [ref=e179]:
+        - heading "5 Thông tin giải ngân" [level=2] [ref=e180]:
+          - generic [ref=e181]: "5"
+          - text: Thông tin giải ngân
+        - generic [ref=e182]:
+          - generic [ref=e183]:
+            - generic [ref=e184]: Hình thức chi *
+            - combobox [ref=e185]:
+              - option "Chuyển khoản" [selected]
+              - option "Tiền mặt" [disabled]
+          - generic [ref=e186]:
+            - generic [ref=e187]: Số TK thụ hưởng *
+            - textbox "Nhập số tài khoản" [ref=e188]
+          - generic [ref=e189]:
+            - generic [ref=e190]: Ngân hàng thụ hưởng *
+            - combobox [ref=e191]:
+              - option "Chọn ngân hàng" [selected]
+              - option "Vietcombank"
+              - option "ACB"
+              - option "Techcombank"
+              - option "VietinBank"
+      - generic [ref=e192]:
+        - heading "6 Thông tin kiểm định" [level=2] [ref=e193]:
+          - generic [ref=e194]: "6"
+          - text: Thông tin kiểm định
+        - generic [ref=e195]:
+          - generic [ref=e196]: Có thợ kiểm định? *
+          - generic [ref=e197]:
+            - generic [ref=e198] [cursor=pointer]:
+              - radio "Có thợ" [checked] [ref=e199]
+              - text: Có thợ
+            - generic [ref=e200] [cursor=pointer]:
+              - radio "Không thợ" [ref=e201]
+              - text: Không thợ
+        - generic [ref=e202]:
+          - generic [ref=e203]:
+            - generic [ref=e204]: Số tem *
+            - textbox [ref=e205]
+          - generic [ref=e206]:
+            - generic [ref=e207]: Số lượng hộp/túi niêm phong *
+            - textbox [ref=e208]
+          - generic [ref=e209]:
+            - generic [ref=e210]: Trọng lượng hao
+            - generic [ref=e211]:
+              - textbox [ref=e212]
+              - generic [ref=e213]: chỉ
+          - generic [ref=e214]:
+            - generic [ref=e215]: Tên thợ kiểm định
+            - combobox [ref=e216]:
+              - option "Chọn thợ" [selected]
+              - option "Trần Văn Minh (NV034) · CN Quận 1"
+              - option "Lê Hoàng (NV021) · CN Thủ Đức"
+              - option "Phạm Đức (NV018) · CN Quận 7"
+        - generic [ref=e217]:
+          - generic [ref=e219] [cursor=pointer]:
+            - text: Hình tài sản (nhiều ảnh)
+            - generic [ref=e220]: Chọn hoặc kéo thả hình ảnh (PNG, JPG, tối đa 10 ảnh)
+          - generic [ref=e222] [cursor=pointer]:
+            - text: Giấy kiểm định 2 mặt
+            - generic [ref=e223]: Chọn hoặc kéo thả hình ảnh (PNG, JPG, tối đa 10 ảnh)
+          - generic [ref=e225] [cursor=pointer]:
+            - text: Hình hộp/túi niêm phong
+            - generic [ref=e226]: Chọn hoặc kéo thả hình ảnh (PNG, JPG, tối đa 10 ảnh)
+        - generic [ref=e227]: "Lưu ý: Hợp đồng không thợ sẽ cho phép cập nhật tên thợ kiểm định sau, bổ sung số tem sau."
+      - generic [ref=e228]:
+        - button "Lưu nháp" [ref=e229] [cursor=pointer]
+        - button "Gửi duyệt" [ref=e230] [cursor=pointer]
