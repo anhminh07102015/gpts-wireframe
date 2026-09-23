@@ -178,33 +178,21 @@
         <div class="card">
           <h2>Xử lý chuyển giải ngân</h2>
 
-          <div style="font-size:.86rem;font-weight:600;margin-bottom:10px">Checklist kiểm tra trước khi chuyển:</div>
-          <ul class="check-list" id="checklist">
-            <li><input type="checkbox" onchange="updateChecklist()"> HĐCC đã ký đầy đủ (2 bên)</li>
-            <li><input type="checkbox" onchange="updateChecklist()"> Bản scan rõ ràng, đọc được</li>
-            <li><input type="checkbox" onchange="updateChecklist()"> Thông tin TSCC khớp phiếu kiểm định</li>
-            <li><input type="checkbox" onchange="updateChecklist()"> Thông tin TK thụ hưởng chính xác</li>
-            <li><input type="checkbox" onchange="updateChecklist()"> Số tiền cầm trong hạn mức</li>
-          </ul>
-
-          <div style="margin-top:16px" class="stack" style="gap:9px">
-            <button class="btn btn-ok" style="width:100%;justify-content:center" id="btnTransfer" onclick="transferGN()" disabled>
+          <div class="stack" style="gap:9px">
+            <button class="btn btn-ok" style="justify-content:center;width:auto" onclick="transferGN()">
               ✓ Chuyển giải ngân (gửi Kế toán)
             </button>
-            <button class="btn btn-warn" style="width:100%;justify-content:center;margin-top:9px" onclick="returnUpload()">
+            <button class="btn btn-warn" style="justify-content:center;width:auto" onclick="returnUpload()">
               ↩ Trả về (yêu cầu upload lại)
             </button>
-            <button class="btn btn-danger" style="width:100%;justify-content:center;margin-top:9px" onclick="showRejectModal()">
+            <button class="btn btn-danger" style="justify-content:center;width:auto" onclick="showRejectModal()">
               ✕ Từ chối
             </button>
           </div>
-
           <div class="f" style="margin-top:12px">
             <label>Lý do trả về / từ chối</label>
             <textarea id="reason" rows="2" placeholder="VD: Bản scan mờ, thiếu chữ ký trang 2..."></textarea>
           </div>
-
-          <div id="checkNote" class="note note-warn" style="margin-top:12px">⚠ Vui lòng đánh dấu tất cả checklist trước khi chuyển giải ngân.</div>
         </div>
 
       </div>
@@ -228,20 +216,12 @@
 
 <script src="assets/app.js"></script>
 <script>
-function updateChecklist(){
-  var boxes=document.querySelectorAll('#checklist input[type="checkbox"]');
-  var allChecked=Array.from(boxes).every(function(b){return b.checked});
-  document.getElementById('btnTransfer').disabled=!allChecked;
-  document.getElementById('checkNote').style.display=allChecked?'none':'';
-}
 function transferGN(){
   document.getElementById('gnStatus').textContent='Chờ chi tiền';
   document.getElementById('gnStatus').className='bg bg-warn';
   var steps=document.querySelectorAll('.st');
-  steps[5].className='st done';steps[5].querySelector('.ic').textContent='✓';
-  steps[5].innerHTML='<span class="ic">✓</span><span class="t">Chuyển giải ngân<small>BP.PDVTĐ chuyển · vừa xong</small></span>';
-  steps[6].className='st now';steps[6].querySelector('.ic').textContent='→';
-  steps[6].innerHTML='<span class="ic">→</span><span class="t">Chờ chi tiền<small>Đợi KT duyệt giải ngân</small></span>';
+  steps[5].className='st done';steps[5].querySelector('.st-icon').textContent='✓';
+  steps[6].className='st now';steps[6].querySelector('.st-icon').textContent='●';
   toast('Đã chuyển giải ngân — Kế toán sẽ xử lý chi tiền');
 }
 function returnUpload(){
