@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" rx="8" fill="#f8f9fa"/>
+  <!-- Bag body -->
+  <rect x="100" y="40" width="200" height="140" rx="6" fill="#e8f0fe" stroke="#90b4de" stroke-width="1.5"/>
+  <!-- Seal strip -->
+  <rect x="100" y="40" width="200" height="28" rx="6" fill="#d32f2f"/>
+  <rect x="100" y="56" width="200" height="12" fill="#d32f2f"/>
+  <text x="200" y="58" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="bold">NIÊM PHONG — AN TÍN</text>
+  <!-- Content inside bag -->
+  <rect x="130" y="90" width="50" height="50" rx="20" fill="#ffd70040" stroke="#c9a84c" stroke-dasharray="3,2"/>
+  <text x="155" y="120" text-anchor="middle" fill="#c9a84c" font-family="sans-serif" font-size="20">💍</text>
+  <rect x="200" y="95" width="80" height="40" rx="4" fill="#fff8e140" stroke="#c9a84c" stroke-dasharray="3,2"/>
+  <text x="240" y="120" text-anchor="middle" fill="#c9a84c" font-family="sans-serif" font-size="18">📿</text>
+  <!-- Label -->
+  <rect x="120" y="150" width="160" height="22" rx="3" fill="#fff" stroke="#ccc"/>
+  <text x="200" y="165" text-anchor="middle" fill="#555" font-family="sans-serif" font-size="9">HD002211 · AT00001 · 2 TSCC</text>
+  <!-- Serial number -->
+  <text x="200" y="192" text-anchor="middle" fill="#999" font-family="sans-serif" font-size="8">Mẫu minh họa — hộp/túi niêm phong tài sản</text>
+</svg>
