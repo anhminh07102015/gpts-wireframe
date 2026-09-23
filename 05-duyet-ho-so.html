@@ -85,30 +85,27 @@
             <div><span style="color:var(--sub)">Địa chỉ thường trú</span><br>45 Lê Lợi, P.Bến Nghé, Q.1, TP.HCM</div>
             <div><span style="color:var(--sub)">Email</span><br>hong.nguyen@email.com</div>
           </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:16px;margin-top:16px">
-            <div>
+          <div style="display:flex;gap:16px;margin-top:16px;align-items:flex-start">
+            <div style="flex-shrink:0">
               <div class="img-section-title">Hình khách hàng</div>
-              <div class="img-thumb" style="width:130px;height:170px" onclick="toast('Xem ảnh khách hàng')">
+              <div class="img-thumb" style="width:80px;height:100px" onclick="toast('Xem ảnh khách hàng')">
                 <img src="assets/img/portrait-customer.jpg" alt="Hình khách hàng">
               </div>
-              <div class="view-btn" onclick="toast('Xem ảnh khách hàng')">👁 Xem ảnh</div>
             </div>
-            <div>
+            <div style="flex:1">
               <div class="img-section-title">Hình CCCD</div>
-              <div class="img-grid-2">
-                <div>
-                  <div style="font-size:.76rem;color:var(--sub);margin-bottom:4px">Mặt trước</div>
-                  <div class="img-thumb" style="height:100px" onclick="toast('Xem ảnh CCCD mặt trước')">
+              <div style="display:flex;gap:10px">
+                <div style="flex:1">
+                  <div style="font-size:.72rem;color:var(--sub);margin-bottom:3px">Mặt trước</div>
+                  <div class="img-thumb" style="height:70px" onclick="toast('Xem ảnh CCCD mặt trước')">
                     <img src="assets/img/cccd-front.jpg" alt="CCCD mặt trước">
                   </div>
-                  <div class="view-btn" onclick="toast('Xem ảnh CCCD mặt trước')">👁 Xem ảnh</div>
                 </div>
-                <div>
-                  <div style="font-size:.76rem;color:var(--sub);margin-bottom:4px">Mặt sau</div>
-                  <div class="img-thumb" style="height:100px" onclick="toast('Xem ảnh CCCD mặt sau')">
+                <div style="flex:1">
+                  <div style="font-size:.72rem;color:var(--sub);margin-bottom:3px">Mặt sau</div>
+                  <div class="img-thumb" style="height:70px" onclick="toast('Xem ảnh CCCD mặt sau')">
                     <img src="assets/img/cccd-back.jpg" alt="CCCD mặt sau">
                   </div>
-                  <div class="view-btn" onclick="toast('Xem ảnh CCCD mặt sau')">👁 Xem ảnh</div>
                 </div>
               </div>
             </div>
@@ -200,39 +197,34 @@
             <div><span style="color:var(--sub)">Số lượng hộp/túi NP</span><br>2</div>
             <div><span style="color:var(--sub)">Tên thợ kiểm định</span><br>Trần Văn Minh (NV034)</div>
           </div>
-          <div class="img-section">
-            <div class="img-grid-2">
-              <div>
-                <div class="img-section-title">Giấy kiểm định mặt trước</div>
-                <div class="img-thumb" style="height:140px" onclick="toast('Xem giấy kiểm định mặt trước')">
-                  <img src="assets/img/cert-front.jpg" alt="Giấy kiểm định mặt trước">
-                </div>
-                <div class="view-btn" onclick="toast('Xem giấy kiểm định mặt trước')">👁 Xem ảnh</div>
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <div style="flex:1">
+              <div class="img-section-title">Giấy KĐ mặt trước</div>
+              <div class="img-thumb" style="height:90px" onclick="toast('Xem giấy kiểm định mặt trước')">
+                <img src="assets/img/cert-front.jpg" alt="Giấy kiểm định mặt trước">
               </div>
-              <div>
-                <div class="img-section-title">Giấy kiểm định mặt sau</div>
-                <div class="img-thumb" style="height:140px" onclick="toast('Xem giấy kiểm định mặt sau')">
-                  <img src="assets/img/cert-back.jpg" alt="Giấy kiểm định mặt sau">
-                </div>
-                <div class="view-btn" onclick="toast('Xem giấy kiểm định mặt sau')">👁 Xem ảnh</div>
+            </div>
+            <div style="flex:1">
+              <div class="img-section-title">Giấy KĐ mặt sau</div>
+              <div class="img-thumb" style="height:90px" onclick="toast('Xem giấy kiểm định mặt sau')">
+                <img src="assets/img/cert-back.jpg" alt="Giấy kiểm định mặt sau">
               </div>
             </div>
           </div>
-          <div class="img-section">
+          <div style="margin-top:14px">
             <div class="img-section-title">Hình tài sản (4 hình)</div>
-            <div class="img-grid-4">
-              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #1')"><img src="assets/img/jewelry-1.jpg" alt="Nhẫn nữ 18K"><div class="img-label">Nhẫn nữ 18K</div></div>
-              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #2')"><img src="assets/img/jewelry-2.jpg" alt="Lắc tay vàng 24K"><div class="img-label">Lắc tay 24K</div></div>
-              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #3')"><img src="assets/img/jewelry-1.jpg" alt="Mặt trước TS" style="filter:brightness(1.05)"><div class="img-label">Mặt trước</div></div>
-              <div class="img-thumb" style="height:90px" onclick="toast('Xem hình tài sản #4')"><img src="assets/img/jewelry-2.jpg" alt="Mặt sau TS" style="filter:brightness(.92)"><div class="img-label">Mặt sau</div></div>
+            <div style="display:flex;gap:8px">
+              <div class="img-thumb" style="width:80px;height:60px;flex-shrink:0" onclick="toast('Xem hình tài sản #1')"><img src="assets/img/jewelry-1.jpg" alt="Nhẫn nữ 18K"><div class="img-label">TS1</div></div>
+              <div class="img-thumb" style="width:80px;height:60px;flex-shrink:0" onclick="toast('Xem hình tài sản #2')"><img src="assets/img/jewelry-2.jpg" alt="Lắc tay vàng 24K"><div class="img-label">TS2</div></div>
+              <div class="img-thumb" style="width:80px;height:60px;flex-shrink:0" onclick="toast('Xem hình tài sản #3')"><img src="assets/img/jewelry-1.jpg" alt="Mặt trước TS" style="filter:brightness(1.05)"><div class="img-label">Trước</div></div>
+              <div class="img-thumb" style="width:80px;height:60px;flex-shrink:0" onclick="toast('Xem hình tài sản #4')"><img src="assets/img/jewelry-2.jpg" alt="Mặt sau TS" style="filter:brightness(.92)"><div class="img-label">Sau</div></div>
             </div>
           </div>
-          <div class="img-section">
-            <div class="img-section-title">Hình hộp/túi niêm phong (2 túi)</div>
-            <div class="img-thumb" style="height:110px" onclick="toast('Xem hình hộp/túi niêm phong')">
+          <div style="margin-top:14px">
+            <div class="img-section-title">Hộp/túi niêm phong (2 túi)</div>
+            <div class="img-thumb" style="max-width:200px;height:70px" onclick="toast('Xem hình hộp/túi niêm phong')">
               <img src="assets/img/sealed-bag.svg" alt="Hộp/túi niêm phong">
             </div>
-            <div class="view-btn" onclick="toast('Xem hình hộp/túi niêm phong')">👁 Xem ảnh</div>
           </div>
         </div>
 
