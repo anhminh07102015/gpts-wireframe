@@ -3,16 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Duyệt giải ngân & ĐNTT · GPTS An Tín</title>
+<title>Duyệt giải ngân · GPTS An Tín</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .section-divider{margin:28px 0 8px;padding:14px 18px;background:var(--navy);color:#fff;border-radius:var(--r-card);display:flex;align-items:center;gap:12px}
-  .section-divider h2{font-size:1.05rem;font-weight:700;margin:0}
   .role-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600;white-space:nowrap}
   .role-badge-duyet{background:var(--blue-bg);color:#155c8f}
-  .role-badge-kt{background:var(--gold-bg);color:var(--gold)}
   .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .detail-grid .detail-block{background:#f7fafc;border:1px solid var(--line);border-radius:var(--r-ctl);padding:12px 14px}
   .detail-grid .detail-block h3{font-size:.82rem;font-weight:600;color:var(--sub);margin-bottom:8px;text-transform:uppercase;letter-spacing:.02em}
@@ -20,7 +17,6 @@
   .detail-grid .detail-block td{padding:3px 0;vertical-align:top}
   .detail-grid .detail-block td:first-child{color:var(--sub);width:130px;white-space:nowrap}
   .highlight-row{background:var(--warn-bg) !important;border-radius:var(--r-ctl);padding:4px 6px}
-  .fi-note{background:var(--blue-bg);color:#14486f;border-radius:var(--r-ctl);padding:10px 14px;font-size:.82rem;line-height:1.45;margin-top:8px}
   .gn-expand{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
   .gn-expand table{font-size:.82rem}
   /* Diff highlight — tô vàng mặc định */
@@ -29,16 +25,6 @@
   .diff-old{text-decoration:line-through;color:#b91c1c;font-size:.85rem;margin-right:4px;opacity:.7}
   .diff-new{color:#15803d;font-weight:700}
   .diff-arrow{color:#9ca3af;margin:0 5px;font-size:.8rem}
-  /* SBT modal */
-  .sbt-form{display:flex;flex-direction:column;gap:10px}
-  .sbt-form label{font-size:.84rem;font-weight:500}
-  .sbt-form input{padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.88rem}
-  .sbt-form input:focus{outline:2px solid var(--blue);border-color:var(--blue)}
-  /* Hủy ĐNTT modal */
-  .huy-form{display:flex;flex-direction:column;gap:10px}
-  .huy-form label{font-size:.84rem;font-weight:500}
-  .huy-form textarea{padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.88rem;resize:vertical}
-  .huy-form textarea:focus{outline:2px solid var(--blue);border-color:var(--blue)}
 </style>
 </head>
 <body>
@@ -66,22 +52,14 @@
   </aside>
   <main class="main">
 
-    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002208 › Giải ngân</div>
-    <div class="page-head"><h1>Duyệt giải ngân (bước 2) &amp; Đề nghị thanh toán</h1></div>
-
-    <div class="note note-info" style="margin-bottom:8px"><strong>Hai phần dưới đây do 2 vai trò khác nhau xử lý.</strong> Phần 1 thuộc Người duyệt giải ngân — Phần 2 thuộc Kế toán thanh toán.</div>
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002208 › Duyệt giải ngân</div>
+    <div class="page-head"><h1>Duyệt giải ngân (B2) — HD002208</h1></div>
 
     <div class="note note-info" style="margin-bottom:16px">
       <strong>ℹ Hồ sơ gửi lại sau trả về (sai thông tin thụ hưởng) — 2 thông tin chi vay đã sửa</strong> (các ô <span style="background:#fff8e1;padding:1px 6px;border-left:3px solid #f59e0b">tô vàng</span> bên dưới)
     </div>
 
     <div class="stack">
-
-      <!-- ==================== PHẦN 1: Người duyệt giải ngân ==================== -->
-      <div class="section-divider">
-        <h2>Phần 1: Duyệt giải ngân</h2>
-        <span class="role-badge role-badge-duyet">Vai trò: Người duyệt giải ngân</span>
-      </div>
 
       <div class="split">
         <div class="stack">
@@ -184,94 +162,37 @@
             </div>
           </div>
         </div>
-        <div class="card"><h2>Xử lý <span class="role-badge role-badge-duyet">Người duyệt GN</span></h2>
+        <!-- Card: Tiến trình hợp đồng -->
+        <div class="card">
+          <h2>Tiến trình hợp đồng</h2>
+          <div class="steps">
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Tạo hợp đồng</div><div class="st-desc">Ghi nhận user TVV</div></div><div class="st-meta"><div class="st-who">Nguyễn Thị Mai (TVV)</div><div class="st-status">23/08/2026 14:32</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Chờ phê duyệt</div><div class="st-desc">TVV gửi BP.TĐVPD</div></div><div class="st-meta"><div class="st-who">Đã gửi</div><div class="st-status">23/08/2026 14:45</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Đã phê duyệt</div><div class="st-desc">Ghi nhận user phê duyệt</div></div><div class="st-meta"><div class="st-who">Trần Văn Hùng (BP.TĐVPD)</div><div class="st-status">24/08/2026 15:30</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Chờ upload HĐCC</div><div class="st-desc">In HĐCC và scan hợp đồng đã ký</div></div><div class="st-meta"><div class="st-who">TVV in, ký, scan</div><div class="st-status">24/08/2026 15:45</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Đã upload HĐCC</div><div class="st-desc">Scan hợp đồng đã ký</div></div><div class="st-meta"><div class="st-who">TVV upload</div><div class="st-status">25/08/2026 09:15</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Chuyển giải ngân</div><div class="st-desc">BP.PDVTĐ chuyển</div></div><div class="st-meta"><div class="st-who">BP.PDVTĐ</div><div class="st-status">25/08/2026 10:00</div></div></div>
+            <div class="st now"><div class="st-icon">●</div><div class="st-body"><div class="st-title">Chờ chi tiền</div><div class="st-desc">Đợi KT duyệt giải ngân</div></div><div class="st-meta"><div class="st-who">Đang thực hiện</div><div class="st-status">25/08/2026 10:30</div></div></div>
+            <div class="st todo"><div class="st-icon">○</div><div class="st-body"><div class="st-title">Đang cầm</div><div class="st-desc">Kết thúc</div></div><div class="st-meta"><div class="st-status">Chưa thực hiện</div></div></div>
+          </div>
+        </div>
+
+        <!-- Card: Xử lý -->
+        <div class="card">
+          <h2>Xử lý duyệt giải ngân</h2>
           <div class="stack" style="gap:9px">
             <button class="btn btn-ok" style="justify-content:center" onclick="approveGN()">✓ Duyệt giải ngân</button>
-            <button class="btn btn-warn" style="justify-content:center" onclick="toast('Đã trả về — TVV chỉ được sửa thông tin chi vay')">↩ Trả về sửa thông tin chi vay</button>
+            <button class="btn btn-warn" style="justify-content:center" onclick="returnGN()">↩ Trả về sửa thông tin chi vay</button>
+            <button class="btn btn-danger" style="justify-content:center" onclick="rejectGN()">✕ Từ chối</button>
           </div>
-          <div class="note note-info" style="margin-top:10px;font-size:.82rem">Duyệt xong → tạo đề nghị thanh toán, chuyển kế toán</div>
-          <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
-            <h2 style="font-size:.88rem;margin-bottom:8px">Luồng xử lý</h2>
-            <div class="steps">
-              <div class="st done"><span class="ic">✓</span><span class="t">Duyệt giải ngân<small>Người duyệt GN</small></span></div>
-              <div class="st done"><span class="ic">✓</span><span class="t">Tạo ĐNTT<small>Hệ thống tự động</small></span></div>
-              <div class="st now"><span class="ic">●</span><span class="t">KT duyệt ĐNTT<small>Kế toán thanh toán</small></span></div>
-              <div class="st todo"><span class="ic">○</span><span class="t">Xuất Excel Vietinbank</span></div>
-              <div class="st todo"><span class="ic">○</span><span class="t">Chi tiền</span></div>
-              <div class="st todo"><span class="ic">○</span><span class="t">Xác nhận + nhập SBT</span></div>
-            </div>
+          <div class="f" style="margin-top:12px">
+            <label>Lý do trả về / từ chối</label>
+            <textarea id="reason" rows="2" placeholder="VD: Sai số TK thụ hưởng..."></textarea>
           </div>
+          <div class="note note-info" style="margin-top:10px;font-size:.82rem">Duyệt xong → HĐ chuyển trạng thái "Đang cầm" (Kết thúc)</div>
         </div>
       </div>
 
-      <!-- ==================== PHẦN 2: Kế toán thanh toán ==================== -->
-      <div class="section-divider" style="background:var(--gold)">
-        <h2>Phần 2: Quản lý Đề nghị thanh toán</h2>
-        <span class="role-badge" style="background:rgba(255,255,255,.85);color:var(--gold)">Vai trò: Kế toán thanh toán</span>
-      </div>
-
-      <div class="tbl-wrap">
-        <div style="padding:16px 18px 8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <span style="font-weight:600;flex:1">Đề nghị thanh toán (ĐNTT)</span>
-          <span class="role-badge role-badge-kt">Kế toán thanh toán</span>
-        </div>
-        <table class="tbl" id="dntt">
-          <thead><tr><th>Mã ĐNTT</th><th>HĐCC</th><th>Thụ hưởng</th><th>Số tiền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
-          <tbody>
-            <tr id="dn812"><td>DN00812</td><td>HD002208</td><td>VCB · TRAN VAN BAO</td><td>12.000.000</td>
-              <td><span class="bg bg-warn">Chờ duyệt GN</span></td><td>—</td></tr>
-            <tr id="dn810"><td>DN00810</td><td>HD002205</td><td>ACB · LE MINH CHAU</td><td>45.000.000</td>
-              <td><span class="bg bg-blue">Chờ KT duyệt</span></td>
-              <td>
-                <button class="btn btn-ok" style="padding:5px 10px;font-size:.78rem" onclick="approveDNTT(this)">✓ Duyệt ĐNTT</button>
-                <button class="btn btn-danger" style="padding:5px 10px;font-size:.78rem;margin-left:4px" onclick="openHuyDNTT('DN00810')">✕ Hủy</button>
-              </td></tr>
-            <tr id="dn809"><td>DN00809</td><td>HD002203</td><td>TCB · NGUYEN VAN TU</td><td>20.000.000</td>
-              <td><span class="bg bg-teal">KT đã duyệt</span></td>
-              <td><button class="btn btn-line" style="padding:5px 10px;font-size:.78rem" onclick="exportVTB(this)">⬇ Xuất Excel Vietinbank</button>
-              <button class="btn btn-danger" style="padding:5px 10px;font-size:.78rem;margin-left:4px" onclick="openHuyDNTT('DN00809')">✕ Hủy</button></td></tr>
-            <tr><td>DN00807</td><td>HD002199</td><td>VTB · VO THUY AN</td><td>8.000.000</td>
-              <td><span class="bg bg-green">Đã chi tiền</span></td><td style="font-size:.78rem;color:var(--sub)">SBT: UNC-0921 · 20/08 16:05</td></tr>
-            <tr><td>DN00805</td><td>HD002195</td><td>VCB · PHAM THI MAI</td><td>15.000.000</td>
-              <td><span class="bg bg-red">Đã hủy</span></td><td style="font-size:.78rem;color:var(--sub)">Lý do: Sai TK thụ hưởng</td></tr>
-          </tbody>
-        </table>
-        <div class="tbl-foot">Luồng: Duyệt GN → Tạo ĐNTT → <strong>KT duyệt ĐNTT</strong> → Xuất Excel Vietinbank (UNC) → Tiền đi → Xác nhận đã chi tiền (nhập SBT) → HĐ chuyển "Đang hiệu lực"</div>
-      </div>
-
-      <div class="fi-note"><strong>Thời điểm FI:</strong> Thời điểm FI ghi nhận phải thu = thời điểm KT xác nhận chi tiền (nhập SBT thành công).</div>
-    </div>
-
-    <!-- ==================== Modal: Nhập SBT ==================== -->
-    <div class="overlay" id="modalSBT">
-      <div class="modal" style="max-width:460px">
-        <div class="m-head"><h3>Xác nhận đã chi tiền</h3><button data-modal-close style="font-size:1.3rem;color:var(--sub)">&times;</button></div>
-        <div class="sbt-form">
-          <label>Nhập SBT (số bút toán) <span style="color:var(--red)">*</span></label>
-          <input type="text" id="sbtInput" placeholder="VD: UNC-0935">
-          <div style="font-size:.76rem;color:var(--sub)">Số bút toán từ hệ thống ngân hàng sau khi tiền đã chuyển thành công.</div>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <button class="btn btn-ok" style="flex:1;justify-content:center" onclick="confirmPaidWithSBT()">✓ Xác nhận chi tiền</button>
-            <button class="btn btn-line" data-modal-close style="justify-content:center">Hủy</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ==================== Modal: Hủy ĐNTT ==================== -->
-    <div class="overlay" id="modalHuyDNTT">
-      <div class="modal" style="max-width:460px">
-        <div class="m-head"><h3>Hủy Đề nghị thanh toán</h3><button data-modal-close style="font-size:1.3rem;color:var(--sub)">&times;</button></div>
-        <div class="huy-form">
-          <div style="font-size:.86rem">Mã ĐNTT: <strong id="huyDnttCode">—</strong></div>
-          <label>Lý do hủy ĐNTT <span style="color:var(--red)">*</span></label>
-          <textarea id="huyDnttReason" rows="3" placeholder="VD: Sai thông tin TK thụ hưởng, KH yêu cầu hủy..."></textarea>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <button class="btn btn-danger" style="flex:1;justify-content:center;background:var(--red);color:#fff;border-color:var(--red)" onclick="confirmHuyDNTT()">✕ Xác nhận hủy ĐNTT</button>
-            <button class="btn btn-line" data-modal-close style="justify-content:center">Đóng</button>
-          </div>
-        </div>
-      </div>
     </div>
 
   </main>
@@ -287,69 +208,23 @@ function toggleDetailGN(){
 }
 /* === Duyệt giải ngân === */
 function approveGN(){
-  const tr=document.getElementById('dn812');
-  tr.cells[4].innerHTML='<span class="bg bg-blue">Chờ KT duyệt</span>';
-  tr.cells[5].innerHTML='<button class="btn btn-ok" style="padding:5px 10px;font-size:.78rem" onclick="approveDNTT(this)">✓ Duyệt ĐNTT</button> <button class="btn btn-danger" style="padding:5px 10px;font-size:.78rem;margin-left:4px" onclick="openHuyDNTT(\'DN00812\')">✕ Hủy</button>';
-  toast('Đã duyệt giải ngân — tạo ĐNTT DN00812, chờ KT duyệt');
+  var steps=document.querySelectorAll('.st');
+  steps[6].className='st done';steps[6].querySelector('.ic').textContent='✓';
+  steps[7].className='st now';steps[7].querySelector('.ic').textContent='→';
+  steps[7].innerHTML='<span class="ic">→</span><span class="t">Đang cầm (Kết thúc)<small>HĐ đang hiệu lực</small></span>';
+  toast('Đã duyệt giải ngân — HĐ chuyển "Đang cầm"');
 }
-
-/* === KT duyệt ĐNTT === */
-function approveDNTT(btn){
-  const tr=btn.closest('tr');
-  tr.cells[4].innerHTML='<span class="bg bg-teal">KT đã duyệt</span>';
-  tr.cells[5].innerHTML='<button class="btn btn-line" style="padding:5px 10px;font-size:.78rem" onclick="exportVTB(this)">⬇ Xuất Excel Vietinbank</button> <button class="btn btn-danger" style="padding:5px 10px;font-size:.78rem;margin-left:4px" onclick="openHuyDNTT(\''+tr.cells[0].textContent+'\')">✕ Hủy</button>';
-  toast('KT đã duyệt ĐNTT — sẵn sàng xuất Excel Vietinbank');
+/* === Trả về === */
+function returnGN(){
+  var r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do');r.focus();return;}
+  toast('Đã trả về — TVV chỉ được sửa thông tin chi vay');
 }
-
-/* === Xuất Excel === */
-function exportVTB(btn){
-  const tr=btn.closest('tr');
-  tr.cells[5].innerHTML='<button class="btn btn-ok" style="padding:5px 10px;font-size:.78rem" onclick="openSBTModal(this)">✓ Xác nhận đã chi tiền</button>';
-  toast('Đã xuất file Excel import Vietinbank (UNC) — mô phỏng');
-}
-
-/* === Mở modal nhập SBT === */
-var _sbtRow=null;
-function openSBTModal(btn){
-  _sbtRow=btn.closest('tr');
-  document.getElementById('sbtInput').value='';
-  document.getElementById('modalSBT').classList.add('open');
-  setTimeout(()=>document.getElementById('sbtInput').focus(),100);
-}
-function confirmPaidWithSBT(){
-  const sbt=document.getElementById('sbtInput').value.trim();
-  if(!sbt){toast('Bắt buộc nhập SBT trước khi xác nhận');document.getElementById('sbtInput').focus();return;}
-  if(!_sbtRow) return;
-  _sbtRow.cells[4].innerHTML='<span class="bg bg-green">Đã chi tiền</span>';
-  _sbtRow.cells[5].innerHTML='<span style="font-size:.78rem;color:var(--sub)">SBT: '+sbt+' · hôm nay</span>';
-  document.getElementById('modalSBT').classList.remove('open');
-  toast('Đã xác nhận chi tiền — SBT: '+sbt+' — HĐ chuyển "Đang hiệu lực"');
-  _sbtRow=null;
-}
-
-/* === Hủy ĐNTT === */
-var _huyDnttCode=null;
-function openHuyDNTT(code){
-  _huyDnttCode=code;
-  document.getElementById('huyDnttCode').textContent=code;
-  document.getElementById('huyDnttReason').value='';
-  document.getElementById('modalHuyDNTT').classList.add('open');
-  setTimeout(()=>document.getElementById('huyDnttReason').focus(),100);
-}
-function confirmHuyDNTT(){
-  const reason=document.getElementById('huyDnttReason').value.trim();
-  if(!reason){toast('Bắt buộc nhập lý do hủy ĐNTT');document.getElementById('huyDnttReason').focus();return;}
-  const rows=document.querySelectorAll('#dntt tbody tr');
-  for(const tr of rows){
-    if(tr.cells[0].textContent===_huyDnttCode){
-      tr.cells[4].innerHTML='<span class="bg bg-red">Đã hủy</span>';
-      tr.cells[5].innerHTML='<span style="font-size:.78rem;color:var(--sub)">Lý do: '+reason+'</span>';
-      break;
-    }
-  }
-  document.getElementById('modalHuyDNTT').classList.remove('open');
-  toast('Đã hủy ĐNTT '+_huyDnttCode+' — lý do: '+reason);
-  _huyDnttCode=null;
+/* === Từ chối === */
+function rejectGN(){
+  var r=document.getElementById('reason');
+  if(!r.value.trim()){toast('Bắt buộc nhập lý do');r.focus();return;}
+  toast('Đã từ chối hồ sơ giải ngân');
 }
 </script>
 </body>
