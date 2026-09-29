@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thu nợ lãi phí · GPTS An Tín</title>
+<title>Chuộc đồ · GPTS An Tín</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
@@ -16,6 +16,8 @@
   .info-grid .val{font-size:.86rem;font-weight:500}
   .tbl-fee th,.tbl-fee td{font-size:.8rem;padding:7px 8px;white-space:nowrap}
   .tbl-fee input[type=text]{width:76px;text-align:right;padding:4px 6px;border:1px solid var(--line);border-radius:var(--r-ctl);font:inherit;font-size:.78rem}
+  .tbl-fee.locked input[type=text]{background:var(--bg);color:var(--sub);pointer-events:none}
+  .tbl-fee.locked td{color:var(--sub)}
   .tl-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.78rem}
   .tl-item:last-child{border-bottom:none}
   .tl-date{flex-shrink:0;color:var(--sub);width:52px;font-size:.74rem}
@@ -23,6 +25,13 @@
   .tl-amt{flex-shrink:0;font-weight:600;text-align:right;font-size:.8rem}
   .panel-summary{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:.8rem}
   .panel-summary .row{display:flex;justify-content:space-between;margin-bottom:4px}
+  .option-toggle{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--blue-bg);border-radius:var(--r-card);margin-bottom:16px;font-size:.86rem}
+  .option-toggle input[type=checkbox]{width:18px;height:18px;accent-color:var(--navy-2)}
+  .badge-wait{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.72rem;font-weight:600}
+  .badge-wait.normal{background:#e8f5e9;color:#2e7d32}
+  .badge-wait.warn{background:#fff3e0;color:#e65100}
+  .badge-wait.danger{background:#fce4ec;color:#c62828}
+  .handover-section{border-top:2px solid var(--line);padding-top:16px;margin-top:8px}
 </style>
 </head>
 <body>
@@ -40,8 +49,8 @@
       <a href="14-giai-ngan.html">Giải ngân</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
-      <a href="08-thu-no-tat-toan.html" class="on">· Thu nợ lãi phí</a>
-      <a href="08b-chuoc-do.html">· Chuộc đồ</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ lãi phí</a>
+      <a href="08b-chuoc-do.html" class="on">· Chuộc đồ</a>
       <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
       <a href="10-report.html">Report / Truy xuất</a>
       <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
@@ -52,8 +61,8 @@
   </aside>
 
   <main class="main">
-    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Thu nợ lãi phí</div>
-    <div class="page-head"><div><h1>Thu nợ lãi phí</h1><div class="desc">Thu lãi, phí bảo quản định kỳ cho hợp đồng cầm cố</div></div></div>
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Chuộc đồ</div>
+    <div class="page-head"><div><h1>Chuộc đồ</h1><div class="desc">Thanh toán đủ nợ, lãi, phí và trả hàng cho khách</div></div></div>
 
     <!-- Search -->
     <div class="card" style="margin-bottom:16px">
@@ -63,8 +72,23 @@
       </div>
     </div>
 
-    <!-- Main content (hidden until search) -->
+    <!-- Main content -->
     <div id="mainContent" hidden>
+
+      <!-- Option toggle -->
+      <div class="option-toggle">
+        <input type="checkbox" id="chkTraHang" onchange="toggleOption()">
+        <label for="chkTraHang" style="cursor:pointer;font-weight:500">Chỉ trả hàng (đã thu đủ nợ, lãi, phí)</label>
+      </div>
+
+      <!-- Subtitle -->
+      <div id="subtitleOpt1" class="note note-info" style="margin-bottom:16px">
+        <strong>Chuộc:</strong> Thanh toán đủ nợ, lãi, phí và lấy hàng liền
+      </div>
+      <div id="subtitleOpt2" class="note note-warn" style="margin-bottom:16px" hidden>
+        <strong>Chờ trả hàng:</strong> Đã thu đủ nợ, lãi, phí — chỉ làm thủ tục trả hàng cho khách
+      </div>
+
       <div class="split-fee">
         <!-- LEFT COLUMN -->
         <div class="stack" style="gap:16px">
@@ -75,21 +99,20 @@
             <div class="info-grid">
               <div><div class="lbl">Mã HĐCC</div><div class="val">HD002201</div></div>
               <div><div class="lbl">Ngày giải ngân</div><div class="val">01/08/2026</div></div>
-              <div><div class="lbl">Số ngày thu phí</div><div class="val">30 ngày</div></div>
-              <div><div class="lbl">Số kỳ tính lũy kế</div><div class="val">1</div></div>
+              <div><div class="lbl">Ngày đến hạn</div><div class="val">31/08/2026</div></div>
+              <div id="cellWait"><div class="lbl">Trạng thái</div><div class="val"><span class="bg bg-green">Đang hiệu lực</span></div></div>
               <div><div class="lbl">Mã KH</div><div class="val">KH00821</div></div>
               <div><div class="lbl">Tên KH</div><div class="val">Nguyễn Văn An</div></div>
               <div><div class="lbl">Số tiền vay</div><div class="val" style="color:var(--navy);font-weight:700">10.000.000 đ</div></div>
-              <div><div class="lbl">Kỳ hạn</div><div class="val">30 ngày · đến 31/08/2026</div></div>
+              <div><div class="lbl">Kỳ hạn</div><div class="val">30 ngày</div></div>
             </div>
-            <div class="note note-info" style="font-size:.78rem;margin-bottom:0">Ngày chốt lãi phí: T-1 · Cutoff 23:59</div>
           </div>
 
           <!-- Thông tin nợ, lãi, phí -->
           <div class="card">
             <h2>Thông tin nợ, lãi, phí</h2>
             <div class="tbl-wrap">
-              <table class="tbl tbl-fee">
+              <table class="tbl tbl-fee" id="tblFee">
                 <thead>
                   <tr>
                     <th>Khoản mục</th>
@@ -138,35 +161,116 @@
                     <td style="text-align:right"><input type="text" value="0"></td>
                     <td style="text-align:right;font-weight:600">45.000</td>
                   </tr>
+                  <tr>
+                    <td>Nợ gốc</td>
+                    <td style="text-align:right">—</td>
+                    <td style="text-align:right">10.000.000</td>
+                    <td style="text-align:right">10.000.000</td>
+                    <td style="text-align:right"><input type="text" value="0"></td>
+                    <td style="text-align:right"><input type="text" value="0"></td>
+                    <td style="text-align:right;font-weight:600">10.000.000</td>
+                  </tr>
                   <tr style="font-weight:700;background:#f5f8fb">
                     <td colspan="2"><strong>Tổng cộng</strong></td>
-                    <td style="text-align:right"><strong>693.000</strong></td>
-                    <td style="text-align:right"><strong>693.000</strong></td>
+                    <td style="text-align:right"><strong>10.693.000</strong></td>
+                    <td style="text-align:right"><strong>10.693.000</strong></td>
                     <td style="text-align:right"><strong>0</strong></td>
                     <td style="text-align:right"><strong>0</strong></td>
-                    <td style="text-align:right"><strong>693.000</strong></td>
+                    <td style="text-align:right"><strong>10.693.000</strong></td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <div class="note note-info" style="font-size:.78rem;margin-top:10px;margin-bottom:0">Tăng thu khác, Giảm thu khác: nhập số tiền điều chỉnh nếu có</div>
           </div>
 
-          <!-- Thông tin giao dịch -->
-          <div class="card">
-            <h2>Thông tin giao dịch</h2>
-            <div class="grid3" style="max-width:600px;margin-bottom:14px">
-              <div class="f">
-                <label>Ngày giao dịch</label>
-                <input type="date" value="2026-08-31">
+          <!-- Thông tin khách nhận hàng -->
+          <div class="card" id="secHandover">
+            <div class="handover-section">
+              <h2>Thông tin khách nhận hàng</h2>
+
+              <div class="f" style="margin-bottom:14px">
+                <div class="radio-row">
+                  <label><input type="radio" name="nguoiChuoc" value="chinhChu" checked onchange="toggleUyQuyen()"> Chính chủ</label>
+                  <label><input type="radio" name="nguoiChuoc" value="uyQuyen" onchange="toggleUyQuyen()"> Người nhận thay có ủy quyền</label>
+                </div>
               </div>
-              <div class="f">
-                <label>Phương thức thanh toán</label>
-                <select><option>Chuyển khoản</option><option>Tiền mặt</option></select>
+
+              <!-- Chính chủ fields -->
+              <div id="blockChinhChu">
+                <div class="grid3" style="max-width:720px;margin-bottom:12px">
+                  <div class="f">
+                    <label>Người nhận</label>
+                    <input type="text" value="Nguyễn Văn An" readonly style="background:var(--bg)">
+                  </div>
+                  <div class="f">
+                    <label>CCCD</label>
+                    <input type="text" value="079086001234" readonly style="background:var(--bg)">
+                  </div>
+                </div>
+                <div class="grid2" style="max-width:560px;margin-bottom:12px">
+                  <div class="f">
+                    <label>Ảnh KH + CCCD (đối chiếu)</label>
+                    <div class="upload-compact" onclick="toast('Chọn file ảnh KH + CCCD')">📎 Chọn ảnh KH + CCCD<br><small>JPG, PNG — tối đa 10 MB</small></div>
+                  </div>
+                  <div class="f">
+                    <label>Biên bản ký nhận</label>
+                    <div class="upload-compact" onclick="toast('Chọn file biên bản')">📎 Chọn biên bản ký<br><small>PDF, JPG, PNG — tối đa 10 MB</small></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ủy quyền fields -->
+              <div id="blockUyQuyen" hidden>
+                <div class="grid3" style="max-width:720px;margin-bottom:12px">
+                  <div class="f">
+                    <label>Người nhận thay <span class="req">*</span></label>
+                    <input type="text" placeholder="Họ tên người nhận thay">
+                  </div>
+                  <div class="f">
+                    <label>CCCD người nhận thay <span class="req">*</span></label>
+                    <input type="text" placeholder="Số CCCD">
+                  </div>
+                  <div class="f">
+                    <label>Quan hệ với KH</label>
+                    <input type="text" placeholder="VD: Anh/Chị/Vợ/Chồng…">
+                  </div>
+                </div>
+                <div class="grid3" style="max-width:720px;margin-bottom:12px">
+                  <div class="f">
+                    <label>Ảnh CCCD mặt trước <span class="req">*</span></label>
+                    <div class="upload-compact" onclick="toast('Chọn ảnh CCCD mặt trước')">📎 CCCD mặt trước<br><small>JPG, PNG</small></div>
+                  </div>
+                  <div class="f">
+                    <label>Ảnh CCCD mặt sau <span class="req">*</span></label>
+                    <div class="upload-compact" onclick="toast('Chọn ảnh CCCD mặt sau')">📎 CCCD mặt sau<br><small>JPG, PNG</small></div>
+                  </div>
+                  <div class="f">
+                    <label>Giấy ủy quyền <span class="req">*</span></label>
+                    <div class="upload-compact" onclick="toast('Chọn giấy ủy quyền')">📎 Giấy ủy quyền<br><small>PDF, JPG, PNG</small></div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- Transaction info -->
+            <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:14px">
+              <div class="grid3" style="max-width:600px;margin-bottom:14px" id="transFields">
+                <div class="f">
+                  <label>Ngày giao dịch</label>
+                  <input type="date" value="2026-08-31">
+                </div>
+                <div class="f">
+                  <label>Phương thức thanh toán</label>
+                  <select><option>Chuyển khoản</option><option>Tiền mặt</option></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
             <div style="display:flex;gap:10px;padding-top:14px;border-top:1px solid var(--line)">
               <button class="btn btn-line" onclick="toast('Đã hủy')">Hủy</button>
-              <button class="btn btn-pri" onclick="chuyenDuyet()">✓ Chuyển duyệt</button>
+              <button class="btn btn-pri" id="btnSubmit" onclick="submitChuoc()">✓ Chuyển duyệt</button>
             </div>
           </div>
         </div>
@@ -200,8 +304,41 @@ function findContract(){
   document.getElementById('mainContent').hidden=false;
   toast('Đã tìm thấy hợp đồng HD002201 · Nguyễn Văn An');
 }
-function chuyenDuyet(){
-  toast('Đã chuyển duyệt thu nợ lãi phí HD002201 → Phê duyệt');
+
+/* Toggle Option 1 (chuộc liền) / Option 2 (chỉ trả hàng) */
+function toggleOption(){
+  const isTraHang = document.getElementById('chkTraHang').checked;
+  const tbl = document.getElementById('tblFee');
+  const sub1 = document.getElementById('subtitleOpt1');
+  const sub2 = document.getElementById('subtitleOpt2');
+  const transFields = document.getElementById('transFields');
+
+  sub1.hidden = isTraHang;
+  sub2.hidden = !isTraHang;
+
+  if(isTraHang){
+    tbl.classList.add('locked');
+    transFields.hidden = true;
+  } else {
+    tbl.classList.remove('locked');
+    transFields.hidden = false;
+  }
+}
+
+/* Toggle chính chủ / ủy quyền */
+function toggleUyQuyen(){
+  const v = document.querySelector('input[name=nguoiChuoc]:checked').value;
+  document.getElementById('blockChinhChu').hidden = (v==='uyQuyen');
+  document.getElementById('blockUyQuyen').hidden = (v!=='uyQuyen');
+}
+
+function submitChuoc(){
+  const isTraHang = document.getElementById('chkTraHang').checked;
+  if(isTraHang){
+    toast('Đã xác nhận trả hàng HD002201 — KH nhận lại tài sản');
+  } else {
+    toast('Đã chuyển duyệt chuộc đồ HD002201 → Phê duyệt');
+  }
 }
 </script>
 </body>
