@@ -52,6 +52,7 @@
       <a href="05-duyet-ho-so.html">· Duyệt hồ sơ</a>
       <a href="05b-upload-hdcc.html">· Upload HĐCC</a>
       <a href="05c-chuyen-giai-ngan.html">· Chuyển giải ngân</a>
+      <a href="14-giai-ngan.html">Giải ngân</a>
       <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân</a>
       <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
       <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
@@ -66,9 +67,8 @@
   <main class="main">
 
     <div class="role-tabs">
-      <button class="role-tab active" onclick="switchRole('tvv',this)">👤 TVV</button>
+      <button class="role-tab active" onclick="switchRole('tvv',this)">👤 Tư vấn viên</button>
       <button class="role-tab" onclick="switchRole('pd',this)">🛡 Phê duyệt & Thẩm định</button>
-      <button class="role-tab" onclick="switchRole('kt',this)">💰 Kế toán</button>
     </div>
 
     <!-- ===== VIEW TVV ===== -->
@@ -150,43 +150,6 @@
             <tr><td><input type="checkbox"></td><td class="link">HD002196</td><td>Lê Văn Khánh</td><td><span class="bg bg-green">Tất toán</span></td><td>Quận 1</td><td>22/08 10:30</td><td><a href="#" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Duyệt')">Duyệt</a> <a href="#" class="tbl-action">Xem</a></td></tr>
           </tbody>
         </table><div class="tbl-foot"><span>Hiển thị 1–3 / 5</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div></div>
-      </div>
-    </div>
-
-    <!-- ===== VIEW KẾ TOÁN ===== -->
-    <div id="view-kt" class="role-view">
-      <div class="role-header">
-        <div><h1>Hợp đồng cầm cố</h1><p style="font-size:.82rem;color:var(--sub);margin-top:2px">Quản lý thanh toán và chi tiền cho hợp đồng đã duyệt</p></div>
-        <span class="rb rb-gold">Kế toán thanh toán</span>
-      </div>
-      <div class="sub-tabs" id="kt-tabs">
-        <button class="sub-tab active" onclick="switchSub('kt',0,this)">Chờ chi tiền <span class="cnt">8</span></button>
-        <button class="sub-tab" onclick="switchSub('kt',1,this)">Đã chi tiền (hôm nay) <span class="cnt">15</span></button>
-      </div>
-      <div class="kt-sub sub-content active">
-        <div class="sub-pills"><button class="sub-pill active">Tất cả (8)</button><button class="sub-pill">Chờ chi tiền cầm (6)</button><button class="sub-pill">Chờ chi tiền vay thêm (2)</button></div>
-        <div class="tbl-wrap"><table class="tbl">
-          <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th>Mã ĐNTT</th><th style="text-align:right">Số tiền</th><th>Thụ hưởng</th><th>Cửa hàng</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead>
-          <tbody>
-            <tr><td class="link">HD002211</td><td>Nguyễn Thị Hồng</td><td>DN00812</td><td style="text-align:right">28.000.000</td><td>VCB · Nguyễn Thị Hồng</td><td>Quận 1</td><td>23/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
-            <tr><td class="link">HD002208</td><td>Trần Văn Bảo</td><td>DN00810</td><td style="text-align:right">12.000.000</td><td>VCB · Trần Văn Bảo</td><td>Quận 1</td><td>22/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
-            <tr><td class="link">HD002205</td><td>Lê Minh Châu</td><td>DN00808</td><td style="text-align:right">45.000.000</td><td>ACB · Lê Minh Châu</td><td>Thủ Đức</td><td>22/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
-            <tr><td class="link">HD002203</td><td>Nguyễn Văn Tú</td><td>DN00806</td><td style="text-align:right">20.000.000</td><td>TCB · Nguyễn Văn Tú</td><td>Quận 7</td><td>21/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
-            <tr><td class="link">HD002188</td><td>Võ Thúy An</td><td>DN00804</td><td style="text-align:right">5.000.000</td><td>VCB · Võ Thúy An</td><td>Quận 1</td><td>21/08</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Chi tiền')">✓ Chi tiền</button> <button class="btn btn-danger" style="padding:4px 10px;font-size:.76rem" onclick="toast('Hủy')">✕ Hủy</button></td></tr>
-          </tbody>
-        </table><div class="tbl-foot"><span>Hiển thị 1–5 / 8</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div></div>
-      </div>
-      <div class="kt-sub sub-content">
-        <div class="tbl-wrap"><table class="tbl">
-          <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th>Mã ĐNTT</th><th style="text-align:right">Số tiền</th><th>Thụ hưởng</th><th>SBT</th><th>Thời gian chi</th></tr></thead>
-          <tbody>
-            <tr><td>HD002199</td><td>Võ Thúy An</td><td>DN00807</td><td style="text-align:right">8.000.000</td><td>VTB · Võ Thúy An</td><td>UNC-0921</td><td>20/08 16:05</td></tr>
-            <tr><td>HD002197</td><td>Đặng Văn Phú</td><td>DN00805</td><td style="text-align:right">22.000.000</td><td>VCB · Đặng Văn Phú</td><td>UNC-0920</td><td>20/08 15:30</td></tr>
-            <tr><td>HD002194</td><td>Huỳnh Thị Nga</td><td>DN00803</td><td style="text-align:right">35.000.000</td><td>ACB · Huỳnh Thị Nga</td><td>UNC-0919</td><td>20/08 14:45</td></tr>
-            <tr><td>HD002192</td><td>Lê Văn Khánh</td><td>DN00801</td><td style="text-align:right">18.500.000</td><td>TCB · Lê Văn Khánh</td><td>UNC-0918</td><td>20/08 11:20</td></tr>
-            <tr><td>HD002190</td><td>Trần Thị Mai</td><td>DN00799</td><td style="text-align:right">9.000.000</td><td>VCB · Trần Thị Mai</td><td>UNC-0917</td><td>20/08 10:00</td></tr>
-          </tbody>
-        </table><div class="tbl-foot"><span>Hiển thị 1–5 / 15</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button></div></div>
       </div>
     </div>
 

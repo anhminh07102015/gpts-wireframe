@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giải ngân · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .filter-bar .f{margin-bottom:0}
+  .stat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+  .stat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;text-align:center}
+  .stat-card .num{font-size:1.6rem;font-weight:700;color:var(--navy-2)}
+  .stat-card .lbl{font-size:.78rem;color:var(--sub);margin-top:2px}
+  .stat-card.active{border-color:var(--navy-2);background:var(--blue-bg)}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav>
+      <a href="index.html">Tổng quan</a>
+      <a href="01-danh-sach-khach-hang.html">Khách hàng</a>
+      <a href="02-tao-khach-hang.html">· Tạo khách hàng</a>
+      <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a>
+      <a href="03-tao-hop-dong.html">· Lên hợp đồng</a>
+      <a href="05-duyet-ho-so.html">· Duyệt hồ sơ</a>
+      <a href="05b-upload-hdcc.html">· Upload HĐCC</a>
+      <a href="05c-chuyen-giai-ngan.html">· Chuyển giải ngân</a>
+      <a href="14-giai-ngan.html" class="on">Giải ngân</a>
+      <a href="06-duyet-giai-ngan.html">· Duyệt giải ngân</a>
+      <a href="07-luong-xuat-hoa-don.html">Luồng xuất hóa đơn</a>
+      <a href="08-thu-no-tat-toan.html">· Thu nợ / Tất toán</a>
+      <a href="09-gia-han.html">· Gia hạn / Vay thêm</a>
+      <a href="10-report.html">Report / Truy xuất</a>
+      <a href="11-thanh-ly-nhac-no.html">Thanh lý / Nhắc nợ</a>
+      <a href="12-hop-dong-toi-han.html">HĐ tới hạn / Quá hạn</a>
+      <a href="13-cau-hinh-admin.html">Cấu hình Admin</a>
+    </nav>
+    <div class="foot">Bản wireframe thao tác · số liệu minh họa</div>
+  </aside>
+  <main class="main">
+
+    <div class="page-head">
+      <div><h1>Giải ngân</h1><div class="desc">Quản lý duyệt giải ngân và chi tiền · P.TCKT</div></div>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card active" onclick="filterGN('all')"><div class="num">8</div><div class="lbl">Chờ duyệt giải ngân</div></div>
+      <div class="stat-card" onclick="filterGN('done')"><div class="num">15</div><div class="lbl">Đã duyệt hôm nay</div></div>
+      <div class="stat-card" onclick="filterGN('returned')"><div class="num">2</div><div class="lbl">Đã trả về</div></div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="filter-bar">
+          <div class="f" style="flex:1;min-width:200px"><input placeholder="🔍 Mã HĐCC / tên KH / số TK…"></div>
+          <div class="f" style="width:160px">
+            <select id="filterType">
+              <option>Tất cả loại</option>
+              <option>Chờ chi tiền cầm</option>
+              <option>Chờ chi tiền vay thêm</option>
+            </select>
+          </div>
+          <div class="f" style="width:140px">
+            <select><option>Cửa hàng</option><option>Quận 1</option><option>Thủ Đức</option><option>Quận 7</option></select>
+          </div>
+          <button class="btn btn-ghost" style="font-size:.82rem" onclick="toast('Đã áp dụng bộ lọc')">Lọc</button>
+        </div>
+
+        <!-- Bảng chờ duyệt giải ngân -->
+        <div id="tbl-pending">
+          <h2 style="margin-bottom:12px">Chờ duyệt giải ngân</h2>
+          <table class="tbl">
+            <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th>Loại</th><th style="text-align:right">Số tiền</th><th>TK thụ hưởng</th><th>Cửa hàng</th><th>Ngày chuyển GN</th><th>Thao tác</th></tr></thead>
+            <tbody>
+              <tr><td class="link"><a href="06-duyet-giai-ngan.html">HD002211</a></td><td>Nguyễn Thị Hồng</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">28.000.000</td><td>VCB · 0071xxx789</td><td>Quận 1</td><td>25/08 10:30</td><td><a href="06-duyet-giai-ngan.html" class="btn btn-ok" style="padding:4px 10px;font-size:.76rem">Duyệt GN</a> <button class="btn btn-line" style="padding:4px 10px;font-size:.76rem" onclick="toast('Trả về TVV')">Trả về</button></td></tr>
+              <tr><td class="link">HD002208</td><td>Trần Văn Bảo</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">12.000.000</td><td>VCB · 0071xxx456</td><td>Quận 1</td><td>25/08 10:00</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Mở duyệt giải ngân')">Duyệt GN</button> <button class="btn btn-line" style="padding:4px 10px;font-size:.76rem" onclick="toast('Trả về TVV')">Trả về</button></td></tr>
+              <tr><td class="link">HD002205</td><td>Lê Minh Châu</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">45.000.000</td><td>ACB · 0041xxx321</td><td>Thủ Đức</td><td>25/08 09:15</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Mở duyệt giải ngân')">Duyệt GN</button> <button class="btn btn-line" style="padding:4px 10px;font-size:.76rem" onclick="toast('Trả về TVV')">Trả về</button></td></tr>
+              <tr><td class="link">HD002203</td><td>Nguyễn Văn Tú</td><td><span class="bg bg-teal">Vay thêm</span></td><td style="text-align:right">20.000.000</td><td>TCB · 1901xxx654</td><td>Quận 7</td><td>24/08 16:40</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Mở duyệt giải ngân')">Duyệt GN</button> <button class="btn btn-line" style="padding:4px 10px;font-size:.76rem" onclick="toast('Trả về TVV')">Trả về</button></td></tr>
+              <tr><td class="link">HD002188</td><td>Võ Thúy An</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">5.000.000</td><td>VCB · 0071xxx111</td><td>Quận 1</td><td>24/08 15:00</td><td><button class="btn btn-ok" style="padding:4px 10px;font-size:.76rem" onclick="toast('Mở duyệt giải ngân')">Duyệt GN</button> <button class="btn btn-line" style="padding:4px 10px;font-size:.76rem" onclick="toast('Trả về TVV')">Trả về</button></td></tr>
+            </tbody>
+          </table>
+          <div class="tbl-foot"><span>Hiển thị 1–5 / 8</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button></div>
+        </div>
+
+        <!-- Bảng đã duyệt hôm nay -->
+        <div id="tbl-done" hidden>
+          <h2 style="margin-bottom:12px">Đã duyệt giải ngân hôm nay</h2>
+          <table class="tbl">
+            <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th>Loại</th><th style="text-align:right">Số tiền</th><th>TK thụ hưởng</th><th>Người duyệt</th><th>Thời gian duyệt</th></tr></thead>
+            <tbody>
+              <tr><td>HD002199</td><td>Võ Thúy An</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">8.000.000</td><td>VTB · 0071xxx222</td><td>Lê Thị Hoa (KT)</td><td>25/08 16:05</td></tr>
+              <tr><td>HD002197</td><td>Đặng Văn Phú</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">22.000.000</td><td>VCB · 0071xxx333</td><td>Lê Thị Hoa (KT)</td><td>25/08 15:30</td></tr>
+              <tr><td>HD002194</td><td>Huỳnh Thị Nga</td><td><span class="bg bg-teal">Vay thêm</span></td><td style="text-align:right">35.000.000</td><td>ACB · 0041xxx444</td><td>Lê Thị Hoa (KT)</td><td>25/08 14:45</td></tr>
+              <tr><td>HD002192</td><td>Lê Văn Khánh</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">18.500.000</td><td>TCB · 1901xxx555</td><td>Lê Thị Hoa (KT)</td><td>25/08 11:20</td></tr>
+              <tr><td>HD002190</td><td>Trần Thị Mai</td><td><span class="bg bg-blue">Cầm mới</span></td><td style="text-align:right">9.000.000</td><td>VCB · 0071xxx666</td><td>Lê Thị Hoa (KT)</td><td>25/08 10:00</td></tr>
+            </tbody>
+          </table>
+          <div class="tbl-foot"><span>Hiển thị 1–5 / 15</span><span class="grow"></span><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button></div>
+        </div>
+
+        <!-- Bảng đã trả về -->
+        <div id="tbl-returned" hidden>
+          <h2 style="margin-bottom:12px">Đã trả về</h2>
+          <table class="tbl">
+            <thead><tr><th>Mã HĐCC</th><th>Tên KH</th><th style="text-align:right">Số tiền</th><th>Lý do trả về</th><th>Người trả</th><th>Thời gian</th></tr></thead>
+            <tbody>
+              <tr><td>HD002201</td><td>Nguyễn Minh Tuấn</td><td style="text-align:right">15.000.000</td><td>Sai số TK thụ hưởng</td><td>Lê Thị Hoa (KT)</td><td>25/08 09:30</td></tr>
+              <tr><td>HD002195</td><td>Phạm Thanh Hà</td><td style="text-align:right">32.000.000</td><td>Tên chủ TK không khớp CCCD</td><td>Lê Thị Hoa (KT)</td><td>24/08 16:50</td></tr>
+            </tbody>
+          </table>
+          <div class="tbl-foot"><span>Hiển thị 1–2 / 2</span></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+<script src="assets/app.js"></script>
+<script>
+function filterGN(type){
+  document.querySelectorAll('.stat-card').forEach(c=>c.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('tbl-pending').hidden = type!=='all';
+  document.getElementById('tbl-done').hidden = type!=='done';
+  document.getElementById('tbl-returned').hidden = type!=='returned';
+}
+</script>
+</body>
+</html>
