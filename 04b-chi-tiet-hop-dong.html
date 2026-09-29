@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chi tiết hợp đồng · GPTS An Tín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .hd-header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  .hd-header h1{font-size:1.35rem;margin:0}
+  .hd-header .bg{font-size:.82rem}
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px 20px}
+  .info-grid .lbl{font-size:.74rem;color:var(--sub);margin-bottom:1px}
+  .info-grid .val{font-size:.86rem;font-weight:500}
+  .split-detail{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+  @media(max-width:960px){.split-detail{grid-template-columns:1fr}}
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .tl-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.84rem;align-items:flex-start}
+  .tl-row:last-child{border-bottom:none}
+  .tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+  .tl-dot.green{background:var(--green)}
+  .tl-dot.blue{background:var(--blue)}
+  .tl-dot.orange{background:#e67e22}
+  .tl-dot.gray{background:#bbb}
+  .tl-body{flex:1;min-width:0}
+  .tl-title{font-weight:500;line-height:1.3}
+  .tl-sub{font-size:.76rem;color:var(--sub);margin-top:2px}
+  .tl-right{text-align:right;flex-shrink:0}
+  .tl-amt{font-weight:600;font-size:.88rem}
+  .tl-date{font-size:.74rem;color:var(--sub)}
+  .tl-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7rem;font-weight:600}
+  .tl-badge.pending{background:var(--warn-bg);color:var(--warn)}
+  .tl-badge.done{background:var(--green-bg);color:var(--green)}
+  .tl-badge.rejected{background:var(--red-bg);color:var(--red)}
+  .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .action-card{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;
+    border:1px solid var(--line);border-radius:var(--r-card);cursor:pointer;text-align:center;
+    font-size:.8rem;font-weight:500;color:var(--navy-2);transition:all .15s}
+  .action-card:hover{background:var(--blue-bg);border-color:var(--blue)}
+  .action-card .ac-icon{font-size:1.3rem}
+  .summary-row{display:flex;justify-content:space-between;padding:6px 0;font-size:.84rem}
+  .summary-row.total{border-top:1px solid var(--line);padding-top:10px;margin-top:4px;font-weight:700}
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="logo">GPTS<small>Hệ thống cầm đồ An Tín — wireframe</small></div>
+    <nav></nav>
+    <div class="foot"><div class="brand">AN TÍN</div>Hệ thống cầm đồ</div>
+  </aside>
+
+  <main class="main">
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › HD002201</div>
+
+    <!-- Header -->
+    <div class="hd-header">
+      <h1>HD002201</h1>
+      <span class="bg bg-green" id="hdStatus">Đang hiệu lực</span>
+      <span style="color:var(--sub);font-size:.86rem">Nguyễn Văn An · KH00821</span>
+      <span class="grow"></span>
+      <span style="font-size:.82rem;color:var(--sub)">Cửa hàng: Quận 1</span>
+    </div>
+
+    <div class="split-detail">
+      <!-- LEFT COLUMN -->
+      <div class="stack" style="gap:16px">
+
+        <!-- Thông tin hợp đồng -->
+        <div class="card">
+          <h2>Thông tin hợp đồng</h2>
+          <div class="info-grid">
+            <div><div class="lbl">Mã HĐCC</div><div class="val">HD002201</div></div>
+            <div><div class="lbl">Mã KH</div><div class="val">KH00821</div></div>
+            <div><div class="lbl">Tên KH</div><div class="val">Nguyễn Văn An</div></div>
+            <div><div class="lbl">CCCD</div><div class="val">079086001234</div></div>
+            <div><div class="lbl">SĐT</div><div class="val">0903 xxx 111</div></div>
+            <div><div class="lbl">Loại sản phẩm</div><div class="val">Cầm cố trang sức</div></div>
+            <div><div class="lbl">Ngày giải ngân</div><div class="val">01/08/2026</div></div>
+            <div><div class="lbl">Kỳ hạn</div><div class="val">30 ngày</div></div>
+            <div><div class="lbl">Ngày đến hạn</div><div class="val">31/08/2026</div></div>
+            <div><div class="lbl">Số tiền vay</div><div class="val" style="color:var(--navy);font-weight:700">10.000.000 đ</div></div>
+            <div><div class="lbl">Lãi suất</div><div class="val">0.15%/ngày</div></div>
+            <div><div class="lbl">Phí BQ</div><div class="val">0.06%/ngày</div></div>
+          </div>
+        </div>
+
+        <!-- Tài sản cầm cố -->
+        <div class="card">
+          <h2>Tài sản cầm cố (2 TSCC)</h2>
+          <table class="tbl">
+            <thead>
+              <tr><th>STT</th><th>Mô tả TSCC</th><th>PP định giá</th><th style="text-align:right">Giá trị</th><th style="text-align:right">Tỷ lệ cầm</th><th style="text-align:right">Hạn mức</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>TS1</td><td>Nhẫn nữ 18K</td><td>Theo HĐ PNJ</td><td style="text-align:right">15.000.000</td><td style="text-align:right">85%</td><td style="text-align:right">12.750.000</td></tr>
+              <tr><td>TS2</td><td>Lắc tay vàng 24K</td><td>Theo thị trường</td><td style="text-align:right">20.000.000</td><td style="text-align:right">85%</td><td style="text-align:right">17.000.000</td></tr>
+              <tr style="font-weight:700;background:#f5f8fb"><td colspan="3" style="text-align:right">Tổng</td><td style="text-align:right">35.000.000</td><td></td><td style="text-align:right">29.750.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Lịch sử giao dịch -->
+        <div class="card">
+          <h2>Lịch sử giao dịch</h2>
+          <div class="timeline">
+            <!-- Pending transaction (vừa tạo, chờ duyệt) -->
+            <div class="tl-row" style="background:var(--warn-bg);margin:-18px -20px 0;padding:12px 20px;border-radius:var(--r-card) var(--r-card) 0 0">
+              <div class="tl-dot orange"></div>
+              <div class="tl-body">
+                <div class="tl-title">Thu nợ lãi phí kỳ 2 <span class="tl-badge pending">Chờ duyệt</span></div>
+                <div class="tl-sub">TVV Trần Minh · Chuyển duyệt 30/08/2026 14:20</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-amt" style="color:var(--warn)">693.000 đ</div>
+                <div class="tl-date">Chờ PD xác nhận</div>
+              </div>
+            </div>
+
+            <!-- Completed transactions -->
+            <div class="tl-row">
+              <div class="tl-dot green"></div>
+              <div class="tl-body">
+                <div class="tl-title">Thu nợ lãi phí kỳ 1 <span class="tl-badge done">Đã duyệt</span></div>
+                <div class="tl-sub">Duyệt: Lê Thị Hoa (PD) · 01/08/2026 16:30</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-amt" style="color:var(--green)">693.000 đ</div>
+                <div class="tl-date">01/08/2026</div>
+              </div>
+            </div>
+
+            <div class="tl-row">
+              <div class="tl-dot blue"></div>
+              <div class="tl-body">
+                <div class="tl-title">Giải ngân <span class="tl-badge done">Hoàn tất</span></div>
+                <div class="tl-sub">KT Nguyễn Hương · CK VCB 0071xxx789</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-amt" style="color:var(--navy)">10.000.000 đ</div>
+                <div class="tl-date">01/08/2026</div>
+              </div>
+            </div>
+
+            <div class="tl-row">
+              <div class="tl-dot green"></div>
+              <div class="tl-body">
+                <div class="tl-title">Phê duyệt hồ sơ <span class="tl-badge done">Đã duyệt</span></div>
+                <div class="tl-sub">PD Lê Thị Hoa · 31/07/2026 15:00</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-date">31/07/2026</div>
+              </div>
+            </div>
+
+            <div class="tl-row">
+              <div class="tl-dot gray"></div>
+              <div class="tl-body">
+                <div class="tl-title">Tạo hợp đồng</div>
+                <div class="tl-sub">TVV Trần Minh · Cửa hàng Quận 1</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-date">31/07/2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="stack" style="gap:16px">
+
+        <!-- Công nợ hiện tại -->
+        <div class="card">
+          <h2 style="font-size:.9rem">Công nợ hiện tại</h2>
+          <div class="summary-row"><span style="color:var(--sub)">Dư nợ gốc</span><strong>10.000.000</strong></div>
+          <div class="summary-row"><span style="color:var(--sub)">Lãi phát sinh</span><span>450.000</span></div>
+          <div class="summary-row"><span style="color:var(--sub)">Phí BQ</span><span>180.000</span></div>
+          <div class="summary-row"><span style="color:var(--sub)">VAT (lãi + phí)</span><span>63.000</span></div>
+          <div class="summary-row"><span style="color:var(--sub)">Đã thu lũy kế</span><span style="color:var(--green)">-693.000</span></div>
+          <div class="summary-row total"><span>Tổng công nợ</span><strong style="color:var(--navy)">10.693.000 đ</strong></div>
+          <div style="margin-top:8px;font-size:.74rem;color:var(--sub)">Cập nhật: 30/08/2026 · Chốt T-1</div>
+        </div>
+
+        <!-- Tiến trình hợp đồng -->
+        <div class="card">
+          <h2 style="font-size:.9rem">Tiến trình hợp đồng</h2>
+          <div class="steps">
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Tạo hợp đồng</div></div><div class="st-meta"><div class="st-status">31/07</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Phê duyệt hồ sơ</div></div><div class="st-meta"><div class="st-status">31/07</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Upload HĐCC</div></div><div class="st-meta"><div class="st-status">31/07</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Chuyển giải ngân</div></div><div class="st-meta"><div class="st-status">01/08</div></div></div>
+            <div class="st done"><div class="st-icon">✓</div><div class="st-body"><div class="st-title">Giải ngân</div></div><div class="st-meta"><div class="st-status">01/08</div></div></div>
+            <div class="st now"><div class="st-icon">●</div><div class="st-body"><div class="st-title">Đang hiệu lực</div><div class="st-desc">Kỳ hạn 30 ngày · còn 1 ngày</div></div><div class="st-meta"><div class="st-status" style="color:var(--navy-2)">Đến hạn 31/08</div></div></div>
+          </div>
+        </div>
+
+        <!-- Thao tác -->
+        <div class="card">
+          <h2 style="font-size:.9rem">Thao tác</h2>
+          <div class="action-grid">
+            <a class="action-card" href="08-thu-no-tat-toan.html">
+              <div class="ac-icon">🧾</div>
+              Thu nợ lãi phí
+            </a>
+            <a class="action-card" href="08b-chuoc-do.html">
+              <div class="ac-icon">📦</div>
+              Chuộc đồ
+            </a>
+            <a class="action-card" href="09-gia-han.html">
+              <div class="ac-icon">🔄</div>
+              Gia hạn
+            </a>
+            <a class="action-card" onclick="toast('Xem lịch sử định giá TSCC');return false" href="#">
+              <div class="ac-icon">💎</div>
+              Tái định giá
+            </a>
+          </div>
+        </div>
+
+        <!-- Thông tin nhanh -->
+        <div class="card" style="font-size:.82rem">
+          <h2 style="font-size:.9rem">Thông tin nhanh</h2>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--sub)">TVV phụ trách</span><span>Trần Minh</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--sub)">Cửa hàng</span><span>Quận 1</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--sub)">Số kỳ thu phí</span><span>1 kỳ (lũy kế)</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--sub)">Lần gia hạn</span><span>0 lần</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--sub)">TK thụ hưởng</span><span>VCB · 0071xxx789</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

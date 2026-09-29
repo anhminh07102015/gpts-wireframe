@@ -11,6 +11,7 @@
     '05-duyet-ho-so.html':'04-danh-sach-hop-dong.html',
     '05b-upload-hdcc.html':'04-danh-sach-hop-dong.html',
     '05c-chuyen-giai-ngan.html':'04-danh-sach-hop-dong.html',
+    '04b-chi-tiet-hop-dong.html':'04-danh-sach-hop-dong.html',
     '06-duyet-giai-ngan.html':'14-giai-ngan.html'};
   var act=pm[pg]||pg;
   var menu=[
