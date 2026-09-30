@@ -104,6 +104,8 @@ h1{font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
 .bg-blue{background:var(--blue-bg);color:#155c8f}
 .bg-green{background:var(--green-bg);color:var(--green)}
 .bg-gray{background:#eef1f4;color:#5b6672}
+.bg-silver{background:#f0f0f0;color:#666}
+.bg-orange{background:#fff3e0;color:#e65100}
 .bg-red{background:var(--red-bg);color:var(--red)}
 .bg-warn{background:var(--warn-bg);color:var(--warn)}
 .bg-teal{background:#e0f5f0;color:#0e7a63}

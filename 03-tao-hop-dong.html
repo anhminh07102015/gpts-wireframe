@@ -16,12 +16,14 @@
   </aside>
 
   <main class="main">
-    <div class="crumb"><a href="index.html">Tổng quan</a> › <a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Lên hợp đồng</div>
+    <div class="crumb"><a href="04-danh-sach-hop-dong.html">Hợp đồng cầm cố</a> › Tạo mới</div>
     <div class="page-head">
       <div>
         <h1>Lên hợp đồng cầm cố</h1>
         <div class="desc">Tạo hợp đồng mới qua 6 bước — thông tin, khách hàng, tài sản, cầm cố, giải ngân, kiểm định.</div>
       </div>
+      <div class="grow"></div>
+      <div style="background:var(--blue-bg);color:var(--navy);padding:6px 14px;border-radius:8px;font-size:.82rem;font-weight:500;white-space:nowrap">🛡 An toàn tài sản · Minh bạch giao dịch</div>
     </div>
 
     <div class="stack">
@@ -50,6 +52,9 @@
             <div class="f">
               <label>Kỳ hạn</label>
               <select id="kyHan" onchange="updateMaHD()">
+                <option value="1">1 ngày</option>
+                <option value="1">7 ngày</option>
+                <option value="1">15 ngày</option>
                 <option value="1" selected>30 ngày</option>
                 <option value="2">60 ngày</option>
                 <option value="3">90 ngày</option>
@@ -73,7 +78,7 @@
               <div><strong>Kỳ hạn</strong><br>1</div>
               <div><strong>Số HĐ</strong><br>000001</div>
             </div>
-            <div style="margin-top:12px;font-size:.72rem;color:var(--sub);line-height:1.45;text-align:left">Quy tắc sinh mã hợp đồng: Mã cửa hàng theo cửa hàng bán sản phẩm, loại hàng theo loại TSCC, kỳ hạn theo lựa chọn, số HĐ tự tăng.</div>
+            <div style="margin-top:12px;font-size:.72rem;color:var(--sub);line-height:1.45;text-align:left">Quy tắc sinh mã hợp đồng: Mã cửa hàng theo cấu trúc loại sản phẩm. Loại hàng: J = JEWELRY, V = VEHICLE, O = OTHER. Kỳ hạn: 1, 7, 15 → 1; 30 → 2; 60 → 3. Số tự sinh theo HĐ/000001, 000002…</div>
           </div>
         </div>
       </div>

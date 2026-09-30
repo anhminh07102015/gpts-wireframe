@@ -180,6 +180,87 @@
         </div>
       </div>
 
+      <!-- Phần 2: ĐNTT -->
+      <div class="card" style="margin-top:24px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+          <h2 style="margin-bottom:0">Phần 2: Quản lý Đề nghị thanh toán</h2>
+          <span style="display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600;background:#fdf6e0;color:#a97a10">Vai trò: Kế toán thanh toán</span>
+        </div>
+        <div style="font-size:.82rem;color:var(--sub);margin-bottom:14px">Đề nghị thanh toán (ĐNTT)</div>
+
+        <div style="text-align:right;margin-bottom:10px">
+          <button class="btn btn-line" style="font-size:.82rem" onclick="toast('Xuất báo cáo kế toán thanh toán')">Kế toán thanh toán</button>
+        </div>
+
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Mã ĐNTT</th>
+                <th>Mã HĐCC</th>
+                <th>Thụ hưởng</th>
+                <th style="text-align:right">Số tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DN00812</td>
+                <td>HD002208</td>
+                <td>VCB - TRAN VAN BAO</td>
+                <td style="text-align:right">12.000.000</td>
+                <td><span class="bg bg-warn">Chờ duyệt giải ngân</span></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>DN00810</td>
+                <td>HD002205</td>
+                <td>ACB - LE MINH CHAU</td>
+                <td style="text-align:right">45.000.000</td>
+                <td><span class="bg bg-warn">Chờ chi tiền</span></td>
+                <td style="white-space:nowrap">
+                  <button class="btn btn-ok" style="font-size:.76rem;padding:3px 10px" onclick="toast('Đã chi tiền DN00810')">✓ Chi tiền</button>
+                  <button class="btn btn-line" style="font-size:.76rem;padding:3px 10px" onclick="toast('Đã hủy')">✕ Hủy</button>
+                </td>
+              </tr>
+              <tr>
+                <td>DN00809</td>
+                <td>HD002203</td>
+                <td>TCB - NGUYEN VAN TU</td>
+                <td style="text-align:right">20.000.000</td>
+                <td><span class="bg bg-teal">Đã chi tiền</span></td>
+                <td style="white-space:nowrap">
+                  <button class="btn btn-line" style="font-size:.76rem;padding:3px 10px" onclick="toast('Xuất Excel Vietinbank')">↓ Xuất Excel Vietinbank</button>
+                  <button class="btn btn-line" style="font-size:.76rem;padding:3px 10px" onclick="toast('Đã hủy')">✕ Hủy</button>
+                </td>
+              </tr>
+              <tr>
+                <td>DN00807</td>
+                <td>HD002199</td>
+                <td>VTB - VO THUY AN</td>
+                <td style="text-align:right">8.000.000</td>
+                <td><span class="bg bg-teal">Đã chi tiền</span></td>
+                <td style="font-size:.78rem;color:var(--sub)">SBT: UNC-0921 · 20/08 16:05</td>
+              </tr>
+              <tr>
+                <td>DN00805</td>
+                <td>HD002195</td>
+                <td>VCB - PHAM THI MAI</td>
+                <td style="text-align:right">15.000.000</td>
+                <td><span class="bg bg-red">Đã chi tiền</span></td>
+                <td style="font-size:.78rem;color:var(--red)">Lý do: Sai TK thụ hưởng</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="font-size:.78rem;color:var(--sub);margin-top:14px;line-height:1.5">
+          <strong>Luồng:</strong> Duyệt giải ngân → Chi tiền → Xác nhận đã chi tiền (nhập SBT) → HĐ chuyển "Đang hiệu lực"<br>
+          <strong>Thời điểm FI:</strong> Thời ghi nhận phải thu = thời điểm KT xác nhận chi tiền (nhập SBT thành công).
+        </div>
+      </div>
+
     </div>
 
   </main>
